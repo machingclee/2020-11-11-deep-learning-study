@@ -1,5 +1,5 @@
 # deep-learning-study
-Record what I have learnt from the beginning.
+Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
 
 ## 2020-10-10-multiclassification
 Implemented the whole back-prop update process from scratch. Derivations of important formulars are recorded in my blog post:
