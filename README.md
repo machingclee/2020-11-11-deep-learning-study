@@ -9,4 +9,4 @@ https://checkerlee.blogspot.com/2020/09/derive-formula-of-displaystyle.html
 Study how to train a model to draw bounding box of specific object.
 
 ## 2020-11-10-first-CNN-shallownet
-One Conv layer structure for identifying animals of 3 classes, and learn how to serialize and load my trained weights. Average accuracy is just about 70%. study purpose.
+One Conv layer structure for identifying animals of 3 classes. Also learn how to serialize my model and load my trained weights. Average accuracy is just about 70%. study purpose.
