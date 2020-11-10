@@ -7,3 +7,6 @@ https://checkerlee.blogspot.com/2020/09/derive-formula-of-displaystyle.html
 
 ## 2020-10-17-bounding-box-regression
 Study how to train a model to draw bounding box of specific object.
+
+## 2020-11-10-first-CNN-shallownet
+One Conv layer structure for identifying animals of 3 classes. Average accuracy is just about 70%, study purpose.
