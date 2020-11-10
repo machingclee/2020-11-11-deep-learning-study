@@ -10,3 +10,6 @@ Study how to train a model to draw bounding box of specific object.
 
 ### 2020-11-10-first-CNN-shallownet
 One Conv layer structure for identifying animals of 3 classes. Also learn how to serialize my model and load my trained weights. Average accuracy is just about 70%. study purpose.
+
+### 2020-11-11-LeNet-implementation
+Implement LeNet and training it through the mnist dataset of 0-9.
