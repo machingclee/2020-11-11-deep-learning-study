@@ -20,8 +20,13 @@ class LeNet:
         if padding = "same", after striding, if the number of columns of the submatrix is not 5,
         it will add 0 padding on the right until the convolution makes sense.
         """
-        model.add(Conv2D(filters=20, kernel_size=(5, 5),
+
+        model.add(Conv2D(20, (5, 5),
                          padding="same", input_shape=inputShape))
+        model.add(Activation("relu"))
+        model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
+
+        model.add(Conv2D(50, (5, 5), padding="same"))
         model.add(Activation("relu"))
         model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
 
