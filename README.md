@@ -1,4 +1,4 @@
-# deep-learning-study
+# Deep Learning Study
 Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
 
 ## 2020-10-10-multiclassification
