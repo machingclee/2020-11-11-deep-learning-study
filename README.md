@@ -13,3 +13,6 @@ One Conv layer structure for identifying animals of 3 classes. Also learn how to
 
 ### 2020-11-11-LeNet-implementation
 Implement LeNet and train it through the mnist dataset of 0-9.
+
+### 2020-11-12-MiniVGGNet
+Implement a similified version of VGG Net. Study momentum and nesterov acceleration. Also introduce BatchNormalization to see difference.
