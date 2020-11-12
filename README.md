@@ -17,7 +17,7 @@ Implement LeNet and train it through the mnist dataset of 0-9.
 ### 2020-11-12-MiniVGGNet
 Implement a similified version of VGG Net. Added dropout layer, added momentum and nesterov acceleration in SGD. Also introduce BatchNormalization to see difference. 
 
-Some reference:
+Some reference for me in this stage:
 - [Dropout on convolutional layers is weird](https://towardsdatascience.com/dropout-on-convolutional-layers-is-weird-5c6ab14f19b2)
 - [Deep learning for pedestrians: backpropagation in CNNs](https://arxiv.org/abs/1811.11987)
 - [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167)
