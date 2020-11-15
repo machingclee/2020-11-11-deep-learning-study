@@ -32,7 +32,7 @@ The validation accuracy is about 0.82, its loss, val_loss, accuracy and val_accu
 We also try to introduce a learning rate decay per "epoch" by providing a callback function in kwarg of `model.fit`. The decay factor is set to 0.25 to observe what happens when learning decays too quickly, resulting in stagnant decrease in both training and validation loss (see [output/cifar10_lr_decay_f0.25_plot.png](https://github.com/machingclee/2020-11-11-deep-learning-study/blob/main/2020-11-12-MiniVGGNet/output/cifar10_lr_decay_f0.25_plot.png))
 
 #### MiniVGGNet_CIFAR10_monitor.py
-We introduce a callback function class, TrainingMonitorCallback, which extends BaseLogger from keras.callbacks. We override the on_epoch_end method and plot the graph of loss, val_loss, accuracy, val_accuracy once an epoch ends.
+We introduce a callback function class, `TrainingMonitorCallback`, which extends `BaseLogger` from `keras.callbacks`. We override the `on_epoch_end` method and plot the graph of loss, val_loss, accuracy, val_accuracy once an epoch ends.
 
 Some reference for me in this stage:
 - [Dropout on convolutional layers is weird](https://towardsdatascience.com/dropout-on-convolutional-layers-is-weird-5c6ab14f19b2)
