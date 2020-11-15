@@ -35,6 +35,8 @@ We also try to introduce a learning rate decay per 5 epochs by providing a callb
 We introduce a callback function class, `TrainingMonitorCallback`, which extends `BaseLogger` from `keras.callbacks`. We override the `on_epoch_end` method and plot the graph of loss, val_loss, accuracy, val_accuracy once an epoch ends (I have plotted 43 of them, see [output](https://github.com/machingclee/2020-11-11-deep-learning-study/tree/main/2020-11-12-MiniVGGNet/output) for detail). The learning is constantly 0.01 without decay as a baseline to see if we should further apply regularization process.
 
 #### MiniVGGNet_CIFAR10_checkpoint_improvement.py
+We import `ModelCheckpoint` from `keras.callbacks` and define a template string to save various weights when validation loss decreases. We can get the smallest one without redundant files by simply removing the template part in `fname`.
+
 
 
 #### Some reference for me in this stage:
