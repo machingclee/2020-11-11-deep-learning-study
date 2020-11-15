@@ -14,14 +14,14 @@ class TrainingMonitorCallback (BaseLogger):
 
     def on_train_begin(self, logs={}):
         self.H = {}
-        if self.jsonPath is not None:
-            if os.path.exists(self.jsonPath):
-                # "r" is the default mode of open
-                self.H = json.loads(open(self.jsonPath)).read()
+        # if self.jsonPath is not None:
+        #     if os.path.exists(self.jsonPath):
+        #         # "r" is the default mode of open
+        #         self.H = json.loads(open(self.jsonPath)).read()
 
-                if self.startAt > 0:
-                    for key in self.H.keys():
-                        self.H[key] = self.H[key][:self.startAt]
+        #         if self.startAt > 0:
+        #             for key in self.H.keys():
+        #                 self.H[key] = self.H[key][:self.startAt]
 
     def on_epoch_end(self, epoch, logs):
         print("[INFO] current epoch in code {}".format(epoch))
