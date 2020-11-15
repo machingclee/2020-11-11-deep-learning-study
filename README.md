@@ -19,7 +19,7 @@ One Conv layer structure for identifying animals of 3 classes. Also learn how to
 Implement LeNet and train it through the mnist dataset of 0-9.
 
 ### 2020-11-12-MiniVGGNet
-Implement a similified version of VGG Net. Added dropout layer, added momentum and nesterov acceleration in SGD. Also introduce BatchNormalization to see difference. The validation accuracy is about 0.82. We introduce learning rate decay per iteration in kwarg of SGD. The decay formula is given by
+Implement a similified version of VGG Net. Added dropout layer, added momentum and nesterov acceleration in SGD. Also introduce BatchNormalization to see difference. The validation accuracy is about 0.82. We introduce learning rate decay per iteration in kwarg of SGD. The decay formula is given by:
 
 ![equation](https://latex.codecogs.com/svg.latex?\alpha_0\times%20\frac{1}{1+\underbrace{\boxed{\frac{\displaystyle%20\alpha_0}{\text{batchSize}}}}_{\text{decay}}%20*%20\text{iterations}})
 
