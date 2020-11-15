@@ -23,7 +23,7 @@ Implement a similified version of VGG Net. Added dropout layer, added momentum a
 
 ![equation](https://latex.codecogs.com/svg.latex?\alpha_0\times%20\frac{1}{1+\underbrace{\boxed{\frac{\displaystyle%20\alpha_0}{\text{batchSize}}}}_{\text{decay}}%20\times%20\text{iterations}})
 
-We also try to introduce a decay of learning write by "epoach" by providing a callback function in kwarg of ``model.fit".
+We also try to introduce a decay of learning write by "epoach" by providing a callback function in kwarg of `model.fit`.
 
 Some reference for me in this stage:
 - [Dropout on convolutional layers is weird](https://towardsdatascience.com/dropout-on-convolutional-layers-is-weird-5c6ab14f19b2)
