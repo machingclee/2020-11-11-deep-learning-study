@@ -5,9 +5,9 @@ Record what I have learnt from the beginning. Deprecated folder contains materia
 Implemented the whole back-prop update process from scratch. Derivations of important formulars are recorded in my blog post:
 https://checkerlee.blogspot.com/2020/09/derive-formula-of-displaystyle.html
 
-The back-propagation formula is based on calculating <img src="https://render.githubusercontent.com/render/math?math=\delta_\ell"> at the <img src="https://render.githubusercontent.com/render/math?math=\ell">-th layer, and passing it to the <img src="https://render.githubusercontent.com/render/math?math=(\ell-1)">-th layer with the following formula: 
+The back-propagation formula is based on calculating ![equation](http://latex.codecogs.com/svg.latex?\delta_\ell) at the ![equation](http://latex.codecogs.com/svg.latex?\ell)-th layer, and passing it to the ![equation](http://latex.codecogs.com/svg.latex?(\ell-1))-th layer with the following formula: 
 
-<img src="https://render.githubusercontent.com/render/math?math=\delta_{\ell} = \frac{1}{m}\cdot \Phi^{[\ell]}{}'(U^{[\ell]}) * \left[W^{[\ell+1]T} \cdot \delta_{\ell+1}\right]\quad \text{with}\quad \frac{\partial \mathcal L}{\partial W^{[\ell]}} = \delta_\ell Y^{[\ell-1]T}">
+![equation](http://latex.codecogs.com/svg.latex?\delta_{\ell} = \frac{1}{m}\cdot \Phi^{[\ell]}{}'(U^{[\ell]}) * \left[W^{[\ell+1]T} \cdot \delta_{\ell+1}\right]\quad \text{with}\quad \frac{\partial \mathcal L}{\partial W^{[\ell]}} = \delta_\ell Y^{[\ell-1]T})
 
 
 ### 2020-10-17-bounding-box-regression
