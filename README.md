@@ -5,9 +5,9 @@ Record what I have learnt from the beginning. Deprecated folder contains materia
 Implemented the whole back-prop update process from scratch. Derivations of important formulars are recorded in my blog post:
 https://checkerlee.blogspot.com/2020/09/derive-formula-of-displaystyle.html
 
-The back-propagation formula is based on calculating ![equation](https://latex.codecogs.com/svg.latex?\delta_\ell) at the ![equation](https://latex.codecogs.com/svg.latex?\ell)-th layer, and passing it to the ![equation](https://latex.codecogs.com/svg.latex?(\ell-1))-th layer with the following formula: 
+The back-propagation formula is based on calculating ![equation](https://latex.codecogs.com/svg.latex?\delta_\ell) at the <img src="http://www.sciweavers.org/tex2img.php?eq=%5Cell&bc=White&fc=Black&im=png&fs=12&ff=cmbright&edit=0" align="center" border="0" alt="\ell" width="11" height="15" /> layer, and passing it to the <img src="http://www.sciweavers.org/tex2img.php?eq=%5Cell-1&bc=White&fc=Black&im=png&fs=12&ff=cmbright&edit=0" align="center" border="0" alt="\ell-1" width="39" height="15" />-th layer with the following formula: 
 
-![equation](https://latex.codecogs.com/svg.latex?\qquad\delta_{\ell}%20=%20\frac{1}{m}\cdot%20\Phi^{[\ell]}{}%27(U^{[\ell]})%20*%20\left[W^{[\ell+1]T}%20\cdot%20\delta_{\ell+1}\right]\quad%20\text{with}\quad%20\frac{\partial%20\mathcal%20L}{\partial%20W^{[\ell]}}%20=%20\delta_\ell%20Y^{[\ell-1]T})
+<img src="http://www.sciweavers.org/tex2img.php?eq=%5Cdelta_%7B%5Cell%7D%20%3D%20%5Cfrac%7B1%7D%7Bm%7D%5Ccdot%20%5CPhi%5E%7B%5B%5Cell%5D%7D%7B%7D%27%28U%5E%7B%5B%5Cell%5D%7D%29%20%2A%20%5Cleft%5BW%5E%7B%5B%5Cell%2B1%5DT%7D%20%5Ccdot%20%5Cdelta_%7B%5Cell%2B1%7D%5Cright%5D%5Cquad%20%5Ctext%7Bwith%7D%5Cquad%20%5Cfrac%7B%5Cpartial%20%5Cmathcal%20L%7D%7B%5Cpartial%20W%5E%7B%5B%5Cell%5D%7D%7D%20%3D%20%5Cdelta_%5Cell%20Y%5E%7B%5B%5Cell-1%5DT%7D&bc=White&fc=Black&im=png&fs=12&ff=cmbright&edit=0" align="center" border="0" alt="\delta_{\ell} = \frac{1}{m}\cdot \Phi^{[\ell]}{}'(U^{[\ell]}) * \left[W^{[\ell+1]T} \cdot \delta_{\ell+1}\right]\quad \text{with}\quad \frac{\partial \mathcal L}{\partial W^{[\ell]}} = \delta_\ell Y^{[\ell-1]T}" width="450" height="36" />
 
 
 ### 2020-10-17-bounding-box-regression
