@@ -44,7 +44,7 @@ To run this script we will need to install graphviz and pydot on mac:
 brew install graphviz && pip install graphviz && pip install pydot
 ```
 
-This package is to visualize our model to check if there is any faulty design like incorrect counting on outshape. For example, our MiniVGGNet is visualized in [here](https://github.com/machingclee/2020-11-11-deep-learning-study/blob/main/2020-11-12-MiniVGGNet/MiniVGGNet.png).
+This package is to visualize our model to check if there is any faulty design like incorrect calculation of output shape. For example, our MiniVGGNet is visualized in [here](https://github.com/machingclee/2020-11-11-deep-learning-study/blob/main/2020-11-12-MiniVGGNet/MiniVGGNet.png).
 
 
 
