@@ -22,7 +22,7 @@ Implement LeNet and train it through the mnist dataset of 0-9.
 Implement a similified version of VGG Net and trained using CIFAR-10 dataset. Added dropout layer, added momentum and nesterov acceleration in SGD. Also introduce BatchNormalization to see difference. 
 
 #### MiniVGGNet_CIFAR10_decay.py 
-We introduce learning rate decay per iteration in kwarg of SGD. The decay formula is given by:
+We introduce learning rate decay per iteration in kwarg of `SGD`. The built-in decay formula of `SGD` is given by:
 
 ![equation](https://latex.codecogs.com/svg.latex?\alpha_0\times%20\frac{1}{1+\underbrace{\boxed{\frac{\displaystyle%20\alpha_0}{\text{batchSize}}}}_{\text{decay}}%20\times%20\text{iterations}})
 
