@@ -34,7 +34,7 @@ We also try to introduce a learning rate decay per 5 epochs by providing a callb
 #### MiniVGGNet_CIFAR10_monitor.py
 We introduce a callback function class, `TrainingMonitorCallback`, which extends `BaseLogger` from `keras.callbacks`. We override the `on_epoch_end` method and plot the graph of loss, val_loss, accuracy, val_accuracy once an epoch ends. The learning is constantly 0.01 without decay as a baseline to see if we should further apply regularization process.
 
-Some reference for me in this stage:
+#### Some reference for me in this stage:
 - [Dropout on convolutional layers is weird](https://towardsdatascience.com/dropout-on-convolutional-layers-is-weird-5c6ab14f19b2)
 - [Deep learning for pedestrians: backpropagation in CNNs](https://arxiv.org/abs/1811.11987)
 - [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167)
