@@ -1,6 +1,8 @@
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.metrics import classification_report
+from tensorflow.python.keras import callbacks
 from pyimagesearch.nn.conv import MiniVGGNet
+from tensorflow.keras.callbacks import LearningRateScheduler
 from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.datasets import cifar10
 
@@ -9,24 +11,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 
-# stop the plotted image from popping-up:
 matplotlib.use("Agg")
 
-# argument parser routine:
+
+def step_decay(initial_factor, decay_factor, decay_per_epoch):
+    def decay_factor_at_epoach(epoch):
+        alpha = initial_factor * \
+            (decay_factor ** np.floor((1 + epoch)/decay_per_epoch))
+        return alpha
+
+    return decay_factor_at_epoach
+
+
 ap = argparse.ArgumentParser()
 ap.add_argument("-o", "--output", required=True,
-                help="path to the output loss/acc plot")
+                help="path to the output loss/accuracy plot")
 args = vars(ap.parse_args())
 
-
-def log(msg):
-    print("[INFO] {}".format(msg))
-
-
-# load and preprocess data:
-log("loading CIFAR-10 data ...")
+print("[INFO] loading CIFAR-10 data ...")
 ((trainX, trainY), (testX, testY)) = cifar10.load_data()
-
 trainX = trainX.astype("float")/255.0
 testX = testX.astype("float")/255.0
 
@@ -47,28 +50,25 @@ labelNames = [
     "truck"
 ]
 
-log("compiling model...")
+callbacks = [LearningRateScheduler(
+    step_decay(initial_factor=0.01, decay_factor=0.25, decay_per_epoch=5)
+)]
 
-# nesterov=True => we use Nestrov accerated gradient
-# study the momentum term later
-opt = SGD(lr=0.01, decay=0.01/40, momentum=0.9, nesterov=True)
+opt = SGD(lr=0.01, momentum=0.9, nesterov=True)
 model = MiniVGGNet.build(width=32, height=32, depth=3, numOfClasses=10)
 model.compile(loss="categorical_crossentropy",
               optimizer=opt, metrics=["accuracy"])
 
-log("training network ...")
-H = model.fit(trainX, trainY,
-              validation_data=(testX, testY),
-              batch_size=64,
-              epochs=40,
-              verbose=1)
+H = model.fit(trainX, trainY, validation_data=(testX, testY),
+              batch_size=64, epochs=40, callbacks=callbacks, verbose=1)
 
+print("[INFO] evaluating network ...")
 predictions = model.predict(testX, batch_size=64)
-print(
-    classification_report(testY.argmax(axis=1),
-                          predictions.argmax(axis=1),
-                          target_names=labelNames)
-)
+print(classification_report(
+    testY.argmax(axis=1),
+    predictions.argmax(axis=1),
+    target_names=labelNames
+))
 
 plt.style.use("ggplot")
 plt.figure()
