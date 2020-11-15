@@ -19,12 +19,18 @@ One Conv layer structure for identifying animals of 3 classes. Also learn how to
 Implement LeNet and train it through the mnist dataset of 0-9.
 
 ### 2020-11-12-MiniVGGNet
-#### using CIFAR-10 dataset
-Implement a similified version of VGG Net. Added dropout layer, added momentum and nesterov acceleration in SGD. Also introduce BatchNormalization to see difference. The validation accuracy is about 0.82. We introduce learning rate decay per iteration in kwarg of SGD. The decay formula is given by:
+Implement a similified version of VGG Net and trained using CIFAR-10 dataset. Added dropout layer, added momentum and nesterov acceleration in SGD. Also introduce BatchNormalization to see difference. The validation accuracy is about 0.82. 
+
+#### MiniVGGNet_CIFAR10_decay.py 
+We introduce learning rate decay per iteration in kwarg of SGD. The decay formula is given by:
 
 ![equation](https://latex.codecogs.com/svg.latex?\alpha_0\times%20\frac{1}{1+\underbrace{\boxed{\frac{\displaystyle%20\alpha_0}{\text{batchSize}}}}_{\text{decay}}%20\times%20\text{iterations}})
 
+#### MiniVGGNet_CIFAR10_lr_scheduler.py
 We also try to introduce a learning rate decay per "epoch" by providing a callback function in kwarg of `model.fit`.
+
+#### MiniVGGNet_CIFAR10_monitor.py
+We introduce a callback function class which extends BaseLogger from keras.callbacks. We override the on_epoch_end method and plot the graph of loss, val_loss, accuracy, val_accuracy once an epoch ends.
 
 Some reference for me in this stage:
 - [Dropout on convolutional layers is weird](https://towardsdatascience.com/dropout-on-convolutional-layers-is-weird-5c6ab14f19b2)
