@@ -37,6 +37,15 @@ We introduce a callback function class, `TrainingMonitorCallback`, which extends
 #### MiniVGGNet_CIFAR10_checkpoint_improvement.py
 We import `ModelCheckpoint` from `keras.callbacks` and define a template string to save various weights when validation loss decreases. We can get the smallest one without redundant files by simply removing the template part in `fname`.
 
+#### MiniVGGNet_visualization.py
+To run this script we will need to install graphviz and pydot on mac:
+
+```
+brew install graphviz && pip install graphviz && pip install pydot
+```
+
+This package is to visualize our model once we just defined our model to check is there any faulty design like incorrect counting on outshape. For example, our MiniVGGNet is visualized in [here](https://github.com/machingclee/2020-11-11-deep-learning-study/blob/main/2020-11-12-MiniVGGNet/MiniVGGNet.png).
+
 
 
 #### Some reference for me in this stage:
