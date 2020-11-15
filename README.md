@@ -19,12 +19,14 @@ One Conv layer structure for identifying animals of 3 classes. Also learn how to
 Implement LeNet and train it through the mnist dataset of 0-9.
 
 ### 2020-11-12-MiniVGGNet
-Implement a similified version of VGG Net and trained using CIFAR-10 dataset. Added dropout layer, added momentum and nesterov acceleration in SGD. Also introduce BatchNormalization to see difference. The validation accuracy is about 0.82. 
+Implement a similified version of VGG Net and trained using CIFAR-10 dataset. Added dropout layer, added momentum and nesterov acceleration in SGD. Also introduce BatchNormalization to see difference. 
 
 #### MiniVGGNet_CIFAR10_decay.py 
 We introduce learning rate decay per iteration in kwarg of SGD. The decay formula is given by:
 
 ![equation](https://latex.codecogs.com/svg.latex?\alpha_0\times%20\frac{1}{1+\underbrace{\boxed{\frac{\displaystyle%20\alpha_0}{\text{batchSize}}}}_{\text{decay}}%20\times%20\text{iterations}})
+
+The validation accuracy is about 0.82, its loss, val_loss, accuracy and val_accuracy are plotted in [output/cifar10_minivggnet.png](https://github.com/machingclee/2020-11-11-deep-learning-study/blob/main/2020-11-12-MiniVGGNet/output/cifar10_minivggnet.png).
 
 #### MiniVGGNet_CIFAR10_lr_scheduler.py
 We also try to introduce a learning rate decay per "epoch" by providing a callback function in kwarg of `model.fit`. The decay factor is set to 0.25 to observe what happens when learning decays too quickly, resulting in stagnant decrease in both training and validation loss (see [output/cifar10_lr_decay_f0.25_plot.png](https://github.com/machingclee/2020-11-11-deep-learning-study/blob/main/2020-11-12-MiniVGGNet/output/cifar10_lr_decay_f0.25_plot.png))
