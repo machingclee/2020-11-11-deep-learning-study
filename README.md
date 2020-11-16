@@ -64,3 +64,6 @@ python imagenet_pretrained.py --image example_images/example_01.jpg --model vgg1
 A full description of 3 image preprocessings given by Keras:
 
 * [圖片預處理使用Keras applications 的 preprocess_input](https://medium.com/@sci218mike/%E5%9C%96%E7%89%87%E9%A0%90%E8%99%95%E7%90%86%E4%BD%BF%E7%94%A8keras-applications-%E7%9A%84-preprocess-input-6ef0963a483e)
+
+In case we have difficulty choosing python interpretor in mac (and in case we are not using a pipenv):
+* [How to default Python 3.8 on my Mac using Homebrew](https://discourse.brew.sh/t/how-to-default-python-3-8-on-my-mac-using-homebrew/7050?fbclid=IwAR02uaBKhl16UYAyUTQlFXrX21n4aaKdTYpDQYAZWabUNucTQ8khO0PsKZ4)
