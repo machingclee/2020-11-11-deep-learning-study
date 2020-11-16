@@ -62,4 +62,5 @@ Make prediction using pre-trained model (with weights being trained from ImageNe
 python imagenet_pretrained.py --image example_images/example_01.jpg --model vgg16
 ```
 A full description of 3 image preprocessings given by Keras:
+
 [圖片預處理使用Keras applications 的 preprocess_input](https://medium.com/@sci218mike/%E5%9C%96%E7%89%87%E9%A0%90%E8%99%95%E7%90%86%E4%BD%BF%E7%94%A8keras-applications-%E7%9A%84-preprocess-input-6ef0963a483e)
