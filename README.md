@@ -67,3 +67,57 @@ A full description of 3 image preprocessings given by Keras:
 
 In case we have difficulty choosing python interpretor in mac (and in case we are not using a pipenv):
 * [How to default Python 3.8 on my Mac using Homebrew](https://discourse.brew.sh/t/how-to-default-python-3-8-on-my-mac-using-homebrew/7050?fbclid=IwAR02uaBKhl16UYAyUTQlFXrX21n4aaKdTYpDQYAZWabUNucTQ8khO0PsKZ4)
+
+### 2020-11-17-data-augmentation
+We study the effect of data augmentation. We train our miniVGGNet on flower-17 dataset. The dataset has 80 images in each of 17 classes, which is usually considered "not enough" for classification problem. Without augmentation, we see the evidence of overfitting very quickly from [here](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-17-data-augmentation/without_augmentation.png) at the 20-th epoch. Its classification report on test set is:
+```
+              precision    recall  f1-score   support
+
+    Bluebell       0.61      0.69      0.65        16
+   Buttercup       0.59      0.67      0.62        15
+  Colts'Foot       0.43      0.45      0.44        20
+     Cowslip       0.30      0.50      0.37        18
+      Crocus       0.65      0.52      0.58        21
+    Daffodil       0.22      0.17      0.20        23
+       Daisy       0.70      0.61      0.65        23
+  Dandeilion       0.52      0.67      0.59        18
+  Fritillary       0.80      0.84      0.82        19
+        Iris       0.94      0.79      0.86        19
+  LilyValley       0.46      0.60      0.52        20
+       Pansy       0.84      0.59      0.70        27
+    Snowdrop       0.31      0.23      0.26        22
+   Sunflower       0.86      0.83      0.84        23
+   Tigerlily       0.74      0.88      0.80        16
+       Tulip       0.35      0.35      0.35        20
+  Windflower       0.56      0.50      0.53        20
+
+    accuracy                           0.57       340
+   macro avg       0.58      0.58      0.58       340
+weighted avg       0.58      0.57      0.57       340
+```
+With data augmentation, we still suffer from overfitting, as shown in [here](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-17-data-augmentation/with_augmentation.png), but the validation accuracy was boosted:
+```
+              precision    recall  f1-score   support
+
+    Bluebell       0.75      0.94      0.83        16
+   Buttercup       0.42      0.67      0.51        15
+  Colts'Foot       0.62      0.25      0.36        20
+     Cowslip       0.53      0.50      0.51        18
+      Crocus       0.64      0.67      0.65        21
+    Daffodil       0.48      0.43      0.45        23
+       Daisy       0.83      0.87      0.85        23
+  Dandeilion       0.62      0.72      0.67        18
+  Fritillary       0.80      0.84      0.82        19
+        Iris       0.76      0.68      0.72        19
+  LilyValley       0.71      0.75      0.73        20
+       Pansy       1.00      0.70      0.83        27
+    Snowdrop       0.65      0.59      0.62        22
+   Sunflower       0.76      0.96      0.85        23
+   Tigerlily       0.70      1.00      0.82        16
+       Tulip       0.32      0.30      0.31        20
+  Windflower       0.73      0.55      0.63        20
+
+    accuracy                           0.67       340
+   macro avg       0.67      0.67      0.66       340
+weighted avg       0.68      0.67      0.66       340
+```
