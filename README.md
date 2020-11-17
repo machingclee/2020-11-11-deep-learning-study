@@ -73,7 +73,7 @@ We study the effect of data augmentation. We train our miniVGGNet on flower-17 d
 <details>
   <summary><i>Click me to show validation accuracy without data augmentation</i></summary>
   <p>
-    ```
+
                   precision    recall  f1-score   support
 
         Bluebell       0.61      0.69      0.65        16
@@ -97,7 +97,7 @@ We study the effect of data augmentation. We train our miniVGGNet on flower-17 d
         accuracy                           0.57       340
        macro avg       0.58      0.58      0.58       340
     weighted avg       0.58      0.57      0.57       340
-    ```
+
   </p>
 </details>
 
@@ -106,7 +106,7 @@ With data augmentation, we still suffer from overfitting, as shown in [here](htt
 <details>
   <summary><i>Click me to show validation accuracy with data augmentation</i></summary>
   <p>
-    ```
+
                   precision    recall  f1-score   support
 
         Bluebell       0.75      0.94      0.83        16
@@ -130,6 +130,6 @@ With data augmentation, we still suffer from overfitting, as shown in [here](htt
         accuracy                           0.67       340
        macro avg       0.67      0.67      0.66       340
     weighted avg       0.68      0.67      0.66       340
-    ```
+
   </p>
 </details>
