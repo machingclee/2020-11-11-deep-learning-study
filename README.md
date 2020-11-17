@@ -70,6 +70,7 @@ In case we have difficulty choosing python interpretor in mac (and in case we ar
 
 ### 2020-11-17-data-augmentation
 We study the effect of data augmentation. We train our miniVGGNet on flower-17 dataset. The dataset has 80 images in each of 17 classes, which is usually considered "not enough" for classification problem. Without augmentation, we see the evidence of overfitting very quickly from [here](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-17-data-augmentation/without_augmentation.png) at the 20-th epoch. Its classification report on test set is:
+<details><summary>Click me to show validation accuracy</summary>
 ```
               precision    recall  f1-score   support
 
@@ -95,7 +96,11 @@ We study the effect of data augmentation. We train our miniVGGNet on flower-17 d
    macro avg       0.58      0.58      0.58       340
 weighted avg       0.58      0.57      0.57       340
 ```
+</details>
+
+```
 With data augmentation, we still suffer from overfitting, as shown in [here](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-17-data-augmentation/with_augmentation.png), but the validation accuracy was boosted:
+<details><summary>Click me to show validation accuracy</summary>
 ```
               precision    recall  f1-score   support
 
@@ -121,3 +126,4 @@ With data augmentation, we still suffer from overfitting, as shown in [here](htt
    macro avg       0.67      0.67      0.66       340
 weighted avg       0.68      0.67      0.66       340
 ```
+</details>
