@@ -4,14 +4,14 @@ import os
 
 class HDF5DatasetWriter:
     def __init__(self, dims, outputPath, dataKey="images", bufferSize=1000):
-        # dims = dataset numer x number of pixel in Flatten layer
+        # dims = shape of an element in our training dataset
         # outputPath = destination of our trained weights
         # dataKey = name of the data to be stored in hdf5 format, like images, features, etc
-        # bufSize = size of our in-memory buffer, default to save 1000 feature vectors/images
+        # bufferSize = size of our in-memory buffer, default to save 1000 feature vectors/images
 
         if os.path.exists(outputPath):
             raise ValueError(
-                "The supplied outoutPath alread exists and cannot be overwritten.")
+                "The supplied outoutPath already exists and cannot be overwritten.")
 
         # "w": create file, truncate if exists
         self.db = h5py.File(outputPath, "w")
@@ -31,7 +31,7 @@ class HDF5DatasetWriter:
         self.buffer["data"].extend(rows)
         self.buffer["labels"].extend(labels)
 
-        if self.buffer["data"] >= self.bufferSize:
+        if len(self.buffer["data"]) >= self.bufferSize:
             self.flush()
 
     def flush(self):
