@@ -137,7 +137,7 @@ With data augmentation, we still suffer from overfitting, as shown in [here](htt
 ### 2020-11-19-transfer-learning
 In [2020-11-17-data-augmentation](https://github.com/machingclee/deep-learning-study/tree/main/2020-11-17-data-augmentation) we have trained our MiniVGGNet with data-augmentation to achieve an validation-accuracy of about 70%. By transfer learning using 
 
-VGG16 without TOP => Dense Layer (17) => SOFTMAX
+`VGG16 without TOP => Dense Layer (17) => SOFTMAX`
 
 we can boost the validation accuracy up to 90% now!!
 ```
