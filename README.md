@@ -133,3 +133,31 @@ With data augmentation, we still suffer from overfitting, as shown in [here](htt
 
   </p>
 </details>
+
+### 2020-11-19-transfer-learning
+In [2020-11-17-data-augmentation](https://github.com/machingclee/deep-learning-study/tree/main/2020-11-17-data-augmentation) we have trained our MiniVGGNet with data-augmentation to achieve an validation-accuracy of about 70%. By transfer learning using VGG16 as our feature extractor => Dense Layer (17) => softmax we can boost the validation accuracy up to 90% now!!
+```
+              precision    recall  f1-score   support
+
+    Bluebell       1.00      0.93      0.96        29
+   Buttercup       0.84      0.94      0.89        17
+  Colts'Foot       0.90      0.95      0.93        20
+     Cowslip       0.74      0.74      0.74        23
+      Crocus       0.90      1.00      0.95        19
+    Daffodil       0.74      0.89      0.81        19
+       Daisy       1.00      0.92      0.96        13
+  Dandeilion       0.95      0.90      0.93        21
+  Fritillary       0.91      0.91      0.91        22
+        Iris       0.90      1.00      0.95        19
+  LilyValley       0.91      0.83      0.87        24
+       Pansy       0.89      0.67      0.76        12
+    Snowdrop       0.74      1.00      0.85        17
+   Sunflower       1.00      1.00      1.00        17
+   Tigerlily       0.89      0.94      0.92        18
+       Tulip       1.00      0.67      0.80        30
+  Windflower       0.90      0.95      0.93        20
+
+    accuracy                           0.89       340
+   macro avg       0.90      0.90      0.89       340
+weighted avg       0.90      0.89      0.89       340
+```
