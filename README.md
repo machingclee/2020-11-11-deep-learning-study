@@ -131,7 +131,7 @@ With data augmentation, we still suffer from overfitting, as shown in [here](htt
 ### 2020-11-19-transfer-learning
 In-depth study of manipulating h5py package to save features, labels, etc into HDF5 database so that we can load much much larger dataset. 
 
-In [2020-11-17-data-augmentation](https://github.com/machingclee/deep-learning-study/tree/main/2020-11-17-data-augmentation) we have trained our MiniVGGNet with data-augmentation to achieve an validation-accuracy of about 70%. By transfer learning using as simple as the following structure
+In [2020-11-17-data-augmentation](https://github.com/machingclee/deep-learning-study/tree/main/2020-11-17-data-augmentation) we have trained our MiniVGGNet with data-augmentation to achieve a validation-accuracy of about 70%. By transfer learning using as simple as the following structure
 
 `VGG-16 without TOP => Dense Layer (17) => SOFTMAX`
 
