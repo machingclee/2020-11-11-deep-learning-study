@@ -135,7 +135,7 @@ In [2020-11-17-data-augmentation](https://github.com/machingclee/deep-learning-s
 
 `VGG16 without TOP => Dense Layer (17) => SOFTMAX`
 
-we can boost the validation accuracy up to 90% now!!
+We can boost the validation accuracy up to 90% now!! Especially VGG16 is trained on ImageNet dataset which has nothing to do with our flower17 dataset.
 ```
               precision    recall  f1-score   support
 
