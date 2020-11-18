@@ -102,11 +102,7 @@ We study the effect of data augmentation. We train our miniVGGNet on flower-17 d
 </details>
 
 With data augmentation, we still suffer from overfitting, as shown in [here](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-17-data-augmentation/with_augmentation.png), but the validation accuracy was boosted:
-
-* <details>
-  <summary><i>Click me to show validation accuracy <b>with</b> data augmentation</i></summary>
-  <p>
-
+```
                   precision    recall  f1-score   support
 
         Bluebell       0.75      0.94      0.83        16
@@ -130,9 +126,7 @@ With data augmentation, we still suffer from overfitting, as shown in [here](htt
         accuracy                           0.67       340
        macro avg       0.67      0.67      0.66       340
     weighted avg       0.68      0.67      0.66       340
-
-  </p>
-</details>
+```
 
 ### 2020-11-19-transfer-learning
 In [2020-11-17-data-augmentation](https://github.com/machingclee/deep-learning-study/tree/main/2020-11-17-data-augmentation) we have trained our MiniVGGNet with data-augmentation to achieve an validation-accuracy of about 70%. By transfer learning using 
