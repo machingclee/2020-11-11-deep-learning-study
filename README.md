@@ -163,7 +163,7 @@ weighted avg       0.90      0.89      0.89       340
 ```
 
 ### 2020-11-21-network-surgery
-We concatenate VGG-16 network with our dense network. This time we not only train our dense part, we also re-train VGG-16 net from layer 15 onwards. 
+In this folder we still focus on flowers17 dataset. We concatenate VGG-16 network with our dense network. This time we not only train our dense part, we also re-train VGG-16 net from layer 15 onwards. 
 
 Why 15? By running [inspect_model.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-21-network-surgery/inspect_model.py) we can inspect the structure of VGG-16:
 <details>
@@ -195,4 +195,60 @@ Why 15? By running [inspect_model.py](https://github.com/machingclee/deep-learni
         [INFO] 22       Dense 
   </p>
 </details>
-As we have set `include_top=False`, we are just re-training layer 15 to layer 18.
+
+As we have set `include_top=False`, we are just re-training layer 15 to layer 18. This time the warm-up of the dense network already yield validation accuracy up to 91%:
+<details>
+<summary>Accuracy of warm-update stage of cancatenated network</summary>
+  <p>
+                precision    recall  f1-score   support
+
+      Bluebell       0.83      0.94      0.88        16
+     Buttercup       1.00      1.00      1.00        15
+    Colts'Foot       0.94      0.85      0.89        20
+       Cowslip       0.82      0.78      0.80        18
+        Crocus       0.90      0.86      0.88        21
+      Daffodil       0.71      0.87      0.78        23
+         Daisy       0.88      0.96      0.92        23
+    Dandeilion       0.89      0.94      0.92        18
+    Fritillary       1.00      0.84      0.91        19
+          Iris       1.00      0.95      0.97        19
+    LilyValley       0.95      0.95      0.95        20
+         Pansy       1.00      0.93      0.96        27
+      Snowdrop       0.73      1.00      0.85        22
+     Sunflower       1.00      1.00      1.00        23
+     Tigerlily       1.00      1.00      1.00        16
+         Tulip       0.81      0.65      0.72        20
+    Windflower       1.00      0.80      0.89        20
+
+      accuracy                           0.90       340
+     macro avg       0.91      0.90      0.90       340
+  weighted avg       0.91      0.90      0.90       340
+  
+  </p>
+</details>
+By training the last 4 payers, i.e., finetunning the VGG-16 network, our validation accuracy is boosted to 95%
+```
+              precision    recall  f1-score   support
+
+    Bluebell       1.00      1.00      1.00        16
+   Buttercup       1.00      1.00      1.00        15
+  Colts'Foot       0.94      0.85      0.89        20
+     Cowslip       0.82      1.00      0.90        18
+      Crocus       0.91      0.95      0.93        21
+    Daffodil       0.95      0.83      0.88        23
+       Daisy       1.00      0.96      0.98        23
+  Dandeilion       0.89      0.94      0.92        18
+  Fritillary       1.00      0.89      0.94        19
+        Iris       1.00      0.95      0.97        19
+  LilyValley       1.00      0.90      0.95        20
+       Pansy       0.96      0.96      0.96        27
+    Snowdrop       0.85      1.00      0.92        22
+   Sunflower       1.00      1.00      1.00        23
+   Tigerlily       1.00      1.00      1.00        16
+       Tulip       0.83      0.95      0.88        20
+  Windflower       1.00      0.90      0.95        20
+
+    accuracy                           0.94       340
+   macro avg       0.95      0.95      0.95       340
+weighted avg       0.95      0.94      0.94       340
+```
