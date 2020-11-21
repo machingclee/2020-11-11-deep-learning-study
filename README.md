@@ -229,6 +229,7 @@ As we have set `include_top=False`, we are just re-training layer 15 to layer 18
 By training the last 4 payers, i.e., finetunning the VGG-16 network, our validation accuracy is boosted to 95%
 
 ```
+
               precision    recall  f1-score   support
 
     Bluebell       1.00      1.00      1.00        16
