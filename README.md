@@ -168,31 +168,31 @@ We concatenate VGG-16 network with our dense network. This time we not only trai
 Why 15? VGG-16 has the following structure by running [inspect_model.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-21-network-surgery/inspect_model.py):
 <details> 
   <summary>Structure of VGG-16 (click me)</summary>
-    [INFO] showing layers...
-     ```
-      [INFO] 0        InputLayer
-      [INFO] 1        Conv2D
-      [INFO] 2        Conv2D
-      [INFO] 3        MaxPooling2D
-      [INFO] 4        Conv2D
-      [INFO] 5        Conv2D
-      [INFO] 6        MaxPooling2D
-      [INFO] 7        Conv2D
-      [INFO] 8        Conv2D
-      [INFO] 9        Conv2D
-      [INFO] 10       MaxPooling2D
-      [INFO] 11       Conv2D
-      [INFO] 12       Conv2D
-      [INFO] 13       Conv2D
-      [INFO] 14       MaxPooling2D
-      [INFO] 15       Conv2D
-      [INFO] 16       Conv2D
-      [INFO] 17       Conv2D
-      [INFO] 18       MaxPooling2D
-      [INFO] 19       Flatten
-      [INFO] 20       Dense
-      [INFO] 21       Dense
-      [INFO] 22       Dense    
+    ```
+  
+    [INFO] 0        InputLayer
+    [INFO] 1        Conv2D
+    [INFO] 2        Conv2D
+    [INFO] 3        MaxPooling2D
+    [INFO] 4        Conv2D
+    [INFO] 5        Conv2D
+    [INFO] 6        MaxPooling2D
+    [INFO] 7        Conv2D
+    [INFO] 8        Conv2D
+    [INFO] 9        Conv2D
+    [INFO] 10       MaxPooling2D
+    [INFO] 11       Conv2D
+    [INFO] 12       Conv2D
+    [INFO] 13       Conv2D
+    [INFO] 14       MaxPooling2D
+    [INFO] 15       Conv2D
+    [INFO] 16       Conv2D
+    [INFO] 17       Conv2D
+    [INFO] 18       MaxPooling2D
+    [INFO] 19       Flatten
+    [INFO] 20       Dense
+    [INFO] 21       Dense
+    [INFO] 22       Dense    
     ```
    
  </details>
