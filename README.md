@@ -198,7 +198,7 @@ Why 15? By running [inspect_model.py](https://github.com/machingclee/deep-learni
 As we have set `include_top=False`, we are just re-training layer 15 to layer 18. This time the warm-up of the dense network already yield validation accuracy up to 91%:
 <details>
 <summary>Accuracy of warm-update stage of cancatenated network</summary>
-
+<p>
 
                   precision    recall  f1-score   support
 
@@ -223,7 +223,9 @@ As we have set `include_top=False`, we are just re-training layer 15 to layer 18
         accuracy                           0.90       340
        macro avg       0.91      0.90      0.90       340
     weighted avg       0.91      0.90      0.90       340
+</p>
 </details>
+
 
 By training the last 4 layers, i.e., finetunning the VGG-16 network, our validation accuracy is boosted to 95%. 
 ```
