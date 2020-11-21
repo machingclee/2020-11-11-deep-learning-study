@@ -165,8 +165,8 @@ weighted avg       0.90      0.89      0.89       340
 ### 2020-11-21-network-surgery
 We concatenate VGG-16 network with our dense network. This time we not only train our dense part, we also re-train VGG-16 net from layer 15 onwards. 
 
-Why 15? VGG-16 has the following structure by running [inspect_model.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-21-network-surgery/inspect_model.py):
-
+Why 15? By running [inspect_model.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-21-network-surgery/inspect_model.py) we can inspect the structure of VGG-16:
+<details>
 <summary>Structure of VGG-16 (click me)</summary>
   <p>
 
@@ -195,3 +195,4 @@ Why 15? VGG-16 has the following structure by running [inspect_model.py](https:/
         [INFO] 22       Dense 
   </p>
 </details>
+As we have set `include_top=False`, we are just re-training layer 15 to layer 18.
