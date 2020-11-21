@@ -95,8 +95,7 @@ We study the effect of data augmentation. We train our miniVGGNet on flower-17 d
       Windflower       0.56      0.50      0.53        20
 
         accuracy                           0.57       340
-       macro avg       0.58      0.58      0.58       340
-    weighted avg       0.58      0.57      0.57       340
+       macro avg       0.58      0.58      0.58       340weighted avg       0.58      0.57      0.57       340
 
   </p>
 </details>
@@ -201,31 +200,29 @@ As we have set `include_top=False`, we are just re-training layer 15 to layer 18
 <summary>Accuracy of warm-update stage of cancatenated network</summary>
 
 
-                precision    recall  f1-score   support
+                  precision    recall  f1-score   support
 
-      Bluebell       0.83      0.94      0.88        16
-     Buttercup       1.00      1.00      1.00        15
-    Colts'Foot       0.94      0.85      0.89        20
-       Cowslip       0.82      0.78      0.80        18
-        Crocus       0.90      0.86      0.88        21
-      Daffodil       0.71      0.87      0.78        23
-         Daisy       0.88      0.96      0.92        23
-    Dandeilion       0.89      0.94      0.92        18
-    Fritillary       1.00      0.84      0.91        19
-          Iris       1.00      0.95      0.97        19
-    LilyValley       0.95      0.95      0.95        20
-         Pansy       1.00      0.93      0.96        27
-      Snowdrop       0.73      1.00      0.85        22
-     Sunflower       1.00      1.00      1.00        23
-     Tigerlily       1.00      1.00      1.00        16
-         Tulip       0.81      0.65      0.72        20
-    Windflower       1.00      0.80      0.89        20
+        Bluebell       0.83      0.94      0.88        16
+       Buttercup       1.00      1.00      1.00        15
+      Colts'Foot       0.94      0.85      0.89        20
+         Cowslip       0.82      0.78      0.80        18
+          Crocus       0.90      0.86      0.88        21
+        Daffodil       0.71      0.87      0.78        23
+           Daisy       0.88      0.96      0.92        23
+      Dandeilion       0.89      0.94      0.92        18
+      Fritillary       1.00      0.84      0.91        19
+            Iris       1.00      0.95      0.97        19
+      LilyValley       0.95      0.95      0.95        20
+           Pansy       1.00      0.93      0.96        27
+        Snowdrop       0.73      1.00      0.85        22
+       Sunflower       1.00      1.00      1.00        23
+       Tigerlily       1.00      1.00      1.00        16
+           Tulip       0.81      0.65      0.72        20
+      Windflower       1.00      0.80      0.89        20
 
-      accuracy                           0.90       340
-     macro avg       0.91      0.90      0.90       340
-  weighted avg       0.91      0.90      0.90       340
-
-
+        accuracy                           0.90       340
+       macro avg       0.91      0.90      0.90       340
+    weighted avg       0.91      0.90      0.90       340
 </details>
 
 By training the last 4 layers, i.e., finetunning the VGG-16 network, our validation accuracy is boosted to 95%. 
