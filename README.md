@@ -174,6 +174,8 @@ we can boost the validation accuracy up to 90% now!! Especially VGG-16 is traine
 weighted avg       0.90      0.89      0.89       340
 ```
 
+---
+
 ### 2020-11-21-network-surgery
 In this folder we still focus on flowers17 dataset. We concatenate VGG-16 network with our dense network. This time we not only train our dense part, we also re-train VGG-16 net from layer 15 onwards. 
 
