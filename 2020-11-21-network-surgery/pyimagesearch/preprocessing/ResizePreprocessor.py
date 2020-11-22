@@ -1,8 +1,10 @@
 # import the necessary packages
 import cv2
 
+# can simply ignore this file and use cv2.resize directly
 
-class SimplePreprocessor:
+
+class ResizePreprocessor:
     def __init__(self, width, height, inter=cv2.INTER_AREA):
         # store the target image width, height, and interpolation
         # method used when resizing
