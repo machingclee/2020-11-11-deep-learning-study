@@ -253,3 +253,6 @@ By training the last 4 layers, i.e., finetunning the VGG-16 network, our validat
    macro avg       0.95      0.95      0.95       340
 weighted avg       0.95      0.94      0.94       340
 ```
+
+### 2020-11-22-ensemble-methods
+We train our MiniVGGNet repreatedly 5 times and try to take an average over them for each prediction. In this folder I mainly focus on extracting "plotting training graph" and "geneate classification report" as separate two helpful functions into utils.
