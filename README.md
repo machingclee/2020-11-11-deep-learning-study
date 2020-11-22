@@ -241,7 +241,7 @@ As we have set `include_top=False`, we are just re-training layer 15 to layer 18
 </p>
 </details>
 
-The validation accuracy in the report can vary due to the fact that each new random image is created for each batch, from my trial it happens that we could be unlucky to get precision down to 0.87 in the warm-up stage, we then retrain the model and validation accuracy to 94% (small than 95% in the data listed below).
+The validation accuracy in the report can vary due to the fact that each new random image is created for each batch. From my trial it happens that we could be unlucky to get precision down to 0.87 in the warm-up stage, we then retrain the model and validation accuracy to 94% (small than 95% in the data listed below).
 
 By training the last 4 layers, i.e., finetunning the VGG-16 network, our validation accuracy is boosted to 95%. 
 ```
