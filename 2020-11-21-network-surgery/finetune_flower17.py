@@ -41,15 +41,15 @@ aug = ImageDataGenerator(rotation_range=30,
 ############################
 
 imagePaths = list(paths.list_images(args["dataset"]))
-classNames = [path.split(os.path.sep)[-2] for path in imagePaths]
-classNames = [str(className) for className in np.unique(classNames)]
+classNames = [pt.split(os.path.sep)[-2] for pt in imagePaths]
+classNames = [str(x) for x in np.unique(classNames)]
 
 # VGG network require images of shape (224, 224)
 aspectAwarePreprocessor = AspectAwarePreprocessor(224, 224)
 imageToArrayPreprocessor = ImageToArrayPreprocessor()
 
-datasetLoader = DatasetLoader([aspectAwarePreprocessor,
-                               imageToArrayPreprocessor])
+datasetLoader = DatasetLoader(preprocessors=[aspectAwarePreprocessor,
+                                             imageToArrayPreprocessor])
 
 (data, labels) = datasetLoader.load(imagePaths, verbose=500)
 
@@ -107,7 +107,7 @@ print(classification_report(testY.argmax(axis=1),
 
 # unfrezeze the layers and retrain the model:
 for layer in baseModel.layers[15:]:
-    layer.trainabla = True
+    layer.trainable = True
 
 print("[INFO] re-compiling model...")
 opt = SGD(lr=0.001)
