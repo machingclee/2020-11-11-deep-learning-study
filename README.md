@@ -255,4 +255,4 @@ weighted avg       0.95      0.94      0.94       340
 ```
 
 ### 2020-11-22-ensemble-methods
-We train our MiniVGGNet repreatedly for 5 times and try to take an average over them for each prediction. In this folder I mainly focus on extracting "plot training graph" and "geneate classification report" as separate two helpful functions into utils.
+We train our MiniVGGNet repreatedly for 5 times and try to take an average over them for each prediction. In this folder I mainly focus on extracting "plot training graph" and "geneate classification report" as two helper functions into utils.
