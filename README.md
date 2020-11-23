@@ -274,3 +274,24 @@ weighted avg       0.95      0.94      0.94       340
 
 ### 2020-11-22-ensemble-methods
 We train our MiniVGGNet repreatedly for 5 times and try to take an average over them for each prediction. In this folder I mainly focus on extracting "plot training graph" and "geneate classification report" as two helper functions into utils.
+
+---
+
+### 2020-11-23-dogs-vs-cats
+In this folder we mainly convert 25,001 of jpeg images of dogs and cats into hdf5 raw data format, which is for the sake of speeding up the training process by reducing the i/o latency of reading images.
+
+We also extract progress bar as a helpful util functions into pyimagesearch/utils, which gives the following helpful visual output in console:
+```
+[INFO] building dataset/kaggle_dogs_vs_cats/hdf5/train.hdf5...
+Building Dataset:100% |#####################################################################################################################################| Time:  0:01:46
+[INFO] building dataset/kaggle_dogs_vs_cats/hdf5/val.hdf5...
+Building Dataset:100% |#####################################################################################################################################| Time:  0:00:12
+[INFO] building dataset/kaggle_dogs_vs_cats/hdf5/test.hdf5...
+Building Dataset:100% |#####################################################################################################################################| Time:  0:00:13
+```
+The hdf5 file is usally very big:
+```
+cclee   3.7G 24 Nov 02:10 test.hdf5
+cclee    29G 24 Nov 02:10 train.hdf5
+cclee   3.7G 24 Nov 02:10 val.hdf5
+```
