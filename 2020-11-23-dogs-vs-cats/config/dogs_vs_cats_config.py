@@ -12,4 +12,4 @@ MODEL_PATH = "models/alexnet_dogs_vs_cats.model"
 
 DATASET_MEAN_JSON = "outputs/dogs_v_cats_mean.json"
 
-OUTPUT_PATH = "outouts"
+OUTPUT_PATH = "outputs"
