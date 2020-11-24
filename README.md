@@ -212,7 +212,7 @@ Why 15? By running [inspect_model.py](https://github.com/machingclee/deep-learni
 
 As we have set `include_top=False`, we are just re-training layer 15 to layer 18. This time the warm-up of the dense network already yield validation accuracy up to 91%:
 <details>
-<summary>Accuracy of warm-update stage of cancatenated network</summary>
+<summary>Accuracy of warm-up stage of cancatenated network</summary>
 <p>
 
                   precision    recall  f1-score   support
