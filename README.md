@@ -6,8 +6,8 @@ Implemented the whole back-prop update process from scratch. The back-propagatio
 
 ![equation](https://latex.codecogs.com/svg.latex?%20\delta_{\ell}%20=\Phi^{[\ell]}{}%27(U^{[\ell]})%20*%20\left[W^{[\ell+1]T}%20\cdot%20\delta_{\ell+1}\right]\quad%20\text{with}\quad%20\frac{\partial%20\mathcal%20L}{\partial%20W^{[\ell]}}%20=%20\delta_\ell%20Y^{[\ell-1]T})
 
-Derivations of this formular is recorded in my blog post:
-https://checkerlee.blogspot.com/2020/09/derive-formula-of-displaystyle.html
+Derivations of this formular is recorded in my [blog post](https://checkerlee.blogspot.com/2020/09/derive-formula-of-displaystyle.html):
+
 
 ---
 
