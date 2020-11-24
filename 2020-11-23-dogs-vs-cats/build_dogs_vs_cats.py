@@ -65,7 +65,7 @@ datasets = [
     ("val", valPaths, valLabels, config.VAL_HDF5),
     ("test", testPaths, testLabels, config.TEST_HDF5)
 ]
-
+0
 aspectAwarePreprocessor = AspectAwarePreprocessor(256, 256)
 (R, G, B) = ([], [], [])
 
