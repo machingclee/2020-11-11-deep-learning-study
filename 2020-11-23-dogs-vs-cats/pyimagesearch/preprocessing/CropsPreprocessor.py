@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 
-class CropPreprocessor:
+class CropsPreprocessor:
     def __init__(self, width, height, flipped=True, inter=cv2.INTER_AREA):
         self.width = width
         self.height = height

@@ -15,6 +15,7 @@ class HDF5DatasetGenerator:
         self.numOfImages = self.db["labels"].shape[0]
 
     def generator(self, passes=np.inf):
+        # this function generate a list of batches of data a
         epochs = 0
 
         while epochs < passes:
@@ -31,9 +32,10 @@ class HDF5DatasetGenerator:
                     for image in images:
                         for p in self.preprocessors:
                             image = p.preprocess(image)
-                            procImages.append(image)
 
-                    images = np.array(images)
+                        procImages.append(image)
+
+                    images = np.array(procImages)
 
                 if self.aug is not None:
                     (images, labels) = next(
