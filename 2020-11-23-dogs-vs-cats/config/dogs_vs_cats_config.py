@@ -1,6 +1,7 @@
 import os
 
-homeDirPath = os.path.dirname(__file__) + "/.."
+homeDirPath = os.path.dirname(__file__).replace("/config", "")
+
 IMAGES_PATH = homeDirPath + "/dataset/kaggle_dogs_vs_cats/train"
 
 NUM_CLASSES = 2
