@@ -15,6 +15,7 @@ import json
 import os
 import matplotlib
 
+os.getcwd()
 matplotlib.use("Agg")
 
 aug = ImageDataGenerator(rotation_range=20,
