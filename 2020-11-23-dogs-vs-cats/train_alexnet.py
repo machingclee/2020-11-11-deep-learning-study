@@ -1,4 +1,3 @@
-from tensorflow.python.keras import callbacks
 from config import dogs_vs_cats_config as config
 from pyimagesearch.preprocessing import ImageToArrayPreprocessor
 from pyimagesearch.preprocessing import ResizePreprocessor
@@ -8,14 +7,14 @@ from pyimagesearch.preprocessing import MeanSubtractionPreprocessor
 from pyimagesearch.callbacks import TrainingMonitorCallback
 from pyimagesearch.io import HDF5DatasetGenerator
 from pyimagesearch.nn.conv import AlexNet
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.optimizers import Adam
+from keras.preprocessing.image import ImageDataGenerator
+from keras.optimizers import Adam
 
 import json
 import os
 import matplotlib
 
-os.getcwd()
+os.system("export KERAS_BACKEND=plaidml.keras.backend")
 matplotlib.use("Agg")
 
 aug = ImageDataGenerator(rotation_range=20,
@@ -29,24 +28,28 @@ aug = ImageDataGenerator(rotation_range=20,
 
 means = json.loads(open(config.DATASET_MEAN_JSON).read())
 
-rp = ResizePreprocessor(227, 227)
-rscp = RandomSingleCropPreprocessor(227, 227)
-msp = MeanSubtractionPreprocessor(means["R"],
-                                  means["G"],
-                                  means["B"])
-iap = ImageToArrayPreprocessor()
+resize_pp = ResizePreprocessor(227, 227)
+randomSingleCrop_pp = RandomSingleCropPreprocessor(227, 227)
+meanSubtraction_pp = MeanSubtractionPreprocessor(means["R"],
+                                                 means["G"],
+                                                 means["B"])
+imgToArray_pp = ImageToArrayPreprocessor()
 
 
 trainGen = HDF5DatasetGenerator(config.TRAIN_HDF5,
                                 128,
                                 aug=aug,
-                                preprocessors=[rscp, msp, iap],
+                                preprocessors=[randomSingleCrop_pp,
+                                               meanSubtraction_pp,
+                                               imgToArray_pp],
                                 numOfClasses=2
                                 )
 
 valGen = HDF5DatasetGenerator(config.VAL_HDF5,
                               128,
-                              preprocessors=[rp, rscp, iap],
+                              preprocessors=[resize_pp,
+                                             meanSubtraction_pp,
+                                             imgToArray_pp],
                               numOfClasses=2
                               )
 
@@ -67,11 +70,11 @@ path = os.path.sep.join([config.OUTPUT_PATH,
 
 callbacks = [TrainingMonitorCallback(path)]
 
-model.fit(
+model.fit_generator(
     trainGen.generator(),
     steps_per_epoch=trainGen.numOfImages // 128,
     validation_data=valGen.generator(),
-    validation_steps=valGen.numOfImages,
+    validation_steps=valGen.numOfImages // 128,
     epochs=75,
     max_queue_size=10,
     callbacks=callbacks,
