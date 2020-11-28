@@ -1,7 +1,7 @@
 # Deep Learning Study
 Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
 
-### Using plaidml.keras on Mac
+### Using plaidml.keras on Mac to Utilize GPU in Learning Process
 After installing plaidml on an Mac machine, we replace all `tensorflow.keras` by `keras`, and run 
 ```
 export KERAS_BACKEND=plaidml.keras.backend
