@@ -1,4 +1,4 @@
-from tensorflow.keras.callbacks import BaseLogger
+from keras.callbacks import BaseLogger
 import matplotlib.pyplot as plt
 import numpy as np
 import json
@@ -24,7 +24,6 @@ class TrainingMonitorCallback (BaseLogger):
         #                 self.H[key] = self.H[key][:self.startAt]
 
     def on_epoch_end(self, epoch, logs):
-        print("[INFO] current epoch in code {}".format(epoch))
         # logs has 4 keys: loss, val_loss, accuracy, val_accuracy
         # dictionary.items() return an array of (key, value) pairs
         for(key, value) in logs.items():
@@ -52,7 +51,7 @@ class TrainingMonitorCallback (BaseLogger):
             plt.plot(N, self.H["accuracy"], label="accuracy")
             plt.plot(N, self.H["val_accuracy"], label="val_accuracy")
             plt.title("Training Loss and Accuracy [Epoch {}]".format(
-                len(self.H["loss"])))
+                len(self.H["loss"])-1))
             plt.xlabel("Epoch #")
             plt.ylabel("Loss/Accuracy")
             plt.legend()
@@ -62,7 +61,7 @@ class TrainingMonitorCallback (BaseLogger):
             nameSplit = self.figPath.split(os.path.sep)
             fileName = nameSplit[-1].split(".")
             fileName = fileName[0] + "-" + \
-                str(len(self.H["loss"]))+"."+fileName[1]
+                str(len(self.H["loss"])-1)+"."+fileName[1]
             nameSplit[-1] = fileName
             plt.savefig(os.path.sep.join(nameSplit))
             plt.close()

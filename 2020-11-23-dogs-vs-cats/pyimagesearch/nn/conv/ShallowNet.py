@@ -1,9 +1,9 @@
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D
-from tensorflow.keras.layers import Activation
-from tensorflow.keras.layers import Flatten
-from tensorflow.keras.layers import Dense
-from tensorflow.keras import backend as K
+from keras.models import Sequential
+from keras.layers import Conv2D
+from keras.layers import Activation
+from keras.layers import Flatten
+from keras.layers import Dense
+from keras import backend as K
 
 
 class ShallowNet:
