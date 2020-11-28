@@ -1,4 +1,4 @@
-from keras.callbacks import BaseLogger
+from tensorflow.keras.callbacks import BaseLogger
 import matplotlib.pyplot as plt
 import numpy as np
 import json
@@ -46,10 +46,9 @@ class TrainingMonitorCallback (BaseLogger):
             N = np.arange(0, len(self.H["loss"]))
             plt.style.use("ggplot")
             plt.figure()
-            plt.plot(N, self.H["loss"], label="train_loss")
-            plt.plot(N, self.H["val_loss"], label="val_loss")
-            plt.plot(N, self.H["accuracy"], label="accuracy")
-            plt.plot(N, self.H["val_accuracy"], label="val_accuracy")
+            for key in self.H.keys():
+                plt.plot(N, self.H[key], label=key)
+
             plt.title("Training Loss and Accuracy [Epoch {}]".format(
                 len(self.H["loss"])-1))
             plt.xlabel("Epoch #")

@@ -7,16 +7,17 @@ from pyimagesearch.preprocessing import MeanSubtractionPreprocessor
 from pyimagesearch.callbacks import TrainingMonitorCallback
 from pyimagesearch.io import HDF5DatasetGenerator
 from pyimagesearch.nn.conv import AlexNet
-from keras.preprocessing.image import ImageDataGenerator
-from keras.optimizers import Adam
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.optimizers import Adam
 
 import json
 import os
 import matplotlib
 
-os.system("export KERAS_BACKEND=plaidml.keras.backend")
-matplotlib.use("Agg")
+# os.system("export KERAS_BACKEND=plaidml.keras.backend")
 
+matplotlib.use("Agg")
+batchSize = 128
 aug = ImageDataGenerator(rotation_range=20,
                          zoom_range=0.15,
                          width_shift_range=0.2,
@@ -37,7 +38,7 @@ imgToArray_pp = ImageToArrayPreprocessor()
 
 
 trainGen = HDF5DatasetGenerator(config.TRAIN_HDF5,
-                                128,
+                                batchSize,
                                 aug=aug,
                                 preprocessors=[randomSingleCrop_pp,
                                                meanSubtraction_pp,
@@ -46,7 +47,7 @@ trainGen = HDF5DatasetGenerator(config.TRAIN_HDF5,
                                 )
 
 valGen = HDF5DatasetGenerator(config.VAL_HDF5,
-                              128,
+                              batchSize,
                               preprocessors=[resize_pp,
                                              meanSubtraction_pp,
                                              imgToArray_pp],
@@ -72,9 +73,9 @@ callbacks = [TrainingMonitorCallback(path)]
 
 model.fit_generator(
     trainGen.generator(),
-    steps_per_epoch=trainGen.numOfImages // 128,
+    steps_per_epoch=trainGen.numOfImages // batchSize,
     validation_data=valGen.generator(),
-    validation_steps=valGen.numOfImages // 128,
+    validation_steps=valGen.numOfImages // batchSize,
     epochs=75,
     max_queue_size=10,
     callbacks=callbacks,
