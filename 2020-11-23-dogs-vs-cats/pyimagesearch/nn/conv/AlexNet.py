@@ -1,13 +1,13 @@
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import BatchNormalization
-from tensorflow.keras.layers import Conv2D
-from tensorflow.keras.layers import MaxPool2D
-from tensorflow.keras.layers import Activation
-from tensorflow.keras.layers import Flatten
-from tensorflow.keras.layers import Dropout
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.regularizers import l2
-from tensorflow.keras import backend as K
+from keras.models import Sequential
+from keras.layers import BatchNormalization
+from keras.layers import Conv2D
+from keras.layers import MaxPool2D
+from keras.layers import Activation
+from keras.layers import Flatten
+from keras.layers import Dropout
+from keras.layers import Dense
+from keras.regularizers import l2
+from keras import backend as K
 
 import numpy as np
 
