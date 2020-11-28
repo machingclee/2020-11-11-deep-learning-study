@@ -1,6 +1,9 @@
 # Deep Learning Study
 Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
 
+# Using plaidml.keras on Mac
+After installing plaidml on an Mac machine, we can use plaidml Keras backend by replacing all `tensorflow.keras` by `keras`, and run `os.system("export KERAS_BACKEND=plaidml.keras.backend")` at least once (or just do it once directly in terminal). 
+
 ### 2020-10-10-multiclassification
 Implemented the whole back-prop update process from scratch. The back-propagation formula is based on calculating ![equation](http://latex.codecogs.com/svg.latex?\delta_\ell) at the ![equation](http://latex.codecogs.com/svg.latex?\ell)-th layer, and passing it to the ![equation](http://latex.codecogs.com/svg.latex?(\ell-1))-th layer with the following formula: 
 
