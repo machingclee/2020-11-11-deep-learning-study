@@ -2,7 +2,11 @@
 Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
 
 ### Using plaidml.keras on Mac
-After installing plaidml on an Mac machine, we replace all `tensorflow.keras` by `keras`, and run `export KERAS_BACKEND=plaidml.keras.backend` at in our terminal. 
+After installing plaidml on an Mac machine, we replace all `tensorflow.keras` by `keras`, and run 
+```
+export KERAS_BACKEND=plaidml.keras.backend
+``` 
+in our terminal. 
 
 ### 2020-10-10-multiclassification
 Implemented the whole back-prop update process from scratch. The back-propagation formula is based on calculating ![equation](http://latex.codecogs.com/svg.latex?\delta_\ell) at the ![equation](http://latex.codecogs.com/svg.latex?\ell)-th layer, and passing it to the ![equation](http://latex.codecogs.com/svg.latex?(\ell-1))-th layer with the following formula: 
