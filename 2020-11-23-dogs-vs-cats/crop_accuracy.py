@@ -5,7 +5,7 @@ from pyimagesearch.preprocessing import MeanSubtractionPreprocessor
 from pyimagesearch.preprocessing import CropsPreprocessor
 from pyimagesearch.io import HDF5DatasetGenerator
 from pyimagesearch.utils import rank5_accuracy
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 
 import numpy as np
 import json
