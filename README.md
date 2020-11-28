@@ -1,7 +1,7 @@
 # Deep Learning Study
 Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
 
-# Using plaidml.keras on Mac
+### Using plaidml.keras on Mac
 After installing plaidml on an Mac machine, we can use plaidml Keras backend by replacing all `tensorflow.keras` by `keras`, and run `os.system("export KERAS_BACKEND=plaidml.keras.backend")` at least once (or just do it once directly in terminal). 
 
 ### 2020-10-10-multiclassification
