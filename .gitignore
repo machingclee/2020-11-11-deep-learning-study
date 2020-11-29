@@ -131,3 +131,7 @@ dmypy.json
 # dataset
 dataset/
 datasets/
+
+# output models
+model/
+models/
