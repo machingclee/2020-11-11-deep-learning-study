@@ -12,11 +12,12 @@ class CropsPreprocessor:
     def preprocess(self, image):
         crops = []
         (h, w) = image.shape[:2]
-        squares = [[0, 0, self.width, self.height],
-                   [w - self.width, 0, w, self.height]
-                   [w - self.width, h - self.height, w, h]
-                   [0, h-self.height, self.width, h]
-                   ]
+        squares = [
+            [0, 0, self.width, self.height],
+            [w - self.width, 0, w, self.height],
+            [w - self.width, h - self.height, w, h],
+            [0, h-self.height, self.width, h]
+        ]
 
         middle_startX = int(0.5 * (w - self.width))
         middle_startY = int(0.5 * (h - self.height))

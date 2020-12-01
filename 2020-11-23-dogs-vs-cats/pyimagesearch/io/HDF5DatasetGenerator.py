@@ -16,6 +16,7 @@ class HDF5DatasetGenerator:
 
     def generator(self, passes=np.inf):
         # this function generate a list of batches of data a
+        # passes = number of epoch that we want
         epochs = 0
 
         while epochs < passes:
@@ -41,6 +42,7 @@ class HDF5DatasetGenerator:
                     (images, labels) = next(
                         self.aug.flow(images, labels, batch_size=self.batchSize))
 
+                # therefore .generator() gives an array of batched images and batched labels in run time:
                 yield (images, labels)
 
             epochs = epochs + 1

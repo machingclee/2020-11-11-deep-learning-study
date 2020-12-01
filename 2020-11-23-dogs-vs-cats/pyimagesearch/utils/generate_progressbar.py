@@ -10,4 +10,5 @@ def generate_progressbar(title="Processing...", maxval=1):
                progressbar.ETA()]
 
     pbar = progressbar.ProgressBar(maxval=maxval, widgets=widgets).start()
+
     return pbar
