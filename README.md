@@ -285,7 +285,7 @@ We train our MiniVGGNet repreatedly for 5 times and try to take an average over 
 ---
 
 ### 2020-11-23-dogs-vs-cats
-In this folder we mainly convert 25,001 of jpeg images of dogs and cats into hdf5 raw data format, which is for the sake of speeding up the training process by reducing the i/o latency of reading images.
+In this folder we mainly focus on HDF5 generators. We convert 25,001 of jpeg images of dogs and cats into hdf5 raw data format, which is for the sake of speeding up the training process by reducing the i/o latency of reading images.
 
 We also extract progress bar as a helpful util functions into pyimagesearch/utils, which gives the following helpful visual output in console:
 ```
