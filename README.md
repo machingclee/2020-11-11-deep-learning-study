@@ -302,3 +302,16 @@ cclee   3.7G 24 Nov 02:10 test.hdf5
 cclee    29G 24 Nov 02:10 train.hdf5
 cclee   3.7G 24 Nov 02:10 val.hdf5
 ```
+
+We trained our AlexNet from scratch, we also trained a 99% validation accuracy model but using ResNet on trained on imagenet and concatenate it with a Logistic regression dense layer.
+```
+              precision    recall  f1-score   support
+
+         cat       0.99      0.99      0.99      3083
+         dog       0.99      0.99      0.99      3167
+
+    accuracy                           0.99      6250
+   macro avg       0.99      0.99      0.99      6250
+weighted avg       0.99      0.99      0.99      6250
+``` 
+ 
