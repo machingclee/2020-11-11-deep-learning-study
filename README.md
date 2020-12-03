@@ -313,5 +313,5 @@ We trained our AlexNet from scratch, we also trained a 99% validation accuracy m
     accuracy                           0.99      6250
    macro avg       0.99      0.99      0.99      6250
 weighted avg       0.99      0.99      0.99      6250
-``` 
- 
+```
+---
