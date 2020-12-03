@@ -3,10 +3,7 @@ from pyimagesearch.preprocessing import ImageToArrayPreprocessor
 from pyimagesearch.preprocessing import ResizePreprocessor
 from pyimagesearch.preprocessing import MeanSubtractionPreprocessor
 from pyimagesearch.preprocessing import CropsPreprocessor
-<<<<<<< HEAD
 from pyimagesearch.utils import generate_progressbar
-=======
->>>>>>> d1c66f79e2fd5d7eb55a8a98e3861c1c92c98f9b
 from pyimagesearch.io import HDF5DatasetGenerator
 from pyimagesearch.utils import rank5_accuracy
 from tensorflow.keras.models import load_model
@@ -15,7 +12,6 @@ import numpy as np
 import json
 
 means = json.loads(open(config.DATASET_MEAN_JSON).read())
-<<<<<<< HEAD
 
 resize_pp = ResizePreprocessor(227, 227)
 meanSubtraction_pp = MeanSubtractionPreprocessor(means["R"],
@@ -31,9 +27,7 @@ testGen = HDF5DatasetGenerator(
     config.TEST_HDF5,
     64,
     preprocessors=[resize_pp, meanSubtraction_pp, imgToArray_pp])
-
-# array of batched predictions:
-# it seems that model.predict helps us extend the list of predictions for each batch of the result, the shape of prediction is finally (2496, 2)
+# it seems that model.predict helps us extend the list of predictions for each batch of the result, the shape of prediction is finally (2496, 2):
 predictions = model.predict_generator(
     testGen.generator(),
     steps=testGen.numOfImages//64, max_queue_size=10)
@@ -69,5 +63,3 @@ print("[INFO] predicting on test data with crops ...")
 (rank1, _) = rank5_accuracy(predictions, testGen.db["labels"])
 print("[INFO] rank-1: {:.2f}%".format(rank1 * 100))
 testGen.close()
-=======
->>>>>>> d1c66f79e2fd5d7eb55a8a98e3861c1c92c98f9b
