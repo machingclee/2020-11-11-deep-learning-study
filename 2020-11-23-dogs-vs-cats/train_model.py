@@ -30,11 +30,11 @@ model = GridSearchCV(
     n_jobs=args["jobs"])
 
 # I forget to add dataKey="features" in extracting features and by default it is called images in my hdf5 database:
-model.fit(db["images"][:i], db["labels"][:i])
+model.fit(db["features"][:i], db["labels"][:i])
 print("[INFO] best hyperparameters: {}".format(model.best_params))
 
 print("[INFO] evaluating ...")
-preds = model.predict(db["images"][i:])
+preds = model.predict(db["features"][i:])
 
 print(classification_report(db["labels"][i:]),
       preds, target_names=db["label_names"])

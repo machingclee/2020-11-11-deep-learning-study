@@ -285,7 +285,7 @@ We train our MiniVGGNet repreatedly for 5 times and try to take an average over 
 ---
 
 ### 2020-11-23-dogs-vs-cats
-In this folder we mainly convert 25,001 of jpeg images of dogs and cats into hdf5 raw data format, which is for the sake of speeding up the training process by reducing the i/o latency of reading images.
+In this folder we mainly focus on HDF5 generators. We convert 25,001 of jpeg images of dogs and cats into hdf5 raw data format, which is for the sake of speeding up the training process by reducing the i/o latency of reading images.
 
 We also extract progress bar as a helpful util functions into pyimagesearch/utils, which gives the following helpful visual output in console:
 ```
@@ -302,3 +302,16 @@ cclee   3.7G 24 Nov 02:10 test.hdf5
 cclee    29G 24 Nov 02:10 train.hdf5
 cclee   3.7G 24 Nov 02:10 val.hdf5
 ```
+
+We trained our AlexNet from scratch, we also trained a 99% validation accuracy model but using ResNet on trained on imagenet and concatenate it with a Logistic regression dense layer.
+```
+              precision    recall  f1-score   support
+
+         cat       0.99      0.99      0.99      3083
+         dog       0.99      0.99      0.99      3167
+
+    accuracy                           0.99      6250
+   macro avg       0.99      0.99      0.99      6250
+weighted avg       0.99      0.99      0.99      6250
+``` 
+ 
