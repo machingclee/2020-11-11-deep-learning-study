@@ -25,7 +25,6 @@ def extract_features(featuresDim,
     labels: a list of string, the label, it will be encoded and stored inside the dataset as a list of integers
     """
     print("[INFO] loading images ...")
-    random.shuffle(imagePaths)
 
     labelEncoder = LabelEncoder()
     # this is not a binarizer, i.e., the fit_transform return a list of integers, but not a list of list of integers

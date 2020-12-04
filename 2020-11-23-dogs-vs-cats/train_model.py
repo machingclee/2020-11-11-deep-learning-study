@@ -20,6 +20,8 @@ db = h5py.File(args["db"], "r")
 i = int(db["labels"].shape[0] * 0.75)
 
 params = {"C": [0.0001, 0.001, 0.01, 0.1, 1.0]}
+
+print("[INFO] tunnig parameters")
 model = GridSearchCV(
     LogisticRegression(solver="lbfgs",
                        multi_class="auto",
@@ -31,13 +33,15 @@ model = GridSearchCV(
 
 # I forget to add dataKey="features" in extracting features and by default it is called images in my hdf5 database:
 model.fit(db["features"][:i], db["labels"][:i])
-print("[INFO] best hyperparameters: {}".format(model.best_params))
+print("[INFO] best hyperparameters: {}".format(model.best_params_))
 
 print("[INFO] evaluating ...")
 preds = model.predict(db["features"][i:])
 
-print(classification_report(db["labels"][i:]),
-      preds, target_names=db["label_names"])
+print(classification_report(db["labels"][i:],
+                            preds,
+                            target_names=db["label_names"]))
+
 
 acc = accuracy_score(db["labels"][i:], preds)
 print("[INFO] score: {}".format(acc))
