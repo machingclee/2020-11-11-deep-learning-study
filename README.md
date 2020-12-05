@@ -303,7 +303,7 @@ cclee    29G 24 Nov 02:10 train.hdf5
 cclee   3.7G 24 Nov 02:10 val.hdf5
 ```
 
-We trained our AlexNet from scratch, we also trained a 99% validation accuracy model but using ResNet on trained on imagenet and concatenate it with a Logistic regression dense layer.
+We trained our AlexNet from scratch, we also trained a 99% validation accuracy model by using ResNet on trained on imagenet and concatenate it with a Logistic regression dense layer.
 ```
               precision    recall  f1-score   support
 
@@ -315,3 +315,4 @@ We trained our AlexNet from scratch, we also trained a 99% validation accuracy m
 weighted avg       0.99      0.99      0.99      6250
 ```
 ---
+Since feature extraction is very helpful in transfer learning, I made a helpful function called `feature_extraction` inside utils file.
