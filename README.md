@@ -314,7 +314,7 @@ We trained our AlexNet from scratch, we also trained a 99% validation accuracy m
    macro avg       0.99      0.99      0.99      6250
 weighted avg       0.99      0.99      0.99      6250
 ```
-Since feature extraction is very helpful in transfer learning, I made a helpful function called `feature_extraction` inside utils file.
+Since feature extraction is very helpful in transfer learning, I made a helpful function called `feature_extraction` inside utils folder.
 
 ---
 
