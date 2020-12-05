@@ -314,7 +314,7 @@ We trained our AlexNet from scratch, we also trained a 99% validation accuracy m
    macro avg       0.99      0.99      0.99      6250
 weighted avg       0.99      0.99      0.99      6250
 ```
-Since feature extraction is very helpful in transfer learning, I made a helpful function called `feature_extraction` inside [utils](https://github.com/machingclee/deep-learning-study/tree/main/2020-11-23-dogs-vs-cats/pyimagesearch/utils) folder. And it was called in [extract_features.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-23-dogs-vs-cats/extract_features.py) as a demonstration how to use it.
+Since feature extraction is very helpful in transfer learning, I made a helpful function called `extract_features` inside [utils](https://github.com/machingclee/deep-learning-study/tree/main/2020-11-23-dogs-vs-cats/pyimagesearch/utils) folder. And it was called in [extract_features.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-23-dogs-vs-cats/extract_features.py) as a demonstration how to use it.
 
 ---
 
