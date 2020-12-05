@@ -1,5 +1,3 @@
-# usage: python extract_features.py --dataset dataset/kaggle_dogs_vs_cats/train --output dataset/kaggle_dogs_vs_cats/hdf5/features.hdf5
-
 from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.applications import imagenet_utils
 from tensorflow.keras.preprocessing.image import load_img
@@ -25,7 +23,6 @@ def extract_features(featuresDim,
     labels: a list of string, the label, it will be encoded and stored inside the dataset as a list of integers
     """
     print("[INFO] loading images ...")
-
     labelEncoder = LabelEncoder()
     # this is not a binarizer, i.e., the fit_transform return a list of integers, but not a list of list of integers
     labels = labelEncoder.fit_transform(labels)
