@@ -10,7 +10,7 @@ or
 
 
 ### Python Code Formatter Config
-As I will be using `autopep8`, I am pleased with the formatting except that its max line per with is too small, here is how we config it:
+As I will be using `autopep8`, I am pleased with the formatting except that its max line per width is too small, here is how we config it:
 
 - Create .pep8 at the top level directory of the project
 - Write:
