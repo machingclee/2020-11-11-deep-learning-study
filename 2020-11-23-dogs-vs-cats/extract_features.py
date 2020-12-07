@@ -5,8 +5,11 @@ from imutils import paths
 import random
 import os
 
-trainingDataPath = "dataset/kaggle_dogs_vs_cats/train"
-outputPath = "dataset/kaggle_dogs_vs_cats/hdf5/features2.hdf5"
+
+trainingDataPath = os.path.sep.join(
+    ["dataset", "kaggle_dogs_vs_cats", "train"])
+outputPath = os.path.sep.join(
+    ["dataset", "kaggle_dogs_vs_cats", "hdf5", "features.hdf5"])
 
 # shuffle the image paths first and then get the corresponding label
 # the way we extract labels depend on the folder structure,
