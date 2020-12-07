@@ -15,11 +15,6 @@ import os
 # CUDA_VISIBLE_DEVICES=-1
 # CUDA_VISIBLE_DEVICES=0
 
-# ap = argparse.ArgumentParser()
-# ap.add_argument("-m", "--model", required=True, help="path to output model")
-# ap.add_argument("-o", "--output", required=True, help="path to output directory (logs, plots, etc)")
-# args = vars(ap.parse_args())
-
 NUM_EPOCHS = 70
 INIT_LR = 5e-3
 
