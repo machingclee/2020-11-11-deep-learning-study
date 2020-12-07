@@ -16,7 +16,7 @@ As I will be using `autopep8`, I am pleased with the formatting except that its 
 - Write:
   ```
   [pycodestyle]
-  max_line_length = 500
+  max_line_length = 150
   ```
 
 ### 2020-10-10-multiclassification
