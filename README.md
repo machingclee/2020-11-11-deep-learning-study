@@ -1,12 +1,23 @@
 # Deep Learning Study
 Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
 
-### Using plaidml.keras on Mac to Utilize GPU in Learning Process
-After installing plaidml on an Mac machine, we replace all `tensorflow.keras` by `keras`, and run 
-```
-export KERAS_BACKEND=plaidml.keras.backend
-``` 
-in our terminal. If you are not installing this package in a virtual environment, you may need some trouble-shootings [here](https://github.com/plaidml/plaidml/issues/370).
+### Using GPU in Learning Process
+As there are very few solutions on how to utilize GPU without CUDA, we will use cudatoolkit with approprivate version of cudnn. There are two ways to meet this requirement:
+First install the nvidia graphic card driver, then:
+- Scroll to the bottom of [official list](https://www.tensorflow.org/install/source_windows?hl=zh-tw) and download the corresponding version. Advantange of doing this is, your can try the latest version of tensorflow-gpu which can be pip-installed from the bottom list of [here](https://www.tensorflow.org/install/pip?hl=zh-tw).
+or
+- Upon downloading the card driver, just use conda install tensorflow-gpu, it will automatically download the cudatoolkit and cudnn for you inside your activated conda environment.
+
+
+### Python Code Formatter Config
+As I will be using `autopep8`, I am pleased with the formatting except that its max line per with is too small, here is how we config it:
+
+- Create .pep8 at the top level directory of the project
+- Write:
+  ```
+  [pycodestyle]
+  max_line_length = 500
+  ```
 
 ### 2020-10-10-multiclassification
 Implemented the whole back-prop update process from scratch. The back-propagation formula is based on calculating ![equation](http://latex.codecogs.com/svg.latex?\delta_\ell) at the ![equation](http://latex.codecogs.com/svg.latex?\ell)-th layer, and passing it to the ![equation](http://latex.codecogs.com/svg.latex?(\ell-1))-th layer with the following formula: 
