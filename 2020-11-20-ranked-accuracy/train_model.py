@@ -6,6 +6,8 @@ import argparse
 import pickle
 import h5py
 
+import os
+
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--db", required=True,
                 help="path to HDF5 feature database")
