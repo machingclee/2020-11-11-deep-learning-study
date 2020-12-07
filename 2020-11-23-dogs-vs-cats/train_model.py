@@ -9,6 +9,7 @@ import argparse
 import pickle
 import h5py
 
+
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--db", required=True)
 ap.add_argument("-m", "--model", required=True, help="path to output model")
@@ -24,8 +25,7 @@ params = {"C": [0.0001, 0.001, 0.01, 0.1, 1.0]}
 print("[INFO] tunnig parameters")
 model = GridSearchCV(
     LogisticRegression(solver="lbfgs",
-                       multi_class="auto",
-                       max_iter=5000
+                       multi_class="auto"
                        ),
     params,
     cv=3,
