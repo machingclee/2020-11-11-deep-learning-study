@@ -393,6 +393,6 @@ Their performance on validation data are almost the same.
 
 In the first experiment, we use polynomial decay of degree 2 for learning rate. 
 
-In the second second experiment we choose larger initial learning rate with the same decay, which gives the highest score when it comes to 4 decimal places in accuracy. However, the validation loss of the second experiment satudated very quickly at about 50 epoch, which means that the learning rate is becomes too small for the model to train at this point and overfitting starts to occur. 
+In the second second experiment we choose larger initial learning rate with the same decay, which gives the highest score when it comes to 4 decimal places in accuracy. However, the validation loss of the second experiment satudated very quickly at about 50 epoch, which means that the learning rate is becomeing too small for the model to train at this point and overfitting starts to occur. 
 
 Therefore instead of quadratic polynomial decay, we should try to use linear decay for learning rate, which results in the third expoerment.
