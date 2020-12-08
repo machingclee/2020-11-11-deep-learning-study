@@ -389,7 +389,9 @@ weighted avg       0.91      0.91      0.91     10000
    macro avg       0.91      0.91      0.91     10000
 weighted avg       0.91      0.91      0.91     10000
 ```
-Their performance on validation data are almost the same, in fact. In the first experiment, we use polynomial decay for learning rate. 
+Their performance on validation data are almost the same. 
+
+In the first experiment, we use polynomial decay for learning rate. 
 
 In the second second experiment we choose larger initial learning rate we the same decay, which gives the highest score when it comes to 4 decimal places in accuracy. However, the validation loss of the second experiment satudated very quickly at about 50 epoch, which means that the learning rate is becomes too small for the model to train at this point and overfitting starts to occur. 
 
