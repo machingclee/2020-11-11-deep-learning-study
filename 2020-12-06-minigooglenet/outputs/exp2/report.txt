@@ -1,0 +1,20 @@
+NUM_EPOCHS = 70
+INIT_LR = 1e-2
+Polynomial Decay of Degree 2
+
+              precision    recall  f1-score   support
+
+   airplanes       0.94      0.91      0.92      1032
+        cars       0.96      0.95      0.95      1016
+       birds       0.88      0.88      0.88       997
+        cats       0.81      0.84      0.83       965
+        deer       0.92      0.90      0.91      1016
+        dogs       0.84      0.88      0.86       956
+       frogs       0.95      0.91      0.93      1049
+      horses       0.92      0.94      0.93       978
+       ships       0.95      0.95      0.95       992
+  and trucks       0.94      0.94      0.94       999
+
+    accuracy                           0.91     10000
+   macro avg       0.91      0.91      0.91     10000
+weighted avg       0.91      0.91      0.91     10000

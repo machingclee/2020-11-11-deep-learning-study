@@ -49,8 +49,8 @@ class TrainingMonitorCallback (BaseLogger):
             for key in self.H.keys():
                 plt.plot(N, self.H[key], label=key)
 
-            plt.title("Training Loss and Accuracy [Epoch {}]".format(
-                len(self.H["loss"])-1))
+            epoch = len(self.H["loss"]) - 1
+            plt.title("Training Loss and Accuracy [Epoch {}]".format(epoch))
             plt.xlabel("Epoch #")
             plt.ylabel("Loss/Accuracy")
             plt.legend()
@@ -59,8 +59,7 @@ class TrainingMonitorCallback (BaseLogger):
 
             nameSplit = self.figPath.split(os.path.sep)
             fileName = nameSplit[-1].split(".")
-            fileName = fileName[0] + "-" + \
-                str(len(self.H["loss"])-1)+"."+fileName[1]
+            fileName = fileName[0] + "-" + str(epoch) + "." + fileName[1]
             nameSplit[-1] = fileName
             plt.savefig(os.path.sep.join(nameSplit))
             plt.close()
