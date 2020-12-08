@@ -1,0 +1,20 @@
+NUM_EPOCHS = 70
+INIT_LR = 1e-2
+Linear Learn Rate Decay
+
+              precision    recall  f1-score   support
+
+   airplanes       0.92      0.92      0.92      1008
+        cars       0.97      0.95      0.96      1025
+       birds       0.88      0.88      0.88      1006
+        cats       0.81      0.84      0.82       967
+        deer       0.90      0.90      0.90       995
+        dogs       0.85      0.87      0.86       974
+       frogs       0.95      0.90      0.92      1059
+      horses       0.93      0.93      0.93       998
+       ships       0.95      0.96      0.95       989
+  and trucks       0.94      0.96      0.94       979
+
+    accuracy                           0.91     10000
+   macro avg       0.91      0.91      0.91     10000
+weighted avg       0.91      0.91      0.91     10000

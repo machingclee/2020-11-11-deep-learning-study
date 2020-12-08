@@ -16,8 +16,10 @@ import os
 # CUDA_VISIBLE_DEVICES=0
 
 NUM_EPOCHS = 70
-INIT_LR = 5e-3
+INIT_LR = 1e-2
 
+# as these are going to be fed in TFCallback function,
+# which can only receive relative path
 figPath = os.path.sep.join(["outputs", "{}.png".format(os.getpid())])
 jsonPath = os.path.sep.join(["outputs", "{}.json".format(os.getpid())])
 modelPath = os.path.sep.join(["models", "minigooglenet_cifar10.hdf5"])
@@ -29,7 +31,7 @@ def poly_decay(epoch):
     power = 1.0
     x = epoch/float(maxEpochs)
 
-    return baseLR * ((1-x) ** power)
+    return baseLR * ((1-x) ** 1)
 
 
 print("[INFO] loading CIFAR-10 data")
