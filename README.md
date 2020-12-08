@@ -329,3 +329,68 @@ Since feature extraction is very helpful in transfer learning, I made a helpful 
 
 ---
 
+### 2020-12-06-minigooglenet
+We implement minified version of inception module and downsample module. The major take-away in the week working on this network is to study how to tune hyper-parameter: the decay rate of learning rate. We have run the experitment 3 times for 3 different learning rates:
+
+<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp1/21032-69.png" width=300><img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp2/21012-69.png" width=300><img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp3/18264-69.png" width=300>
+
+Their classification repots on validation data:
+```
+              precision    recall  f1-score   support
+
+   airplanes       0.92      0.91      0.92      1014
+        cars       0.96      0.95      0.96      1012
+       birds       0.87      0.86      0.86      1010
+        cats       0.81      0.83      0.82       970
+        deer       0.89      0.88      0.88      1001
+        dogs       0.84      0.85      0.85       987
+       frogs       0.94      0.89      0.92      1059
+      horses       0.91      0.94      0.92       967
+       ships       0.94      0.96      0.95       987
+  and trucks       0.94      0.95      0.94       993
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+```
+```
+              precision    recall  f1-score   support
+
+   airplanes       0.94      0.91      0.92      1032
+        cars       0.96      0.95      0.95      1016
+       birds       0.88      0.88      0.88       997
+        cats       0.81      0.84      0.83       965
+        deer       0.92      0.90      0.91      1016
+        dogs       0.84      0.88      0.86       956
+       frogs       0.95      0.91      0.93      1049
+      horses       0.92      0.94      0.93       978
+       ships       0.95      0.95      0.95       992
+  and trucks       0.94      0.94      0.94       999
+
+    accuracy                           0.91     10000
+   macro avg       0.91      0.91      0.91     10000
+weighted avg       0.91      0.91      0.91     10000
+```
+```
+              precision    recall  f1-score   support
+
+   airplanes       0.92      0.92      0.92      1008
+        cars       0.97      0.95      0.96      1025
+       birds       0.88      0.88      0.88      1006
+        cats       0.81      0.84      0.82       967
+        deer       0.90      0.90      0.90       995
+        dogs       0.85      0.87      0.86       974
+       frogs       0.95      0.90      0.92      1059
+      horses       0.93      0.93      0.93       998
+       ships       0.95      0.96      0.95       989
+  and trucks       0.94      0.96      0.94       979
+
+    accuracy                           0.91     10000
+   macro avg       0.91      0.91      0.91     10000
+weighted avg       0.91      0.91      0.91     10000
+```
+Their performance on validation data are almost the same, in fact. In the first experiment, we use polynomial decay for learning rate. 
+
+In the second second experiment we choose larger initial learning rate we the same decay, which gives the highest score when it comes to 4 decimal places in accuracy. However, the validation loss of the second experiment satudated very quickly at about 50 epoch, which means that the learning rate is becomes too small for the model to train at this point and overfitting starts to occur. 
+
+Therefore instead of quadratic polynomial decay, we should try to use linear decay for learning rate, which results in the third expoerment.
