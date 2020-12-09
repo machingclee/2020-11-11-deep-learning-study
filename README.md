@@ -22,7 +22,7 @@ As I will be using `autopep8`, I am pleased with the formatting except that its 
 ### 2020-10-10-multiclassification
 Implemented the whole back-prop update process from scratch. The back-propagation formula is based on calculating ![equation](http://latex.codecogs.com/svg.latex?\delta_\ell) at the ![equation](http://latex.codecogs.com/svg.latex?\ell)-th layer, and passing it to the ![equation](http://latex.codecogs.com/svg.latex?(\ell-1))-th layer with the following formula: 
 
-![equation](https://latex.codecogs.com/svg.latex?%20\delta_{\ell}%20=\Phi^{[\ell]}{}%27(U^{[\ell]})%20*%20\left[W^{[\ell+1]T}%20\cdot%20\delta_{\ell+1}\right]\quad%20\text{with}\quad%20\frac{\partial%20\mathcal%20L}{\partial%20W^{[\ell]}}%20=%20\delta_\ell%20Y^{[\ell-1]T})
+![equation](https://github.com/machingclee/deep-learning-study/blob/main/matheq.svg)
 
 Derivations of this formular is recorded in my [blog post](https://checkerlee.blogspot.com/2020/09/derive-formula-of-displaystyle.html):
 
