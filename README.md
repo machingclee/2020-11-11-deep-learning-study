@@ -4,9 +4,10 @@ Record what I have learnt from the beginning. Deprecated folder contains materia
 ### Using GPU in Learning Process
 As there are very few solutions on how to utilize GPU without CUDA, we will use cudatoolkit with approprivate version of cudnn. There are two ways to meet this requirement:
 First install the nvidia graphic card driver, then:
-- Scroll to the bottom of [official list](https://www.tensorflow.org/install/source_windows?hl=zh-tw) and download+install the corresponding version of cudatoolkit + cudnn. Advantange of doing this is: you can try the latest version of tensorflow-gpu which can be pip-installed from the bottom list of [here](https://www.tensorflow.org/install/pip?hl=zh-tw).
-or
+- Scroll to the bottom of [official list](https://www.tensorflow.org/install/source_windows?hl=zh-tw) and download+install the corresponding version of cudatoolkit + cudnn. Advantange of doing this is: you can try the latest version of tensorflow-gpu which can be pip-installed from the bottom list of [here](https://www.tensorflow.org/install/pip?hl=zh-tw); or
 - Upon downloading the card driver, just use conda install tensorflow-gpu, it will automatically download the cudatoolkit and cudnn for you inside your activated conda environment. Usually the conda cloud version of tensorflow-gpu lags behind the official latest version.
+
+I fail using the conda cloud version but successfully get it works with tesnsorflow-gpu rc version using the required CUDA and CUDNN version.
 
 
 ### Python Code Formatter Config
