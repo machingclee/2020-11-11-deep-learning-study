@@ -338,7 +338,7 @@ We implement minified version of inception module and downsample module. The maj
 
 
 <details>
- <summary>*This summary is a bit long and is collapsed:*</summary>
+  <summary><i>This summary is a bit long and is collapsed:</i></summary>
 
 
 
