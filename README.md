@@ -409,4 +409,4 @@ In the second second experiment we choose larger initial learning rate with the 
 Therefore instead of quadratic polynomial decay, we should try to use linear decay for learning rate, which results in the third expoerment.
 </details>
 
-**Conclusino.** We should keep training loss and training accuracy saturation level as low as possible.
+**Conclusion.** We should keep training loss and training accuracy saturation level as low as possible.
