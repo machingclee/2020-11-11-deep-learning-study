@@ -17,7 +17,7 @@ As I will be using `autopep8`, I am pleased with the formatting except that its 
 - Write:
   ```
   [pycodestyle]
-  max_line_length = 150
+  max_line_length = 120
   ```
 
 ---
