@@ -334,6 +334,13 @@ Since feature extraction is very helpful in transfer learning, I made a helpful 
 ### 2020-12-06-minigooglenet
 We implement minified version of inception module and downsample module. The major take-away in the week working on this network is to study how to tune the hyper-parameter: the decay of learning rate. We have run the experitment 3 times for 3 different learning rates.
 
+
+
+<details>
+ <summary>This summary is a bit long and will be collapsed:</summary>
+
+
+
 <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp1/21032-69.png" width=450>
 <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp2/21012-69.png" width=450>
 <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp3/18264-69.png" width=450>
@@ -400,3 +407,4 @@ In the first experiment, we use polynomial decay of degree 2 for learning rate.
 In the second second experiment we choose larger initial learning rate with the same decay, which gives the highest score when it comes to 4 decimal places in accuracy. However, the validation loss of the second experiment satudated very quickly at about 50 epoch, which means that the learning rate is becoming too small for the model to train at this point and overfitting starts to occur. 
 
 Therefore instead of quadratic polynomial decay, we should try to use linear decay for learning rate, which results in the third expoerment.
+</details>
