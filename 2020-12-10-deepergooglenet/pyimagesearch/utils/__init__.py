@@ -4,3 +4,4 @@ from .generate_classification_report_from_predictions import generate_classifica
 from .generate_progressbar import generate_progressbar
 from .ranked import rank5_accuracy
 from .extract_features import extract_features
+from .dataset_to_hdf5 import dataset_to_hdf5
