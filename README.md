@@ -66,7 +66,7 @@ Implement a similified version of VGG Net and trained using CIFAR-10 dataset. Ad
 * #### [MiniVGGNet_CIFAR10_checkpoint_improvement.py](https://github.com/machingclee/2020-11-11-deep-learning-study/blob/main/2020-11-12-MiniVGGNet/MiniVGGNet_CIFAR10_checkpoint_improvement.py)
   We import `ModelCheckpoint` from `keras.callbacks` and define a template string to save various weights when validation loss decreases. We can get the smallest one without redundant files by simply removing the template part in `fname`.
 
-* #### [MiniVGGNet_visualization.py](MiniVGGNet_visualization.py)
+* #### [MiniVGGNet_visualization.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-12-MiniVGGNet/MiniVGGNet_visualization.py)
   To run this script we will need to install graphviz and pydot on mac:
 
   ```
