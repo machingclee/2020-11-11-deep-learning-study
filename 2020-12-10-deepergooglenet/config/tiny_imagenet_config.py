@@ -9,12 +9,17 @@ def cd(path):
     return os.system("cd {}".format(path))
 
 
-def open(path):
+def start(path):
     os.system("start {}".format(path))
 
 
-PROJECT_DIR = os.path.sep.join(os.path.dirname(__file__).split(os.path.sep)[:-1])
-DATASET_DIR = path_join("d:", "datasets", "tiny-imagenet-200")
+PROJECT_DIR = os.path.sep.join(os.path.realpath(__file__).split(os.path.sep)[:-2])
+# DATASET_DIR = path_join("d:", "datasets", "tiny-imagenet-200")
+
+# hdf5 conversion is much quicker if dataset lives in our SSD:
+DATASET_DIR = path_join("C:", "Users", "user", "Repos", "Python", "DeepLearning",
+                        "deep-learning-study", "datasets", "tiny-imagenet-200")
+
 
 TRAIN_IMAGES_DIR = path_join(DATASET_DIR, "train")
 VAL_IMAGES_DIR = path_join(DATASET_DIR, "val")
