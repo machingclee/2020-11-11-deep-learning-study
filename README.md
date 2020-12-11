@@ -7,8 +7,6 @@ First install the nvidia graphic card driver, then:
 - Scroll to the bottom of [official list](https://www.tensorflow.org/install/source_windows?hl=zh-tw) and download+install the corresponding version of cudatoolkit + cudnn. Advantange of doing this is: you can try the latest version of tensorflow-gpu which can be pip-installed from the bottom list of [here](https://www.tensorflow.org/install/pip?hl=zh-tw); or
 - Upon downloading the card driver, just use conda install tensorflow-gpu, it will automatically download the cudatoolkit and cudnn for you inside your activated conda environment. Usually the conda cloud version of tensorflow-gpu lags behind the official latest version.
 
-I fail to use conda cloud version but successfully get it works with tesnsorflow-gpu rc version using the corresponding CUDAtoolkit and CUDNN.
-
 
 ### Python Code Formatter Config
 As I will be using `autopep8`, I am pleased with the formatting except that its max line per width is too small, here is how we config it:
