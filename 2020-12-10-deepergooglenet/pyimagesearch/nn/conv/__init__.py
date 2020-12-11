@@ -4,3 +4,4 @@ from .MiniVGGNet import MiniVGGNet
 from .ShallowNet import ShallowNet
 from .AlexNet import AlexNet
 from .MiniGoogLeNet import MiniGoogLeNet
+from .DeeperGoogLeNet import DeeperGoogLeNet
