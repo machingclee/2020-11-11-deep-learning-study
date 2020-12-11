@@ -4,12 +4,12 @@ import h5py
 
 
 class HDF5DatasetGenerator:
-    def __init__(self, dbPath, batchSize, preprocessors=None, aug=None, binarized=True, numOfClasses=2):
+    def __init__(self, dbPath, batchSize, preprocessors=None, aug=None, binarized=True, n_classes=2):
         self.batchSize = batchSize
         self.preprocessors = preprocessors
         self.aug = aug
         self.binarized = binarized
-        self.numOfClasses = numOfClasses
+        self.n_classes = n_classes
 
         self.db = h5py.File(dbPath, "r")
         self.numOfImages = self.db["labels"].shape[0]
@@ -25,7 +25,7 @@ class HDF5DatasetGenerator:
                 labels = self.db["labels"][i:i + self.batchSize]
 
                 if self.binarized:
-                    labels = to_categorical(labels, self.numOfClasses)
+                    labels = to_categorical(labels, self.n_classes)
 
                 if self.preprocessors is not None:
                     procImages = []
