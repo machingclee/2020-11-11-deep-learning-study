@@ -22,8 +22,8 @@ As I will be using `autopep8`, I am pleased with the formatting except that its 
 
 Things start to be confusing when we deal with dataset with different purposes:
 
-- `LabelEncoder` turn our array of classes into array of integers, i.e., array of binarized labels.
-- `LabelBiniarizer` turn our array of classes into array of probability vectors, each has only 1 nonzero entry.
+- `LabelEncoder` turns our array of classes into array of integers, i.e., array of binarized labels.
+- `LabelBiniarizer` turns our array of classes into array of probability vectors, each has only 1 nonzero entry.
 
 ---
 
