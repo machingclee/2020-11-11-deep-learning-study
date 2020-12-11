@@ -20,6 +20,13 @@ As I will be using `autopep8`, I am pleased with the formatting except that its 
   max_line_length = 120
   ```
 
+### sklearn.preprocessing.LabelEncoder vs .LabelBinarizer
+
+Things start to be confusing when we deal with dataset with different purposes:
+
+- `LabelEncoder` turn our array of classes into array of integers, i.e., array of binarized labels.
+- `LabelBiniarizer` turn our array of classes into array of probability vectors, each has only 1 nonzero entry.
+
 ---
 
 ### 2020-10-10-multiclassification
@@ -28,7 +35,6 @@ Implemented the whole back-prop update process from scratch. The back-propagatio
 ![equation](https://github.com/machingclee/deep-learning-study/blob/main/matheq.svg)
 
 Derivations of this formular is recorded in my [blog post](https://checkerlee.blogspot.com/2020/09/derive-formula-of-displaystyle.html):
-
 
 ---
 
