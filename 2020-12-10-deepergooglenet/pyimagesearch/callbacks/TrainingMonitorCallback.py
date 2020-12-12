@@ -1,4 +1,5 @@
 # import the necessary packages
+from textwrap import indent
 from tensorflow.keras.callbacks import BaseLogger
 import matplotlib.pyplot as plt
 import numpy as np
@@ -44,7 +45,7 @@ class TrainingMonitorCallback(BaseLogger):
         # to file
         if self.jsonPath is not None:
             f = open(self.jsonPath, "w")
-            f.write(json.dumps(self.H))
+            f.write(json.dumps(self.H, indent=4))
             f.close()
 
         # ensure at least two epochs have passed before plotting
