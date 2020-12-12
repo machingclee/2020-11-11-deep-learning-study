@@ -1,3 +1,4 @@
+# import the necessary packages
 from tensorflow.keras.callbacks import BaseLogger
 import matplotlib.pyplot as plt
 import numpy as np
@@ -5,61 +6,64 @@ import json
 import os
 
 
-class TrainingMonitorCallback (BaseLogger):
+class TrainingMonitorCallback(BaseLogger):
     def __init__(self, figPath, jsonPath=None, startAt=0):
+        # store the output path for the figure, the path to the JSON
+        # serialized file, and the starting epoch
         super(TrainingMonitorCallback, self).__init__()
         self.figPath = figPath
         self.jsonPath = jsonPath
         self.startAt = startAt
 
     def on_train_begin(self, logs={}):
+        # initialize the history dictionary
         self.H = {}
-        # if self.jsonPath is not None:
-        #     if os.path.exists(self.jsonPath):
-        #         # "r" is the default mode of open
-        #         self.H = json.loads(open(self.jsonPath)).read()
 
-        #         if self.startAt > 0:
-        #             for key in self.H.keys():
-        #                 self.H[key] = self.H[key][:self.startAt]
+        # if the JSON history path exists, load the training history
+        if self.jsonPath is not None:
+            if os.path.exists(self.jsonPath):
+                self.H = json.loads(open(self.jsonPath).read())
 
-    def on_epoch_end(self, epoch, logs):
-        # logs has 4 keys: loss, val_loss, accuracy, val_accuracy
-        # dictionary.items() return an array of (key, value) pairs
-        for(key, value) in logs.items():
-            # dictionary.get(key, defaultValue):
-            # get the corresponding value of the key, if None, return defaultValue
-            l = self.H.get(key, [])
-            l.append(float(value))
-            self.H[key] = l
+                # check to see if a starting epoch was supplied
+                if self.startAt > 0:
+                    # loop over the entries in the history log and
+                    # trim any entries that are past the starting
+                    # epoch
+                    for k in self.H.keys():
+                        self.H[k] = self.H[k][:self.startAt]
 
-        # output json:
-        # if self.jsonPath is not None:
-        #     file = open(self.jsonPath, "w")
-        #     # json.dumps: serialize python dictionary into json string
-        #     # json.load: deserialize json string into python object
-        #     file.write(json.dumps(self.H))
-        #     file.close()
+    def on_epoch_end(self, epoch, logs={}):
+        # loop over the logs and update the loss, accuracy, etc.
+        # for the entire training process
+        for (k, v) in logs.items():
+            l = self.H.get(k, [])
+            l.append(float(v))
+            self.H[k] = l
 
-        # output figure:
+        # check to see if the training history should be serialized
+        # to file
+        if self.jsonPath is not None:
+            f = open(self.jsonPath, "w")
+            f.write(json.dumps(self.H))
+            f.close()
+
+        # ensure at least two epochs have passed before plotting
+        # (epoch starts at zero)
         if len(self.H["loss"]) > 1:
+            # plot the training loss and accuracy
             N = np.arange(0, len(self.H["loss"]))
             plt.style.use("ggplot")
             plt.figure()
-            for key in self.H.keys():
-                plt.plot(N, self.H[key], label=key)
-
-            epoch = len(self.H["loss"]) - 1
-            plt.title("Training Loss and Accuracy [Epoch {}]".format(epoch))
+            plt.plot(N, self.H["loss"], label="train_loss")
+            plt.plot(N, self.H["val_loss"], label="val_loss")
+            plt.plot(N, self.H["accuracy"], label="train_acc")
+            plt.plot(N, self.H["val_accuracy"], label="val_acc")
+            plt.title("Training Loss and Accuracy [Epoch {}]".format(
+                len(self.H["loss"])))
             plt.xlabel("Epoch #")
             plt.ylabel("Loss/Accuracy")
             plt.legend()
 
             # save the figure
-
-            nameSplit = self.figPath.split(os.path.sep)
-            fileName = nameSplit[-1].split(".")
-            fileName = fileName[0] + "-" + str(epoch) + "." + fileName[1]
-            nameSplit[-1] = fileName
-            plt.savefig(os.path.sep.join(nameSplit))
+            plt.savefig(self.figPath)
             plt.close()
