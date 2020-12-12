@@ -7,16 +7,16 @@ import os
 
 
 def dataset_to_hdf5(datasetType, imagePaths,
-                    labels, outputPath, trainingMeanJsonPath=None):
+                    binarizedLabels, outputPath, trainingMeanJsonPath=None):
     """
     if datasetType is "train", it will produce a mean file to trainingMeanJsonPath (if exists)
     """
 
-    writer = HDF5DatasetWriter((len(labels), 64, 64, 3), outputPath)
-    pbar = generate_progressbar(maxval=len(labels))
+    writer = HDF5DatasetWriter((len(binarizedLabels), 64, 64, 3), outputPath)
+    pbar = generate_progressbar(maxval=len(binarizedLabels))
     (R, G, B) = ([], [], [])
 
-    for (i, (imagePath, label)) in enumerate(zip(imagePaths, labels)):
+    for (i, (imagePath, label)) in enumerate(zip(imagePaths, binarizedLabels)):
         image = cv2.imread(imagePath)
 
         if datasetType == "train" and trainingMeanJsonPath is not None:

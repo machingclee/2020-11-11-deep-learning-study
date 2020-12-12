@@ -37,5 +37,6 @@ TEST_HDF5_PATH = path_join(PROJECT_DIR, "hdf5", "test.hdf5")
 
 DATASET_MEAN = path_join(PROJECT_DIR, "output", "tiny-image-net-200-mean.json")
 MODEL_PATH = path_join(PROJECT_DIR, "output", "checkpoints", "model_epoch_70.hdf5")
+CHECKPOINT_DIR = path_join(PROJECT_DIR, "output", "checkpoints")
 FIG_PATH = path_join(PROJECT_DIR, "output", "deepergooglenet_tinyimagenet.png")
 JSON_PATH = path_join(PROJECT_DIR, "output", "deepergooglenet_tinyimagenet.json")

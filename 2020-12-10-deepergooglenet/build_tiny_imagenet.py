@@ -12,9 +12,6 @@ import os
 trainPaths = list(paths.list_images(config.TRAIN_IMAGES_DIR))
 trainLabels = [path.split(os.path.sep)[-3] for path in trainPaths]
 
-# LabelEncoder turn our arr of classes into arr of integers, i.e., arr of binarized labels.
-# LabelBiniarizer turn our arr of classes into arr of probability vectors, each has only 1 nonzero entry.
-
 le = LabelEncoder()
 trainLabels = le.fit_transform(trainLabels)
 
