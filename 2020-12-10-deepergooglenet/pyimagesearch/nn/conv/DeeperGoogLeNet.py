@@ -68,7 +68,7 @@ class DeeperGoogLeNet:
 
         input = Input(shape=inputShape)
         x = DeeperGoogLeNet.conv_module(64, (5, 5), (1, 1), chanDim, reg=reg, name="block1")(input)
-        x = MaxPool2D((3, 3), strides=(2, 2), padding="same", name="pool1")
+        x = MaxPool2D((3, 3), strides=(2, 2), padding="same", name="pool1")(x)
         x = DeeperGoogLeNet.conv_module(64, (1, 1), (1, 1), chanDim, reg=reg, name="block2")(x)
         x = DeeperGoogLeNet.conv_module(192, (3, 3), (1, 1), chanDim, reg=reg, name="block3")(x)
         x = MaxPool2D((3, 3), strides=(2, 2), padding="same", name="pool2")(x)
@@ -85,7 +85,7 @@ class DeeperGoogLeNet:
         x = DeeperGoogLeNet.inception_module(128, 128, 256, 24, 64, 64, chanDim, "4c", reg=reg)(x)
         x = DeeperGoogLeNet.inception_module(112, 144, 288, 32, 64, 64, chanDim, "4d", reg=reg)(x)
         x = DeeperGoogLeNet.inception_module(256, 160, 320, 32, 128, 128, chanDim, "4e", reg=reg)(x)
-        x = MaxPool2D((3, 3), strides=(2, 2), pading="same", name="pool4")(x)
+        x = MaxPool2D((3, 3), strides=(2, 2), padding="same", name="pool4")(x)
 
         x = AveragePooling2D((4, 4), name="pool5")(x)
         x = Dropout(0.4, name="dropout")(x)
