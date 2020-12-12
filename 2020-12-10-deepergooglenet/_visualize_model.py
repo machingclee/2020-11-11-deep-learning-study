@@ -9,8 +9,7 @@ from tensorflow.keras.models import Model
 model = DeeperGoogLeNet.build(64, 64, 3, 200)
 
 """
-Just as a review, in conv layer we use convolution of depth 64, (5,5) filter, 
-(1,1) stride, the number of parameter is 64 * ((3*5*5) + 1) = 4864, as 
+Just as a review, in conv layer we use convolution of depth 64, (5,5) filter, (1,1) stride, the number of parameter is 64 * ((3*5*5) + 1) = 4864, as 
 
     model.summary()
 
