@@ -40,19 +40,19 @@ class DeeperGoogLeNet:
         """
 
         def layer(x):
-            x_1 = DeeperGoogLeNet.conv_module(depth1x1, (1, 1), (1, 1), chanDim, reg=reg, name=stage+"first")(x)
+            x_1 = DeeperGoogLeNet.conv_module(depth1x1, (1, 1), (1, 1), chanDim, reg=reg, name=stage+"_first")(x)
 
-            x_2 = DeeperGoogLeNet.conv_module(depth3x3Reduce, (1, 1), (1, 1), chanDim, reg=reg, name=stage+"second_1")(x)
-            x_2 = DeeperGoogLeNet.conv_module(depth3x3, (3, 3), (1, 1), chanDim, reg=reg, name=stage+"second_2")(x_2)
+            x_2 = DeeperGoogLeNet.conv_module(depth3x3Reduce, (1, 1), (1, 1), chanDim, reg=reg, name=stage+"_second_1")(x)
+            x_2 = DeeperGoogLeNet.conv_module(depth3x3, (3, 3), (1, 1), chanDim, reg=reg, name=stage+"_second_2")(x_2)
 
             x_3 = DeeperGoogLeNet.conv_module(depth5x5Reduce, (1, 1), (1, 1), chanDim, reg=reg, name=stage+"third_1")(x)
-            x_3 = DeeperGoogLeNet.conv_module(depth5x5, (5, 5), (1, 1), chanDim, reg=reg, name=stage+"third_2")(x_3)
+            x_3 = DeeperGoogLeNet.conv_module(depth5x5, (5, 5), (1, 1), chanDim, reg=reg, name=stage+"_third_2")(x_3)
 
             x_4 = MaxPool2D((3, 3), strides=(1, 1), padding="same", name=stage+"_pool")(x)
             x_4 = DeeperGoogLeNet.conv_module(depth1x1Proj, (1, 1), (1, 1), chanDim,
-                                              reg=reg, name=stage+"fourth_1")(x_4)
+                                              reg=reg, name=stage+"_fourth_1")(x_4)
 
-            x = concatenate([x_1, x_2, x_3, x_4], axis=chanDim, name=stage+"mixed")
+            x = concatenate([x_1, x_2, x_3, x_4], axis=chanDim, name=stage+"_mixed")
             return x
 
         return layer
