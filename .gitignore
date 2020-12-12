@@ -135,3 +135,6 @@ datasets/
 # output models
 model/
 models/
+
+# hdf5 format files
+*.hdf5
