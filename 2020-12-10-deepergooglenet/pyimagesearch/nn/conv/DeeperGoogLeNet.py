@@ -26,8 +26,9 @@ class DeeperGoogLeNet:
                 actName = name + "_act"
 
             x = Conv2D(k_depth, k_size, strides=strides, padding=padding, kernel_regularizer=l2(reg), name=convName)(x)
-            x = BatchNormalization(axis=chanDim, name=bnName)(x)
             x = Activation("relu", name=actName)(x)
+            x = BatchNormalization(axis=chanDim, name=bnName)(x)
+
             return x
 
         return layer
