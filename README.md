@@ -1,6 +1,8 @@
 # Deep Learning Study
 Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
 
+---
+
 ### Using GPU in Learning Process
 As there are very few solutions on how to utilize GPU without CUDA, we will use cudatoolkit with approprivate version of cudnn. There are two ways to meet this requirement:
 First install the nvidia graphic card driver, then:
@@ -18,6 +20,9 @@ First install the nvidia graphic card driver, then:
   2 = INFO and WARNING messages are not printed
   3 = INFO, WARNING, and ERROR messages are not printed
   ```
+  
+---
+
 ### sklearn.preprocessing.LabelEncoder vs .LabelBinarizer
 
 Things start to be confusing when we deal with dataset with different purposes:
