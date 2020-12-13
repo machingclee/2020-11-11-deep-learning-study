@@ -11,7 +11,7 @@ First install the nvidia graphic card driver, then:
   ```
   TF_CPP_MIN_LOG_LEVEL=1
   ```
-  Here it the meaning of level 0, 1, 2, 3:
+  Here is the meaning of levels 0, 1, 2, 3:
   ```
   0 = all messages are logged (default behavior)
   1 = INFO messages are not printed
