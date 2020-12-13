@@ -344,6 +344,8 @@ Since feature extraction is very helpful in transfer learning, I made a helpful 
 ---
 
 ### 2020-12-06-minigooglenet
+We will be using cifar10 dataset.
+
 We implement minified version of inception module and downsample module. The major take-away in the week working on this network is to study how to tune the hyper-parameter: the decay of learning rate. We have run the experitment 3 times for 3 different learning rates.
 
 
