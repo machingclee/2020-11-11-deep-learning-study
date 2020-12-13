@@ -25,7 +25,7 @@ Things start to be confusing when we deal with dataset with different purposes:
 - `LabelEncoder` turns our array of classes into array of integers, i.e., array of binarized labels.
 - `LabelBiniarizer` turns our array of classes into array of probability vectors, each has only 1 nonzero entry.
 
-We will save our binized label into a hdf5 dataset file, via `tensorflow.keras.utils.to_categorical` we then turn them into probability vector when generating dataset.
+We will save our binaized label into a hdf5 dataset file, via `tensorflow.keras.utils.to_categorical` we then turn them into probability vector when generating dataset.
 
 ---
 
