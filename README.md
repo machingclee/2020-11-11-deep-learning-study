@@ -11,16 +11,13 @@ First install the nvidia graphic card driver, then:
   ```
   TF_CPP_MIN_LOG_LEVEL=1
   ```
-### Python Code Formatter Config
-As I will be using `autopep8`, I am pleased with the formatting except that its max line per width is too small, here is how we config it:
-
-- Create .pep8 at the top level directory of the project
-- Write:
+  Here it the meaning of level 0, 1, 2, 3:
   ```
-  [pycodestyle]
-  max_line_length = 120
+  0 = all messages are logged (default behavior)
+  1 = INFO messages are not printed
+  2 = INFO and WARNING messages are not printed
+  3 = INFO, WARNING, and ERROR messages are not printed
   ```
-
 ### sklearn.preprocessing.LabelEncoder vs .LabelBinarizer
 
 Things start to be confusing when we deal with dataset with different purposes:
