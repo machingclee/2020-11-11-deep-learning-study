@@ -1,7 +1,5 @@
 # Deep Learning Study
-Record what I have learnt from the beginning. Deprecated folder contains material I search from the net but I cannot recall what it is exactly doing.
-
----
+Record what I have learnt from the beginning. 
 
 ### Using GPU in Learning Process
 As there are very few solutions on how to utilize GPU without CUDA, we will use cudatoolkit with approprivate version of cudnn. There are two ways to meet this requirement:
