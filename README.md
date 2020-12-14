@@ -111,7 +111,7 @@ In case we have difficulty choosing python interpretor in mac (and in case we ar
 
 ---
 
-### 2020-11-17-data-augmentation
+### 2020-11-17-data-augmentation (flowers-17)
 We study the effect of data augmentation. We train our miniVGGNet on flower-17 dataset. The dataset has 80 images in each of 17 classes, which is usually considered "not enough" for classification problem. Without augmentation, we see the evidence of overfitting very quickly from [here](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-17-data-augmentation/without_augmentation.png) at the 20-th epoch. Its classification report on test set is:
 * <details>
   <summary><i>Click me to show validation accuracy <b>without</b> data augmentation</i></summary>
@@ -172,7 +172,7 @@ With data augmentation, we still suffer from overfitting, as shown in [here](htt
 
 ---
 
-### 2020-11-19-transfer-learning
+### 2020-11-19-transfer-learning (flowers-17)
 In-depth study of manipulating h5py package to save features, labels, etc into HDF5 database so that we can load much much larger dataset. Our features.hdf5 stores an array of row vectors which is flattened from the feature map of the last `POOL` layer of the VGG-16 network, extracted from [extract_feature.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-19-transfer-learning/extract_features.py). 
 
 In [2020-11-17-data-augmentation](https://github.com/machingclee/deep-learning-study/tree/main/2020-11-17-data-augmentation) we have trained our MiniVGGNet with data-augmentation to achieve a validation-accuracy of about 70%. By transfer learning using as simple as the following structure
@@ -208,7 +208,7 @@ weighted avg       0.90      0.89      0.89       340
 
 ---
 
-### 2020-11-21-network-surgery
+### 2020-11-21-network-surgery (flowers-17)
 In this folder we still focus on flowers17 dataset. We concatenate VGG-16 network with our dense network. This time we not only train our dense part, we also re-train VGG-16 net from layer 15 onwards. 
 
 Why 15? By running [inspect_model.py](https://github.com/machingclee/deep-learning-study/blob/main/2020-11-21-network-surgery/inspect_model.py) we can inspect the structure of VGG-16:
@@ -309,7 +309,7 @@ We train our MiniVGGNet repreatedly for 5 times and try to take an average over 
 
 ---
 
-### 2020-11-23-dogs-vs-cats
+### 2020-11-23-dogs-vs-cats (kaggle dogs-vs-cats)
 In this folder we mainly focus on HDF5 generators. We convert 25,001 of jpeg images of dogs and cats into hdf5 raw data format, which is for the sake of speeding up the training process by reducing the i/o latency of reading images.
 
 We also extract progress bar as a helpful util functions into pyimagesearch/utils, which gives the following helpful visual output in console:
@@ -343,7 +343,7 @@ Since feature extraction is very helpful in transfer learning, I made a helpful 
 
 ---
 
-### 2020-12-06-minigooglenet (cifar10)
+### 2020-12-06-minigooglenet (cifar-10)
 We will be using cifar10 dataset.
 
 We implement minified version of inception module and downsample module. The major take-away in the week working on this network is to study how to tune the hyper-parameter: the decay of learning rate. We have run the experitment 3 times for 3 different learning rates.
@@ -427,7 +427,7 @@ Their performance on validation data are almost the same.
 
 ---
 
-### 2020-12-10-deepergooglenet (tiny imagenet 200)
+### 2020-12-10-deepergooglenet (tiny-imagenet-200)
 Instead of cifar-10, this time we use a more challenging dataset, the tiny-imagenet-200, which consists of images of 200 classes, but just 500 traning data of size 64x64 for each class (compared to 5000 32x32 images per classes with just 10 classes in cifar-10, this dataset is much harder from scratch).
 
 - We try to implement the inception module from googlenet with the structure in this [image](https://raw.githubusercontent.com/machingclee/deep-learning-study/main/2020-12-10-deepergooglenet/_DeeperGoogleNet.png), which is much more clear by viewing the [code](https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/pyimagesearch/nn/conv/DeeperGoogLeNet.py). Instead of sequentially applying layers and layers to extract features, we extract the feature of an input (from previous layer) into branches, learn it by 1x1, 3x3, 5x5 conv modules respectively, and also a max-pooling layers (then a conv module to control filter depth), then concatenate all of them.
@@ -463,3 +463,9 @@ Instead of cifar-10, this time we use a more challenging dataset, the tiny-image
             0.5441706776618958
         ]
     ```
+
+**Conclusion.** For network without transfer learning , the result above is acceptable in the sense that there are 200 classes of images, of which only 450 images are used for training, and 50 used for testing. Moreover, a random successful guess occurs with probability 1/200 = 0.5%, but now our model can guess succesuflly with probability 54.41%, a jump of 100 times.
+
+---
+
+### 2020-12-12-ResNet (cifar10 + tiny-imagenet)
