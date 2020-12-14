@@ -513,4 +513,5 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
     ```
     
 - **The Training on Cifar-10.**
+
   To be added.
