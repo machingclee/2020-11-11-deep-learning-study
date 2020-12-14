@@ -468,4 +468,49 @@ Instead of cifar-10, this time we use a more challenging dataset, the tiny-image
 
 ---
 
-### 2020-12-12-ResNet (cifar10 + tiny-imagenet)
+### 2020-12-12-ResNet (cifar-10 + tiny-imagenet-200)
+We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets. 
+
+- The structure of the whole network is much more clear by viewing the [code](https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/pyimagesearch/nn/conv/ResNet.py), otherwise it is just a horribly long list [here](https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/_resnet_cifar10.png) (we generate the graph based on our implmentation of our network). 
+
+- **Good Reference.**
+  - [Deep Residual Learning for Image Recognition](https://arxiv.org/pdf/1512.03385.pdf) by He, we follow the architecture in this paper
+  - The following propose new Residual Unit Architecture, which we also adopted to replace the original one.
+    - [Identity Mappings in Deep Residual Networks](https://arxiv.org/pdf/1603.05027.pdf?fbclid=IwAR00zPtrwrMMR5ZDEGaFFo6ysEwZ09xnDoKim4MnXLv2xjQiR14sgO8QUKQ)
+    - [给妹纸的深度学习教学(4)——同Residual玩耍](https://zhuanlan.zhihu.com/p/28413039?fbclid=IwAR15WZssRDEgv1tUpz8JnlC2xzVq1CEK2Ef0e0FdzzvtO7ienmRKrAXVMNM)
+    
+- **The Training on Cifar-10.**
+  - The number of residual modules and the corresponding number of filter depth are tuned several times. We determine to use ResNet of **[(None, 9, 9, 9), (64, 64, 128, 256)]**, meaning 
+    - **no residual units** and standard conv2D-maxpool layers with **64** filter depth (to control the spatial dimension)
+    - **9** residual units of **64** filter dpeth
+    - **9** residual units of **128** filter depth 
+    - **9** residual units of **256** filter depth
+  - We also determine to use larger (**0.0005** instead of **0.0001**) **l2-regularization constant** for every Conv2D layer for **longer training**.
+  
+  Since from the 3rd chain of residual units and onwards the spatial dimension is going to be shrinked by half, it is necessary to increase the filter depth to compensate the change. The spatial dimension is finally **32 / 2** (by the third chain of residuals) and then **16 / 2 = 8** (by the fourth chain of residuals), we use a AveragePool(8,8) to directly reduce the spatial dimension into 1x1 and connect it directly with another Dense layer to further shrink the dimension for using softmax activation layer for predictoin.
+  
+  - We use learning rate 1e-1 for the first 100 epoch, noting that the training stagnates quickly after 75 epoch, we retrain the model at epoch75 and change the learning rate to 1e-2:
+  
+    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-Cifar-10-3-training.png">
+  - In view of the above experiment, we determine to use a linear learning rate decay:
+  
+    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-Cifar-10-4-training.png">
+  
+  - Result:
+    ```
+      "val_accuracy": [
+          0.527400016784668,
+          0.5654000043869019,
+          0.7039999961853027,
+          0.7059999704360962,
+          0.7391999959945679,
+          0.7142000198364258,
+          ...
+          0.9311000108718872,
+          0.932699978351593,
+          0.9312999844551086
+       ]
+    ```
+    
+- **The Training on Cifar-10.**
+  To be added.
