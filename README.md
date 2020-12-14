@@ -46,6 +46,9 @@ Derivations of this formular is recorded in my [blog post](https://checkerlee.bl
 ### 2020-10-17-bounding-box-regression
 Study how to train a model to draw bounding box of specific object.
 
+<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-10-17-bounding-box-regression/output/out_2.jpg" width=450>
+<image src="https://github.com/machingclee/deep-learning-study/blob/main/2020-10-17-bounding-box-regression/output/out_1.jpg" width=600>
+
 ---
 
 ### 2020-11-10-first-CNN-shallownet
