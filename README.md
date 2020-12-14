@@ -486,10 +486,10 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
   
   - We use learning rate 1e-1 for the first 100 epoch, noting that the training stagnates quickly after 75 epoch, we retrain the model at epoch75 and change the learning rate to 1e-2:
   
-    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-Cifar-10-3-training.png">
+    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-Cifar-10/ResNet-Cifar-10-3-training.png">
   - In view of the above experiment, we determine to use a linear learning rate decay:
   
-    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-Cifar-10-4-training.png">
+    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-Cifar-10/ResNet-Cifar-10-4-training.png">
   
   - Result:
     ```
