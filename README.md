@@ -504,6 +504,6 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
        ]
     ```
     
-- **The Training on Cifar-10.**
+- **The Training on Tiny-Imagenet-200.**
 
   To be added.
