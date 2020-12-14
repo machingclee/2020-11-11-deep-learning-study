@@ -350,9 +350,7 @@ We implement minified version of inception module and downsample module. The maj
 
 
 
-<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp1/21032-69.png" width=250>
-<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp2/21012-69.png" width=250>
-<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp3/18264-69.png" width=250>
+<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp1/21032-69.png" width=250><img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp2/21012-69.png" width=250><img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp3/18264-69.png" width=250>
 
 Their classification repots on validation data:
 ```
