@@ -343,7 +343,7 @@ Since feature extraction is very helpful in transfer learning, I made a helpful 
 
 ---
 
-### 2020-12-06-minigooglenet
+### 2020-12-06-minigooglenet (cifar10)
 We will be using cifar10 dataset.
 
 We implement minified version of inception module and downsample module. The major take-away in the week working on this network is to study how to tune the hyper-parameter: the decay of learning rate. We have run the experitment 3 times for 3 different learning rates.
@@ -424,3 +424,42 @@ Their performance on validation data are almost the same.
 </details>
 
 **Conclusion.** We should keep training loss and training accuracy saturation level as low as possible.
+
+---
+
+### 2020-12-10-deepergooglenet (tiny imagenet 200)
+Instead of cifar-10, this time we use a more challenging dataset, the tiny-imagenet-200, which consists of images of 200 classes, but just 500 traning data of size 64x64 for each class (compared to 5000 32x32 images per classes with just 10 classes in cifar-10, this dataset is much harder from scratch).
+
+- We try to implement the inception module from googlenet with the structure in this [image](https://raw.githubusercontent.com/machingclee/deep-learning-study/main/2020-12-10-deepergooglenet/_DeeperGoogleNet.png), which is much more clear by viewing the [code](https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/pyimagesearch/nn/conv/DeeperGoogLeNet.py). Instead of sequentially apply layers and layers to extract features, we extract the feature of an input (from previous layer) into branches, learn it by 1x1, 3x3, 5x5 conv modules respectively, and also a max-pooling layers (then a conv module to control filter depth), then concatenate all of them.
+
+- We also make a useful utility function into utils that turn our datasets of images into a single hdf5 database file [here](https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/pyimagesearch/utils/dataset_to_hdf5.py). We have therefore created train.hdf5, val.hdf5 and test.hdf5 very easily by calling:
+  ```
+  dataset_to_hdf5("train", trainPaths, trainLabels, config.TRAIN_HDF5_PATH, config.DATASET_MEAN)
+  dataset_to_hdf5("", valPaths, valLabels, config.VAL_HDF5_PATH)
+  dataset_to_hdf5("", testPaths, testLabels, config.TEST_HDF5_PATH)
+  ```
+  Note that the labels have to be **binarized** (i.e., they have to be nonnegative integers). We can easily do this by instantiating LabelEncoder and do a `fit_transform`.
+  
+- **The Training.**
+  - Previously use SGD as optimizer of loss, no luck, changed to ADAM, then validation loss decreases and validation accuracy increase substantially at the beginning stage. Stick with ADAM, stick with learning rate 1e-3 as by experiment the initial learning rate 1e-4 makes the improvement very sluggish. The learning apparently stagnates at epoch 50 (even no decrease in validation loss).
+   
+    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/output/exp-6-training.png">
+
+  - Retrain from epoch 50, decrease learning rate by 10 times (from 1e-3 to 1e-4), overfitting becomes obvious from epoch60 (validation loss plateaus as well)
+  
+    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/output/exp-6.1-training.png">
+  - Retrain from epoch60, linear decay of learning rate by epoch |-> (1e-5) * (1-epoch/40), no substantial improvement, close file.
+    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/output/exp-6.3-training.png">
+  - Result:
+    ```
+    "val_accuracy": [
+          0.10196314007043839,
+          0.1575520783662796,
+          0.19501201808452606,
+          0.2254607379436493,
+          ...
+          0.5442708134651184,
+          0.5475761294364929,
+          0.5441706776618958
+        ]
+    ```
