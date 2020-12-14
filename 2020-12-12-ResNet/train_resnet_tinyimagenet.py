@@ -21,21 +21,36 @@ import os
 import json
 
 
+class DecayFunctions:
+    @staticmethod
+    def poly_decay(init_lr, max_epoch, degree):
+
+        def decay_function(epoch):
+            return init_lr * (1 - epoch/float(max_epoch)) ** degree
+
+        return decay_function
+
+
 class TrainingConfig:
 
     checkpoint_dir = os.path.sep.join(["output", "checkpoints"])
     work_title = "ResNet-TinyImagenet-200"
-    max_epoch = 100
+    max_epoch = 75
+    use_scheuler = True
 
-    _version = 1
+    _version = 4
     _start_at_epoch = 0
     _lr = 1e-1
 
     # prev_model_path = None
-    prev_model_path = os.path.sep.join(["output", "checkpoints", "ResNet-TinyImagenet-200-1-epoch-25.hdf5"])
-    _new_version = 1
-    _new_start_at_epoch = 25
-    _new_lr = 1e-1
+    prev_model_path = os.path.sep.join(["output", "checkpoints", "ResNet-TinyImagenet-200-4-epoch-75.hdf5"])
+    _new_version = 4
+    _new_start_at_epoch = 75
+    _new_lr = 1e-3
+
+    @classproperty
+    def learningRateScheduler(self):
+        return LearningRateScheduler(DecayFunctions.poly_decay(self.lr, self.max_epoch, 1))
 
     @classproperty
     def version(self):
@@ -69,17 +84,6 @@ version = TrainingConfig.version
 start_at_epoch = TrainingConfig.start_epoc_at
 lr = TrainingConfig.lr
 
-max_epoch
-prev_model_path
-checkpoint_dir
-work_title
-config_path_with_version
-json_path_with_version
-version
-start_at_epoch
-lr
-
-
 model = None
 
 if prev_model_path is None:
@@ -87,6 +91,7 @@ if prev_model_path is None:
     model = ResNet.build(64, 64, 3, config.N_CLASSES, (None, 3, 4, 6), (64, 128, 256, 512), reg=0.0005, dataset="tiny_imagenet")
     model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
 else:
+    print("[INFO] loading model from: {}".format(prev_model_path))
     model = load_model(prev_model_path)
     print("[INFO] version: {}, start at epoch: {}".format(version, start_at_epoch))
     print("[INFO] old learning rate: {}".format(K.get_value(model.optimizer.lr)))
@@ -95,7 +100,8 @@ else:
 
 callbacks = [EpochCheckpoint(checkpoint_dir, model_title=work_title + "-" + str(version) + "-", startAt=start_at_epoch),
              TrainingMonitorCallback(config_path_with_version, jsonPath=json_path_with_version, startAt=start_at_epoch)]
-
+if TrainingConfig.use_scheuler:
+    callbacks.append(TrainingConfig.learningRateScheduler)
 
 aug = ImageDataGenerator(
     rotation_range=18,
