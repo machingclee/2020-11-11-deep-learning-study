@@ -474,7 +474,7 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
     
 - **The Training on Cifar-10.**
   - The number of residual modules and the corresponding number of filter depth are tuned several times. We determine to use ResNet of **[(None, 9, 9, 9), (64, 64, 128, 256)]**, meaning 
-    - **no residual units** and standard conv2D-maxpool layers with **64** filter depth (to control the spatial dimension)
+    - **no residual units** and use standard conv2D-maxpool layers with **64** filter depth (to control the spatial dimension)
     - **9** residual units of **64** filter dpeth
     - **9** residual units of **128** filter depth 
     - **9** residual units of **256** filter depth
