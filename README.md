@@ -506,6 +506,49 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
     ```
     
 - **The Training on Tiny-Imagenet-200.**
+  This time I decide to save training data into a *static* class:
+  ```
+   class TrainingConfig:
+
+    checkpoint_dir = os.path.sep.join(["output", "checkpoints"])
+    work_title = "ResNet-TinyImagenet-200"
+    max_epoch = 75
+    use_scheuler = True
+
+    _version = 4
+    _start_at_epoch = 0
+    _lr = 1e-1
+
+    # prev_model_path = None
+    prev_model_path = os.path.sep.join(["output", "checkpoints", "ResNet-TinyImagenet-200-4-epoch-75.hdf5"])
+    _new_version = 4
+    _new_start_at_epoch = 75
+    _new_lr = 1e-3
+
+    @classproperty
+    def learningRateScheduler(self):
+        return LearningRateScheduler(DecayFunctions.poly_decay(self.lr, self.max_epoch, 1))
+
+    @classproperty
+    def version(self):
+        return self._version if self.prev_model_path is None else self._new_version
+
+    @classproperty
+    def start_epoc_at(self):
+        return self._start_at_epoch if self.prev_model_path is None else self._new_start_at_epoch
+
+    @classproperty
+    def lr(self):
+        return TrainingConfig._lr if TrainingConfig.prev_model_path is None else TrainingConfig._new_lr
+
+    @classproperty
+    def config_path_with_version(self):
+        return os.path.sep.join(["output", self.work_title + "-"+str(self.version) + "-" + "training.png"])
+
+    @classproperty
+    def json_path_with_version(self):
+        return os.path.sep.join(["output", self.work_title + "-"+str(self.version) + "-" + "training.json"])
+  ```
 
   Compared to cifar-10 dataset in which each class consists of 5000 training images, we just have 500 images in tiny-imagenet-200 for each class. Therefore our ResNet architecture for tiny-image-200 will be much shallow. We we adopt **[(None, 3, 4, 6), (64, 128, 256, 512)]** structure and tries to train along. 
   
