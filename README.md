@@ -480,7 +480,7 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
     - **9** residual units of **256** filter depth
   - We also determine to use larger (**0.0005** instead of **0.0001**) **l2-regularization constant** for every Conv2D layer for **longer training**.
   
-  Since from the 3rd chain of residual units and onwards the spatial dimension is going to be shrinked by half, it is necessary to increase the filter depth to compensate the change. The spatial dimension is finally **32 / 2** (by the third chain of residuals) and then **16 / 2 = 8** (by the fourth chain of residuals), we use a AveragePool(8,8) to directly reduce the spatial dimension into 1x1 and connect it directly with another Dense layer to further shrink the dimension for using softmax activation layer for predictoin.
+  Since from the 3rd chain of residual units and onwards the spatial dimension is going to be shrinked by half, it is necessary to increase the filter depth to compensate the change. The spatial dimension is finally **32 / 2** (by the third chain of residuals) and then **16 / 2 = 8** (by the fourth chain of residuals), we use a `AveragePooling(8,8)` to directly reduce the spatial dimension into 1x1 and connect it directly with another Dense layer to further shrink the dimension for using softmax activation layer for predictoin.
   
   - We use learning rate 1e-1 for the first 100 epoch, noting that the training stagnates quickly after 75 epoch, we retrain the model at epoch75 and change the learning rate to 1e-2:
   
