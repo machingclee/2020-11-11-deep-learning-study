@@ -65,7 +65,7 @@ class TrainingConfig:
         return TrainingConfig._lr if TrainingConfig.prev_model_path is None else TrainingConfig._new_lr
 
     @classproperty
-    def config_path_with_version(self):
+    def fig_path_with_version(self):
         return os.path.sep.join(["output", self.work_title + "-"+str(self.version) + "-" + "training.png"])
 
     @classproperty
@@ -78,7 +78,7 @@ prev_model_path = TrainingConfig.prev_model_path
 checkpoint_dir = TrainingConfig.checkpoint_dir
 work_title = TrainingConfig.work_title
 
-config_path_with_version = TrainingConfig.config_path_with_version
+fig_path_with_version = TrainingConfig.fig_path_with_version
 json_path_with_version = TrainingConfig.json_path_with_version
 version = TrainingConfig.version
 start_at_epoch = TrainingConfig.start_epoc_at
@@ -99,7 +99,7 @@ else:
     print("[INFO] new learning rate: {}".format(K.get_value(model.optimizer.lr)))
 
 callbacks = [EpochCheckpoint(checkpoint_dir, model_title=work_title + "-" + str(version) + "-", startAt=start_at_epoch),
-             TrainingMonitorCallback(config_path_with_version, jsonPath=json_path_with_version, startAt=start_at_epoch)]
+             TrainingMonitorCallback(fig_path_with_version, jsonPath=json_path_with_version, startAt=start_at_epoch)]
 if TrainingConfig.use_scheuler:
     callbacks.append(TrainingConfig.learningRateScheduler)
 
