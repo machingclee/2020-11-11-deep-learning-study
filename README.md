@@ -506,7 +506,7 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
     ```
     
 - **The Training on Tiny-Imagenet-200.**
-  This time I decide to save training data into a *static* class:
+  This time I decide to save training configuration into a *static* class:
   ```
    class TrainingConfig:
       checkpoint_dir = os.path.sep.join(["output", "checkpoints"])
