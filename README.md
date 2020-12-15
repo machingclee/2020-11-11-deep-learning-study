@@ -541,7 +541,7 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
           return TrainingConfig._lr if TrainingConfig.prev_model_path is None else TrainingConfig._new_lr
 
       @classproperty
-      def config_path_with_version(self):
+      def fig_path_with_version(self):
           return os.path.sep.join(["output", self.work_title + "-"+str(self.version) + "-" + "training.png"])
 
       @classproperty
