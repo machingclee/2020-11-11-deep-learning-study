@@ -507,4 +507,14 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
     
 - **The Training on Tiny-Imagenet-200.**
 
-  To be added.
+  Compared to cifar-10 dataset in which each class consists of 5000 training images, we just have 500 images in tiny-imagenet-200 for each class. Therefore our ResNet architecture for tiny-image-200 will be much shallow. We we adopt **[(None, 3, 4, 6), (64, 128, 256, 512)]** structure and tries to train along. 
+  
+  As in the previous experiment, we are forced to stop at epoch 25 (lr=1e-2) and 35 (lr=1e-3) respectively, adjust the learning rate and continue. The first 47 epoches gives the following:
+  
+  <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-TinyImagenet-200-3-training.png">
+  
+  Knowing that ResNet architecture can train long, we let learning rate to decay linearly down to 0.001 when epoch = 75:
+  
+  <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-TinyImagenet-200-4-training.png"> 
+  
+  After epoch 75 I still proceed with a learning rate decay, the validation loss start to increase and we cannot proceed any further in the training. At epoch 75 our validation accuracy which **0.5546875**, better than 0.5441706776618958 in 2020-12-10-deepergooglenet.
