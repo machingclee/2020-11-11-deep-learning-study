@@ -560,3 +560,7 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
   <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-TinyImagenet-200-4-training.png"> 
   
   After epoch 75 I still proceed with a learning rate decay, the validation loss starts to increase and we cannot proceed any further in the training. At epoch 75 our validation accuracy reaches **0.5546875**, better than 0.5441706776618958 in 2020-12-10-deepergooglenet.
+
+---
+
+### 2020-12-16-sliding-window
