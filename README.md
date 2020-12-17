@@ -564,3 +564,8 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
 ---
 
 ### 2020-12-16-sliding-window
+This is a very simple objection detection algorithm using ResNet trained on imagenet. The algorithm is too slow to be end to serve as an end-to-end object detector, study purpose:
+
+<image src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-16-sliding-window/output_1.png" width = 500
+
+<image src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-16-sliding-window/output_2.png" width = 500>
