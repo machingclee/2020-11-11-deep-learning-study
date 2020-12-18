@@ -442,6 +442,7 @@ Instead of cifar-10, this time we use a more challenging dataset, the tiny-image
   
     <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/output/exp-6.1-training.png" width=450>
   - Retrain from epoch60, linear decay of learning rate by epoch |-> (1e-5) * (1-epoch/40), no substantial improvement, close file.
+  
     <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/output/exp-6.3-training.png" width=450>
   - Result:
     ```
