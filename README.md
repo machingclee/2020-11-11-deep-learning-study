@@ -45,7 +45,7 @@ Derivations of this formular is recorded in my [blog post](https://checkerlee.bl
 Study how to train a model to draw bounding box of specific object.
 
 
-<image src="https://github.com/machingclee/deep-learning-study/blob/main/2020-10-17-bounding-box-regression/output/out_1.jpg" width=600>
+<image src="2020-10-17-bounding-box-regression/output/out_1.jpg" width=600>
 
 ---
 
@@ -351,7 +351,7 @@ We implement minified version of inception module and downsample module. The maj
 
 
 
-<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp1/21032-69.png" width=250><img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp2/21012-69.png" width=250><img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-06-minigooglenet/outputs/exp3/18264-69.png" width=250>
+<img src="2020-12-06-minigooglenet/outputs/exp1/21032-69.png" width=250><img src="2020-12-06-minigooglenet/outputs/exp2/21012-69.png" width=250><img src="2020-12-06-minigooglenet/outputs/exp3/18264-69.png" width=250>
 
 Their classification repots on validation data:
 ```
@@ -436,14 +436,14 @@ Instead of cifar-10, this time we use a more challenging dataset, the tiny-image
 - **The Training.**
   - Previously use SGD as optimizer of loss, no luck, changed to ADAM, then validation loss decreases and validation accuracy increase substantially at the beginning stage. Stick with ADAM, stick with learning rate 1e-3 as by experiment the initial learning rate 1e-4 makes the improvement very sluggish. The learning apparently stagnates at epoch 50 (even no decrease in validation loss).
    
-    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/output/exp-6-training.png" width=450>
+    <img src="2020-12-10-deepergooglenet/output/exp-6-training.png" width="450">
 
   - Retrain from epoch 50, decrease learning rate by 10 times (from 1e-3 to 1e-4), overfitting becomes obvious from epoch60 (validation loss plateaus as well)
   
-    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/output/exp-6.1-training.png" width=450>
+    <img src="2020-12-10-deepergooglenet/output/exp-6.1-training.png" width="450">
   - Retrain from epoch60, linear decay of learning rate by epoch |-> (1e-5) * (1-epoch/40), no substantial improvement, close file.
   
-    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-10-deepergooglenet/output/exp-6.3-training.png" width=450>
+    <img src="2020-12-10-deepergooglenet/output/exp-6.3-training.png" width="450">
   - Result:
     ```
     "val_accuracy": [
@@ -485,10 +485,10 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
   
   - We use learning rate 1e-1 for the first 100 epoch, noting that the training stagnates quickly after 75 epoch, we retrain the model at epoch75 and change the learning rate to 1e-2:
   
-    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-Cifar-10/ResNet-Cifar-10-3-training.png" width=450>
+    <img src="2020-12-12-ResNet/output/ResNet-Cifar-10/ResNet-Cifar-10-3-training.png" width="450">
   - In view of the above experiment, we determine to use a linear learning rate decay:
   
-    <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-Cifar-10/ResNet-Cifar-10-4-training.png" width=450>
+    <img src="2020-12-12-ResNet/output/ResNet-Cifar-10/ResNet-Cifar-10-4-training.png" width="450">
   
   - Result:
     ```
@@ -554,11 +554,11 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
   
 - As in the previous experiment, we are forced to stop at epoch 25 (lr=1e-2) and 35 (lr=1e-3) respectively, adjust the learning rate and continue. The first 47 epoches gives the following:
   
-  <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-TinyImagenet-200-3-training.png"  width=450>
+  <img src="2020-12-12-ResNet/output/ResNet-TinyImagenet-200-3-training.png"  width="450">
   
 - Knowing that ResNet architecture can train long, we let learning rate to decay linearly down to 0.001 when epoch = 75:
   
-  <img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-12-ResNet/output/ResNet-TinyImagenet-200-4-training.png"  width=450> 
+  <img src="2020-12-12-ResNet/output/ResNet-TinyImagenet-200-4-training.png"  width="450"> 
   
   After epoch 75 I still proceed with a learning rate decay, the validation loss starts to increase and we cannot proceed any further in the training. At epoch 75 our validation accuracy reaches **0.5546875**, better than 0.5441706776618958 in 2020-12-10-deepergooglenet.
 
@@ -567,6 +567,6 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
 ### 2020-12-16-sliding-window
 This is a very simple objection detection algorithm using ResNet trained on imagenet. The algorithm is too slow to serve as an end-to-end object detector, study purpose:
 
-<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-16-sliding-window/output_1.png" width=450>
+<img src="2020-12-16-sliding-window/output_1.png" width="450">
 
-<img src="https://github.com/machingclee/deep-learning-study/blob/main/2020-12-16-sliding-window/output_2.png" width=450>
+<img src="2020-12-16-sliding-window/output_2.png" width="450">
