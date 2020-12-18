@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\user\\miniconda3\\envs\\tensorflow\\python.exe",
+    "python.pythonPath": "C:\\Users\\user\\anaconda3\\envs\\tensorflow-2.4-cuda11\\python.exe",
     "jupyter.jupyterServerType": "local"
 }
