@@ -564,6 +564,23 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
 
 ---
 
+### 2020-12-17-deep-dream
+
+We study deep dream for two chosen layers of InceptionV3. This technique is to investigate what have been learned from specific layers by 
+
+<img src="2020-12-17-deep-dream/sky.png" width="450">
+
+<img src="2020-12-17-deep-dream/sky_dream.png" width="450">
+
+
+
+
+
+**Reference.** 
+- [一文理解Deep Dream](https://zhuanlan.zhihu.com/p/27782820)
+- [Deep Dream 代码实现](https://zhuanlan.zhihu.com/p/28058490)
+---
+
 ### 2020-12-16-sliding-window
 This is a very simple objection detection algorithm using ResNet trained on imagenet. The algorithm is too slow to serve as an end-to-end object detector, study purpose:
 
