@@ -23,7 +23,7 @@ class NeuralStyle(Model):
         preprocessedInput = preprocess_input(inputs)
         outputs = self.vgg(preprocessedInput)
         (styleOutputs, contentOutputs) = (outputs[:self.n_styleLayers], outputs[self.n_styleLayers])
-
+        print(contentOutputs)
         styleOutputs = [self.gramMatrix(styleOutput) for styleOutput in styleOutputs]
 
         contentDict = {contentName: value for contentName, value in zip(self.contentLayers, contentOutputs)}

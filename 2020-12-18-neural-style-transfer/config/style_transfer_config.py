@@ -12,7 +12,7 @@ tvWeight = 20.0
 epochs = 15
 stepsPerEpoch = 100
 
-contentImage = os.path.sep.join(["inputs", "jp.jpg"])
-styleImage = os.path.sep.join(["inputs", "mcescher.jpg"])
+contentImage = os.path.sep.join(["inputs", "content.jpg"])
+styleImage = os.path.sep.join(["inputs", "style.jpg"])
 finalImage = "final.png"
 intermOutputs = "intermediate_outputs"
