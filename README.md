@@ -566,11 +566,21 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
 
 ### 2020-12-17-deep-dream
 
-We study deep dream for two chosen layers of InceptionV3. This technique is to investigate what have been learned from specific layers by 
+We study deep dream for two chosen layers of InceptionV3. This technique is to investigate what have been learned from specific layers by feeding the network with a noisy image and maximizing the activation (the final feature) using gradient ascent. The algorithm will try to modify our original image to make it "activate" the final feature map, the result will indicate what is learnt by this layer.
 
-<img src="2020-12-17-deep-dream/sky.png" width="450">
+- Original Image
 
-<img src="2020-12-17-deep-dream/sky_dream.png" width="450">
+  <img src="2020-12-17-deep-dream/sky.png" width="450">
+
+- InceptionV3, maximize neuron in mixed3 and mixed5 layer:
+
+  <img src="2020-12-17-deep-dream/sky_dream3.png" width="450">
+
+
+- VGG16, maximize block4_conv3 and block4_pool layer:
+
+  <img src="2020-12-17-deep-dream/sky_dream.png" width="450">
+
 
 
 
@@ -579,6 +589,7 @@ We study deep dream for two chosen layers of InceptionV3. This technique is to i
 **Reference.** 
 - [一文理解Deep Dream](https://zhuanlan.zhihu.com/p/27782820)
 - [Deep Dream 代码实现](https://zhuanlan.zhihu.com/p/28058490)
+- [Deep Dream (Google) - Computerphile](https://www.youtube.com/watch?v=BsSmBPmPeYQ&feature=emb_logo)
 ---
 
 ### 2020-12-16-sliding-window
