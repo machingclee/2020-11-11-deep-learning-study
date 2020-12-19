@@ -564,6 +564,24 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
 
 ---
 
+
+
+
+**Reference.** 
+- [一文理解Deep Dream](https://zhuanlan.zhihu.com/p/27782820)
+- [Deep Dream 代码实现](https://zhuanlan.zhihu.com/p/28058490)
+- [Deep Dream (Google) - Computerphile](https://www.youtube.com/watch?v=BsSmBPmPeYQ&feature=emb_logo)
+---
+
+### 2020-12-16-sliding-window
+This is a very simple objection detection algorithm using ResNet trained on imagenet. The algorithm is too slow to serve as an end-to-end object detector, study purpose:
+
+<img src="2020-12-16-sliding-window/output_1.png" width="450">
+
+<img src="2020-12-16-sliding-window/output_2.png" width="450">
+
+---
+
 ### 2020-12-17-deep-dream
 
 We study deep dream for two chosen layers of InceptionV3. This technique is to investigate what have been learnt from specific layers by feeding the network with a noisy image and maximizing the activation (the final feature) using gradient ascent. The algorithm will try to modify our original image to make it "activate" the final feature map, the result will indicate what is learnt by this layer.
@@ -582,19 +600,3 @@ We study deep dream for two chosen layers of InceptionV3. This technique is to i
   <img src="2020-12-17-deep-dream/sky_dream.png" width="450">
 
 
-
-
-
-
-**Reference.** 
-- [一文理解Deep Dream](https://zhuanlan.zhihu.com/p/27782820)
-- [Deep Dream 代码实现](https://zhuanlan.zhihu.com/p/28058490)
-- [Deep Dream (Google) - Computerphile](https://www.youtube.com/watch?v=BsSmBPmPeYQ&feature=emb_logo)
----
-
-### 2020-12-16-sliding-window
-This is a very simple objection detection algorithm using ResNet trained on imagenet. The algorithm is too slow to serve as an end-to-end object detector, study purpose:
-
-<img src="2020-12-16-sliding-window/output_1.png" width="450">
-
-<img src="2020-12-16-sliding-window/output_2.png" width="450">
