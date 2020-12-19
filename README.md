@@ -21,7 +21,7 @@ First install the nvidia graphic card driver, then:
   
 ---
 
-### sklearn.preprocessing.LabelEncoder vs .LabelBinarizer
+### `sklearn.preprocessing.LabelEncoder` vs `.LabelBinarizer`
 
 Things start to be confusing when we deal with dataset with different purposes:
 
@@ -431,7 +431,7 @@ Instead of cifar-10, this time we use a more challenging dataset, the tiny-image
   dataset_to_hdf5("", valPaths, valLabels, config.VAL_HDF5_PATH)
   dataset_to_hdf5("", testPaths, testLabels, config.TEST_HDF5_PATH)
   ```
-  Note that the labels have to be **binarized** (i.e., they have to be nonnegative integers). We can easily do this by instantiating LabelEncoder and do a `fit_transform`.
+  Note that the labels have to be **binarized** (i.e., they have to be nonnegative integers). We can easily do this by instantiating `LabelEncoder` and do a `fit_transform`.
   
 - **The Training.**
   - Previously use SGD as optimizer of loss, no luck, changed to ADAM, then validation loss decreases and validation accuracy increase substantially at the beginning stage. Stick with ADAM, stick with learning rate 1e-3 as by experiment the initial learning rate 1e-4 makes the improvement very sluggish. The learning apparently stagnates at epoch 50 (even no decrease in validation loss).
