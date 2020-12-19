@@ -604,6 +604,6 @@ We study deep dream for two chosen layers of InceptionV3. This technique is to i
 
 ### 2020-12-18-neural-style-transfer
 
-This implementation is very technical, when I have deeper understand will revisit this topic. Applied style-transfer to some of my artwork:
+This implementation is very technical, when I have deeper understanding I will revisit this topic. Applied style-transfer to some of my artwork:
 
 <img src="2020-12-18-neural-style-transfer/comparison.png" width="450">
