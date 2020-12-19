@@ -566,7 +566,7 @@ We implemente ResNet and train it on both cifar10 and tiny-imagenet-200 datasets
 
 ### 2020-12-17-deep-dream
 
-We study deep dream for two chosen layers of InceptionV3. This technique is to investigate what have been learned from specific layers by feeding the network with a noisy image and maximizing the activation (the final feature) using gradient ascent. The algorithm will try to modify our original image to make it "activate" the final feature map, the result will indicate what is learnt by this layer.
+We study deep dream for two chosen layers of InceptionV3. This technique is to investigate what have been learnt from specific layers by feeding the network with a noisy image and maximizing the activation (the final feature) using gradient ascent. The algorithm will try to modify our original image to make it "activate" the final feature map, the result will indicate what is learnt by this layer.
 
 - Original Image
 
