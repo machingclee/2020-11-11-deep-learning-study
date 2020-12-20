@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\user\\anaconda3\\envs\\tensorflow-2.4-cuda11\\python.exe"
+    "python.pythonPath": "C:\\Users\\user\\anaconda3\\envs\\tensorflow-2.4-cuda11\\python.exe",
+    "git.ignoreLimitWarning": true
 }
