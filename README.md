@@ -612,3 +612,35 @@ Applied style-transfer to some of my artwork:
 - **Right.** Artwork searched in the internet from which I extract the style.
 
 <img src="2020-12-18-neural-style-transfer/comparison.png" width="450">
+
+---
+
+### 2020-12-20-SRCNN
+
+**Introduction.** We implement Super Resolution Convolutional Neural Network (SRCNN), which is to obtain better resolution for a given image. 
+
+For example, resizing an image will make the image look blurry, we then apply our CNN to enhance the detail of this blurry image. 
+
+**Implementation.** We partition our image into 33x33 small squares, of which we chop off the padding to get 21x21 dimensional images, the pair 
+
+(blurred 33x33, chopped 21x21)'s 
+
+are used as a training set in our CNN network model. 
+
+But why do we shrink down from 33 to 22?  Reason is two-fold.
+
+- First, we don't want zero paddings to pollute our original image,  our Conv2D layers inevitably lower the spatial dimention (except for the 1x1 Conv2D for controlling filter depth). 
+- Second, in practice, we can directly scale up our original image to get blurred version, we then apply our model to predict from each of 33 squares into 21x21 squares, and then concatenate to get sharper version.
+
+**Result.**
+- original image 
+
+  <img src="2020-12-20-SRCNN/puppy.png">
+
+- upscaled doubly by bicubic interpolation:
+
+  <img src="2020-12-20-SRCNN/baseline.png">
+
+- upscaled by our SRCNN:
+
+  <img src="2020-12-20-SRCNN/resize.png">

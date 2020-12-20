@@ -7,3 +7,4 @@ from .MiniGoogLeNet import MiniGoogLeNet
 from .DeeperGoogLeNet import DeeperGoogLeNet
 from .ResNet import ResNet
 from .NeuralStyle import NeuralStyle
+from .SRCNN import SRCNN
