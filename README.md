@@ -637,10 +637,13 @@ But why do we shrink down from 33 to 22?  Reason is two-fold.
 
   <img src="2020-12-20-SRCNN/puppy.png">
 
-- upscaled doubly by bicubic interpolation:
+- <details>
+    <summary>upscaled doubly by bicubic interpolation:</summary>
 
-  <img src="2020-12-20-SRCNN/baseline.png">
-
-- upscaled by our SRCNN:
-
-  <img src="2020-12-20-SRCNN/resize.png">
+    <img src="2020-12-20-SRCNN/baseline.png">
+  </details>
+- 
+  <details>
+  <summary>upscaled by our SRCNN:</summary>
+    <img src="2020-12-20-SRCNN/resized.png">
+  </details>
