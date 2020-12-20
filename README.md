@@ -617,9 +617,7 @@ Applied style-transfer to some of my artwork:
 
 ### 2020-12-20-SRCNN
 
-**Introduction.** We implement Super Resolution Convolutional Neural Network (SRCNN), which is to obtain better resolution for a given image. 
-
-For example, resizing an image will make the image look blurry, we then apply our CNN to enhance the detail of this blurry image. 
+**Introduction.** We implement Super Resolution Convolutional Neural Network (SRCNN), which is to obtain better resolution for a given image. For example, resizing an image will make the image look blurry, we then apply our CNN to enhance the detail of this blurry image. 
 
 **Implementation.** We partition our image into 33x33 small squares, of which we chop off the padding to get 21x21 dimensional images, the pair 
 
@@ -640,10 +638,14 @@ But why do we shrink down from 33 to 22?  Reason is two-fold.
 - <details>
     <summary>upscaled doubly by bicubic interpolation:</summary>
 
-    <img src="2020-12-20-SRCNN/baseline.png">
+    <p>
+      <img src="2020-12-20-SRCNN/baseline.png">
+    </p>
   </details>
-- 
-  <details>
-  <summary>upscaled by our SRCNN:</summary>
-    <img src="2020-12-20-SRCNN/resized.png">
+- <details>
+    <summary>upscaled by our SRCNN:</summary>
+
+    <p>
+      <img src="2020-12-20-SRCNN/resized.png">
+    </p>
   </details>
