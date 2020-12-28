@@ -1,25 +1,30 @@
-# usage: python train_recognizer.py -c checkpoints
-# usage: python train_recognizer.py -c checkpoints -m checkpoints/epoch-15.hdf5 -s 15 -l 1e-3
+# usage: python train_model.py -c checkpoints
+# usage: python train_model.py -c checkpoints -m checkpoints/epoch-15.hdf5 -s 15 -l 1e-4
 
-from config import emotion_config as config
-from deeptools import callbacks
-from deeptools.preprocessing import ImageToArrayPreprocessor
-from deeptools.callbacks import EpochCheckpoint
-from deeptools.callbacks import TrainingMonitorCallback
-from deeptools.io import HDF5DatasetGenerator
-from deeptools.nn.conv import EmotionVGGNet
+from tensorflow.python.keras.layers import BatchNormalization
+from tensorflow.python.keras.layers import Dropout
 from deeptools.utils import get_digit
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.callbacks import LearningRateScheduler
+from tensorflow.keras.utils import to_categorical
+from tensorflow.python.keras.callbacks import LearningRateScheduler
+from tensorflow.python.keras.layers import Activation
+from tensorflow.python.keras.layers import ELU
+from tensorflow.python.keras.models import Model
+from tensorflow.python.keras.models import load_model
+from sklearn.metrics import classification_report
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Input
+from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.models import load_model
-from imutils import paths
-import re
+from config import image_orientation_config as config
+from deeptools.callbacks import TrainingMonitorCallback
+from deeptools.callbacks import EpochCheckpoint
+from tensorflow.keras import regularizers
+
 import tensorflow.keras.backend as K
 import argparse
+import h5py
 import os
 import shutil
-
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-c", "--checkpoints", required=True, help="path to output checkpoint directory")
@@ -30,26 +35,36 @@ ap.add_argument("-l", "--learning-rate", type=float, default=1e-2, help="learnin
 args = vars(ap.parse_args())
 
 
-train_aug = ImageDataGenerator(rotation_range=10,
-                               zoom_range=0.1,
-                               horizontal_flip=True,
-                               rescale=1/255.0,
-                               fill_mode="nearest")
+db = h5py.File(config.FEATURES_HDF5)
+i = int(db["labels"].shape[0] * 0.75)
+labels = to_categorical(db["labels"])
+labels[1]
 
-val_aug = ImageDataGenerator(rescale=1/255.0)
-img_to_array_pp = ImageToArrayPreprocessor()
 
-trainGen = HDF5DatasetGenerator(config.TRAIN_HDF5,
-                                config.BATCH_SIZE,
-                                aug=train_aug,
-                                preprocessors=[img_to_array_pp],
-                                n_classes=config.NUM_CLASSES)
+def build_logisticDenseModule():
+    input = Input(shape=(512*7*7,))
+    x = Dense(4096)(input)
+    x = BatchNormalization()(x)
+    x = Activation("relu")(x)
+    x = Dropout(0.25)(x)
 
-valGen = HDF5DatasetGenerator(config.VAL_HDF5,
-                              config.BATCH_SIZE,
-                              aug=val_aug,
-                              preprocessors=[img_to_array_pp],
-                              n_classes=config.NUM_CLASSES)
+    x = Dense(2048)(input)
+    x = BatchNormalization()(x)
+    x = Activation("relu")(x)
+    x = Dropout(0.75)(x)
+
+    x = Dense(512)(x)
+    x = BatchNormalization()(x)
+    x = Activation("relu")(x)
+    x = Dropout(0.75)(x)
+
+    x = Dense(4)(x)
+    x = Activation("softmax")(x)
+
+    return Model(input, x)
+
+
+model = build_logisticDenseModule()
 
 model = None
 opt = None
@@ -58,9 +73,10 @@ figPath = os.path.sep.join([config.OUTPUT_DIR, "orientation-0.png"])
 jsonPath = os.path.sep.join([config.OUTPUT_DIR, "orientation-0.json"])
 
 if args["model"] is None:
-    model = EmotionVGGNet.build(width=48, height=48, depth=1, n_classes=config.NUM_CLASSES)
-    opt = Adam(lr=1e-3)
+    model = build_logisticDenseModule()
+    opt = Adam(learning_rate=1e-3)
     model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
+
 
 else:
     print("[INFO] loading {}...".format(args["model"]))
@@ -70,6 +86,7 @@ else:
     K.set_value(model.optimizer.lr, args["learning_rate"])
     print("[INFO] new learning rate: {}".format(K.get_value(model.optimizer.lr)))
 
+    # ===================================
     startEpoch = str(args["start_epoch"])
     new_figPath = os.path.sep.join([config.OUTPUT_DIR, "orientation-{}.png".format(startEpoch)])
     new_jsonPath = os.path.sep.join([config.OUTPUT_DIR, "orientation-{}.json".format(startEpoch)])
@@ -96,19 +113,19 @@ else:
 callbacks = [
     EpochCheckpoint(args["checkpoints"], every=5, startAt=args["start_epoch"]),
     TrainingMonitorCallback(figPath, jsonPath=jsonPath, startAt=args["start_epoch"]),
-    LearningRateScheduler(lambda epoch: 1e-4*(1-epoch/30.0))
+    LearningRateScheduler(lambda epoch: 1e-3*(1-epoch/30.0))
 ]
 
-model.fit(
-    trainGen.generator(),
-    steps_per_epoch=trainGen.numOfImages // config.BATCH_SIZE,
-    validation_data=valGen.generator(),
-    validation_steps=valGen.numOfImages//config.BATCH_SIZE,
-    epochs=100,
-    max_queue_size=config.BATCH_SIZE*2,
-    callbacks=callbacks,
-    verbose=1
-)
+model.fit(db["features"][:i],
+          labels[:i],
+          epochs=30,
+          batch_size=32,
+          validation_data=(db["features"][i:], labels[i:]),
+          callbacks=callbacks,
+          verbose=1)
 
-trainGen.close()
-valGen.close()
+
+# preds = model.predict(db["features"][i:])
+# print(classification_report(labels.argmax(axis=1), preds.argmax(axis=1), target_names=db["label_names"]))
+
+db.close()
