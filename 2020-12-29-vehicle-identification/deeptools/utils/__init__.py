@@ -8,3 +8,4 @@ from .plot_model import plot_model
 from .simple_obj_det import sliding_window
 from .ImagenetHelper import ImagenetHelper
 from .get_digit import get_digit
+from .tfannotation import TFAnnotation
