@@ -649,3 +649,12 @@ But why do we shrink down from 33 to 22?  Reason is two-fold.
       <img src="2020-12-20-SRCNN/resized.png">
     </p>
   </details>
+
+---
+
+### 2021-02-16-Yolo-Trials-Head-Detection
+It has been a while I didn't update the "small task list" in this repo. This time I explore methods to use open image dataset v4, obtain the annotations for any class that I want to detect, and finally created a detector that ***only detect human face*** (instead of the 80 classes of objects in yolo by default). 
+
+<img src="2021-02-15-yolo-trials/2021-02-15-YOLOV3-head-detection/test_images/yui_result.png" height=200>
+
+<img src="2021-02-15-yolo-trials/2021-02-15-YOLOV3-head-detection/test_images/4son_result.png" height=200>
