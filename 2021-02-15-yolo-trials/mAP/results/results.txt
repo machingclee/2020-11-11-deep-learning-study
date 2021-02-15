@@ -1,0 +1,14 @@
+# AP and precision/recall per class
+0.98% = Human_face AP  
+ Precision: ['0.00', '1.00', '1.00', '0.67', '0.00']
+ Recall   :['0.00', '0.00', '0.01', '0.01', '1.00']
+
+
+# mAP of all classes
+mAP = 0.98%
+
+# Number of ground-truth objects per class
+Human_face: 204
+
+# Number of predicted objects per class
+Human_face: 3 (tp:2, fp:1)

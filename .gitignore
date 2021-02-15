@@ -138,3 +138,23 @@ models/
 
 # hdf5 format files
 *.hdf5
+
+# recode files
+*.record
+
+# object_detection_api
+object_detection/
+
+experiments/
+
+# trial projects
+_2020-02-07-TensorFlow-2.x-YOLOv3/
+_2021-02-13-yolov3-implementation/
+_2021-02-14-keras-yolo3/
+_2021-02-15-tensorflow-yolov3-head-detection/
+_2021-02-15-yolov3-tf2-head-detection/
+2021-02-15-YOLOV3-TensorFlow2.0-Examples/
+
+checkpoints/
+*.weights
+data_images/

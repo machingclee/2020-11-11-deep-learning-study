@@ -1,0 +1,2 @@
+Human_face 328 215 360 270
+Human_face 618 271 680 338
