@@ -1,0 +1,12 @@
+Human_face 0 66 22 167
+Human_face 1 164 66 350
+Human_face 7 115 69 224
+Human_face 146 80 210 197
+Human_face 244 137 350 274
+Human_face 359 183 448 247
+Human_face 505 187 549 244
+Human_face 543 141 631 279
+Human_face 650 146 740 262
+Human_face 773 154 818 248
+Human_face 790 131 883 260
+Human_face 1003 100 1024 182
