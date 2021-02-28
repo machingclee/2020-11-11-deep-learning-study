@@ -15,13 +15,13 @@ Ching-Cheong Lee
 \usepackage{fancybox}
 \usepackage{fancyvrb}
 
-% \usepackage[math-style=ISO]{unicode-math}
+
 \usepackage{xeCJK}
 \setCJKmainfont{SimSun}
 
+% \usepackage[math-style=ISO]{unicode-math}
 % \xeCJKsetup{CJKmath=true}
-% \setmainfont{Cambria}
-
+% \setmainfont{Calibri}
 % \setmathfont[slash-delimiter=frac]{Cambria Math}
 % \setmathfont[range=up]{Cambria}
 % \setmathfont[range=it]{Cambria Italic}
@@ -142,11 +142,11 @@ def bbox_iou(self, boxes1, boxes2):
                              boxes2[..., :2] + boxes2[..., 2:] * 0.5], axis=-1)
 \end{py}
 From the function we can deduce that $\code{box}=(c_x,c_y,\text{width},\text{height})$, therefore \[
-\code{boxes[:,:2]} -  \code{boxes[:,2:]}*0.5 = \code{[all upper-left corners]}
+\code{boxes[...,:2]} -  \code{boxes[...,2:]}*0.5 = \code{[all upper-left corners]}
 \]
 and 
 \[
-    \code{boxes1[:, :2]} + \code{boxes1[:, 2:]} * 0.5=\code{[all lower-right corners]},
+    \code{boxes1[..., :2]} + \code{boxes1[..., 2:]} * 0.5=\code{[all lower-right corners]},
 \] while concatenating $(2,)$ \code{np}-array  along the last axis simpliy means combing them into one $(4,)$ \code{np}-array. Numerically in training \code{boxes1} and \code{boxes2} are like: \[
     \code{[[0.59375 3.78125 0.5     0.625  ]]}  
 \]
@@ -167,7 +167,7 @@ Think of the above as entrywise comparisons that give an array of maximum, which
 \begin{py}
     inter_section = np.maximum(right_down - left_up, 0.0)
 \end{py}
-The entries in \code{inter_section} are the \textit{width} and \textit{height} of the intersection, the (boardcasted) \code{np.maximum} is just a tricky way to handle empty intersection.
+The entries in \code{inter_section} are the \textit{width} and \textit{height} of the intersection, the (broadcasted) \code{np.maximum} is just a tricky way to handle empty intersection.
 \begin{py}
     inter_area = inter_section[..., 0] * inter_section[..., 1]
     union_area = boxes1_area + boxes2_area - inter_area
@@ -223,7 +223,7 @@ Note that \code{bbox_xywh[np.newaxis, :]} is of shape \code{(1, 4)} and \code{1/
 \begin{py}
             iou_scale = self.bbox_iou(bbox_xywh_scaled[i][np.newaxis, :], anchors_xywh)
 \end{py}
-The presence of \code{np.newaxis} is simply because multiplication between $(4,)$  and $(3,4)$ array does not make sense. The additional dimension expand $(4,)$ array into $(1,4)$ array, which is boardcasted and multiplied to $(3,4)$ array to give anothoer $(3,4)$ array, and theirfore, $\code{iou_scale.shape} = (3, )$.
+The presence of \code{np.newaxis} is simply because multiplication between $(4,)$  and $(3,4)$ array does not make sense. The additional dimension expand $(4,)$ array into $(1,4)$ array, which is broadcasted and multiplied to $(3,4)$ array to give anothoer $(3,4)$ array, and theirfore, $\code{iou_scale.shape} = (3, )$.
 \begin{py}
             iou.append(iou_scale)
             iou_mask = iou_scale > 0.3 # a boolean list of length 3
@@ -396,7 +396,7 @@ At this point, \code{xy_grid} is $(13,13,2)$ dimensional.
 \end{py}
 Now \code{xy_grid} is $(\code{batch_size}, 13, 13, 3, 2)$ dimensional. Recall that 
 \begin{center}
-\includegraphics[width=0.25\textwidth]{./decode_anchor.png}
+\includegraphics[width=0.3\textwidth]{./decode_anchor.png}
 \end{center}
 \begin{py}
     pred_xy = (tf.sigmoid(conv_raw_dxdy) + xy_grid) * STRIDES[i]
