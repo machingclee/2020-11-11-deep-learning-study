@@ -662,4 +662,4 @@ It has been a while I didn't update the "small task list" in this repo. This tim
 ### 2021-02-28-yolov3-algorithm-drilling
 As it is horribly frustrating to understand code merely by watching, I have devided the code into several blocks, added  numerical examples and explain the shape of the variables to make yolov3 code base more easy to digest.
 
-[Link to PDF]("2021-02-28-yolov3-algorithm-drilling/YOLOv3StudyNotes.pdf")
+[Link to PDF](2021-02-28-yolov3-algorithm-drilling/YOLOv3StudyNotes.pdf)
