@@ -138,6 +138,8 @@ models/
 
 # hdf5 format files
 *.hdf5
+*.h5
+*.weights
 
 # recode files
 *.record
@@ -158,3 +160,4 @@ _2021-02-15-yolov3-tf2-head-detection/
 checkpoints/
 *.weights
 data_images/
+*.mp4

@@ -46,6 +46,9 @@ writer = tf.summary.create_file_writer(logdir)
 
 
 def train_step(image_data, target, epoch):
+
+    # image_data = batch of images
+
     with tf.GradientTape() as tape:
         pred_result = model(image_data, training=True)
         giou_loss = conf_loss = prob_loss = 0
@@ -53,6 +56,7 @@ def train_step(image_data, target, epoch):
         # optimizing process
         for i in range(3):
             conv, pred = pred_result[i*2], pred_result[i*2+1]
+
             loss_items = compute_loss(pred, conv, *target[i], i)
             giou_loss += loss_items[0]
             conf_loss += loss_items[1]
