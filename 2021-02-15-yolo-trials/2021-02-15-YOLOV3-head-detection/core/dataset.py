@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # coding=utf-8
-#================================================================
+# ================================================================
 #   Copyright (C) 2019 * Ltd. All rights reserved.
 #
 #   Editor      : VIM
@@ -9,25 +9,26 @@
 #   Created date: 2019-03-15 18:05:03
 #   Description :
 #
-#================================================================
+# ================================================================
 
 import os
 import cv2
 import random
 import numpy as np
 import tensorflow as tf
+from tensorflow.python.keras.backend import dtype
 import core.utils as utils
 from core.config import cfg
 
 
-
 class Dataset(object):
     """implement Dataset here"""
+
     def __init__(self, dataset_type):
-        self.annot_path  = cfg.TRAIN.ANNOT_PATH if dataset_type == 'train' else cfg.TEST.ANNOT_PATH
+        self.annot_path = cfg.TRAIN.ANNOT_PATH if dataset_type == 'train' else cfg.TEST.ANNOT_PATH
         self.input_sizes = cfg.TRAIN.INPUT_SIZE if dataset_type == 'train' else cfg.TEST.INPUT_SIZE
-        self.batch_size  = cfg.TRAIN.BATCH_SIZE if dataset_type == 'train' else cfg.TEST.BATCH_SIZE
-        self.data_aug    = cfg.TRAIN.DATA_AUG   if dataset_type == 'train' else cfg.TEST.DATA_AUG
+        self.batch_size = cfg.TRAIN.BATCH_SIZE if dataset_type == 'train' else cfg.TEST.BATCH_SIZE
+        self.data_aug = cfg.TRAIN.DATA_AUG if dataset_type == 'train' else cfg.TEST.DATA_AUG
 
         self.train_input_sizes = cfg.TRAIN.INPUT_SIZE
         self.strides = np.array(cfg.YOLO.STRIDES)
@@ -41,7 +42,6 @@ class Dataset(object):
         self.num_samples = len(self.annotations)
         self.num_batchs = int(np.ceil(self.num_samples / self.batch_size))
         self.batch_count = 0
-
 
     def load_annotations(self, dataset_type):
         with open(self.annot_path, 'r') as f:
@@ -76,7 +76,8 @@ class Dataset(object):
             if self.batch_count < self.num_batchs:
                 while num < self.batch_size:
                     index = self.batch_count * self.batch_size + num
-                    if index >= self.num_samples: index -= self.num_samples
+                    if index >= self.num_samples:
+                        index -= self.num_samples
                     annotation = self.annotations[index]
                     image, bboxes = self.parse_annotation(annotation)
                     label_sbbox, label_mbbox, label_lbbox, sbboxes, mbboxes, lbboxes = self.preprocess_true_boxes(bboxes)
@@ -91,8 +92,8 @@ class Dataset(object):
                     num += 1
                 self.batch_count += 1
                 batch_smaller_target = batch_label_sbbox, batch_sbboxes
-                batch_medium_target  = batch_label_mbbox, batch_mbboxes
-                batch_larger_target  = batch_label_lbbox, batch_lbboxes
+                batch_medium_target = batch_label_mbbox, batch_mbboxes
+                batch_larger_target = batch_label_lbbox, batch_lbboxes
 
                 return batch_image, (batch_smaller_target, batch_medium_target, batch_larger_target)
             else:
@@ -105,7 +106,7 @@ class Dataset(object):
         if random.random() < 0.5:
             _, w, _ = image.shape
             image = image[:, ::-1, :]
-            bboxes[:, [0,2]] = w - bboxes[:, [2,0]]
+            bboxes[:, [0, 2]] = w - bboxes[:, [2, 0]]
 
         return image, bboxes
 
@@ -125,7 +126,7 @@ class Dataset(object):
             crop_xmax = max(w, int(max_bbox[2] + random.uniform(0, max_r_trans)))
             crop_ymax = max(h, int(max_bbox[3] + random.uniform(0, max_d_trans)))
 
-            image = image[crop_ymin : crop_ymax, crop_xmin : crop_xmax]
+            image = image[crop_ymin: crop_ymax, crop_xmin: crop_xmax]
 
             bboxes[:, [0, 2]] = bboxes[:, [0, 2]] - crop_xmin
             bboxes[:, [1, 3]] = bboxes[:, [1, 3]] - crop_ymin
@@ -159,7 +160,7 @@ class Dataset(object):
         line = annotation.split()
         image_path = line[0]
         if not os.path.exists(image_path):
-            raise KeyError("%s does not exist ... " %image_path)
+            raise KeyError("%s does not exist ... " % image_path)
         image = cv2.imread(image_path)
         bboxes = np.array([list(map(int, box.split(','))) for box in line[1:]])
 
@@ -173,7 +174,10 @@ class Dataset(object):
         return image, bboxes
 
     def bbox_iou(self, boxes1, boxes2):
-
+        print("boxes1")
+        print(boxes1)
+        print("boxes2")
+        print(boxes2)
         boxes1 = np.array(boxes1)
         boxes2 = np.array(boxes2)
 
@@ -181,9 +185,9 @@ class Dataset(object):
         boxes2_area = boxes2[..., 2] * boxes2[..., 3]
 
         boxes1 = np.concatenate([boxes1[..., :2] - boxes1[..., 2:] * 0.5,
-                                boxes1[..., :2] + boxes1[..., 2:] * 0.5], axis=-1)
+                                 boxes1[..., :2] + boxes1[..., 2:] * 0.5], axis=-1)
         boxes2 = np.concatenate([boxes2[..., :2] - boxes2[..., 2:] * 0.5,
-                                boxes2[..., :2] + boxes2[..., 2:] * 0.5], axis=-1)
+                                 boxes2[..., :2] + boxes2[..., 2:] * 0.5], axis=-1)
 
         left_up = np.maximum(boxes1[..., :2], boxes2[..., :2])
         right_down = np.minimum(boxes1[..., 2:], boxes2[..., 2:])
@@ -191,7 +195,8 @@ class Dataset(object):
         inter_section = np.maximum(right_down - left_up, 0.0)
         inter_area = inter_section[..., 0] * inter_section[..., 1]
         union_area = boxes1_area + boxes2_area - inter_area
-
+        print("union_area")
+        print(union_area)
         return inter_area / union_area
 
     def preprocess_true_boxes(self, bboxes):
@@ -222,8 +227,12 @@ class Dataset(object):
                 anchors_xywh[:, 2:4] = self.anchors[i]
 
                 iou_scale = self.bbox_iou(bbox_xywh_scaled[i][np.newaxis, :], anchors_xywh)
+                print("iou_scale")
+                print(iou_scale)
                 iou.append(iou_scale)
                 iou_mask = iou_scale > 0.3
+                print("iou_mask")
+                print(iou_mask)
 
                 if np.any(iou_mask):
                     xind, yind = np.floor(bbox_xywh_scaled[i, 0:2]).astype(np.int32)
@@ -259,7 +268,3 @@ class Dataset(object):
 
     def __len__(self):
         return self.num_batchs
-
-
-
-
