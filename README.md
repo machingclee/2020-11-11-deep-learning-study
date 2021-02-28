@@ -656,3 +656,10 @@ But why do we shrink down from 33 to 22?  Reason is two-fold.
 It has been a while I didn't update the "small task list" in this repo. This time I explore methods to use open image dataset v4, obtain the annotations for any class that I want to detect, and finally created a detector that ***only detect human face*** (instead of the 80 classes of objects in yolo by default). 
 
 <img src="2021-02-15-yolo-trials/2021-02-15-YOLOV3-head-detection/test_images/yui_result.png" height=200> <img src="2021-02-15-yolo-trials/2021-02-15-YOLOV3-head-detection/test_images/4son_result.png" height=200>
+
+---
+
+### 2021-02-28-yolov3-algorithm-drilling
+As it is horribly frustrating to understand code merely by watching, I have devided the code into several blocks, added  numerical examples and explain the shape of the variables to make yolov3 code base more easy to digest.
+
+[Link to PDF]("2021-02-28-yolov3-algorithm-drilling/YOLOv3StudyNotes.pdf")
