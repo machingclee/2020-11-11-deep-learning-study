@@ -56,8 +56,8 @@ def train_step(image_data, target, epoch):
         # optimizing process
         for i in range(3):
             conv, pred = pred_result[i*2], pred_result[i*2+1]
-
-            loss_items = compute_loss(pred, conv, *target[i], i)
+            batch_label, batch_bboxes = target[i]
+            loss_items = compute_loss(pred, conv, batch_label, batch_bboxes, i)
             giou_loss += loss_items[0]
             conf_loss += loss_items[1]
             prob_loss += loss_items[2]
@@ -98,4 +98,4 @@ for epoch in range(cfg.TRAIN.EPOCHS):
     for index, (image_data, target) in enumerate(trainset):
         train_step(image_data, target, epoch)
 
-    model.save_weights("./checkpoints/yolov3-{}-{}.h5".format(cfg.WEIGHT_NAME_TO_SAVE, epoch))
+    model.save("./checkpoints/yolov3-{}-{}.h5".format(cfg.WEIGHT_NAME_TO_SAVE, epoch))
