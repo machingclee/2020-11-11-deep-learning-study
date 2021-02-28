@@ -23,8 +23,8 @@ from tensorflow.keras.models import load_model
 input_size = 416
 image_path = "./test_images/laogao_2.png"
 
-input_layer = tf.keras.layers.Input([input_size, input_size, 3])
-feature_maps = YOLOv3(input_layer)
+# input_layer = tf.keras.layers.Input([input_size, input_size, 3])
+# feature_maps = YOLOv3(input_layer)
 
 # bbox_tensors = []
 # for i, fm in enumerate(feature_maps):
@@ -46,13 +46,16 @@ image_data = image_data[np.newaxis, ...].astype(np.float32)
 
 
 pred_bbox = model.predict(image_data)
-
+pred_sbbox, pred_mbbox, pred_lbbox = pred_bbox
+pred_bbox = []
+pred_bbox.append(pred_sbbox)
+pred_bbox.append(pred_mbbox)
+pred_bbox.append(pred_lbbox)
 
 pred_bbox = [tf.reshape(x, (-1, tf.shape(x)[-1])) for x in pred_bbox]
 pred_bbox = tf.concat(pred_bbox, axis=0)
 bboxes = utils.postprocess_boxes(pred_bbox, original_image_size, input_size, 0)
 bboxes = utils.nms(bboxes, 0, method='nms')
-print(bboxes)
 image = utils.draw_bbox(original_image, bboxes)
 image = Image.fromarray(image)
 image.show()

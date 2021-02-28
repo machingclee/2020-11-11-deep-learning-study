@@ -16,8 +16,8 @@ Ching-Cheong Lee
 \usepackage{fancyvrb}
 
 
-\usepackage{xeCJK}
-\setCJKmainfont{SimSun}
+\usepackage[AutoFakeBold,AutoFakeSlant]{xeCJK}
+\setCJKmainfont{Microsoft JhengHei}
 
 % \usepackage[math-style=ISO]{unicode-math}
 % \xeCJKsetup{CJKmath=true}
@@ -525,6 +525,18 @@ therefore \code{x} has to be a raw prediction data.
 \END
 
 \section{train.py}
+\textbf{Recap of Customized Training Loop with GradientTape.} Apart from predefined loss functions (such as \code{categorical_crossentropy} for classfication, \code{mse} for regression, etc), it is ocassional to come across non-standard loss functions from other repository with the use of \code{tf.GradientTape}. 
+
+Such implementation usually create 4 components:
+
+\begin{description}
+    \item[Component 1.] The model \textbf{architecture}
+    \item[Component 2.] The \textbf{loss function} used when computing the model loss
+    \item[Component 3.]  The \textbf{optimizer} used to update the model weights
+    \item[Component 4.] The \textbf{step function} that encapsulates the forward and backward pass of the network
+\end{description}
+
+Now the code below is self-explanatory:
 
 \begin{py}
 def train_step(image_data, target, epoch):
@@ -538,8 +550,8 @@ def train_step(image_data, target, epoch):
         # optimizing process
         for i in range(3):
             conv, pred = pred_result[i*2], pred_result[i*2+1]
-
-            loss_items = compute_loss(pred, conv, *target[i], i)
+            batch_label, batch_bboxes = target[i]
+            loss_items = compute_loss(pred, conv, batch_label, batch_bboxes, i)
             giou_loss += loss_items[0]
             conf_loss += loss_items[1]
             prob_loss += loss_items[2]
@@ -568,7 +580,6 @@ def train_step(image_data, target, epoch):
             tf.summary.scalar("loss/prob_loss", prob_loss, step=global_steps)
         writer.flush()
 
-
 for epoch in range(cfg.TRAIN.EPOCHS):
     for index, (image_data, target) in enumerate(trainset):
         train_step(image_data, target, epoch)
@@ -586,14 +597,16 @@ for epoch in range(cfg.TRAIN.EPOCHS):
 
 \begin{thebibliography}{9}
     \bibitem{yoloanalysis1to5} 
-    YOLOv3源码解析 1-5, \url{https://blog.csdn.net/sxlsxl119/article/details/103028021}.
+    \textit{YOLOv3源码解析 1-5}, \url{https://blog.csdn.net/sxlsxl119/article/details/103028021}.
 
     \bibitem{yunyang}
-    YOLOv3 算法的一点理解, \url{https://yunyang1994.gitee.io/2018/12/28/YOLOv3/}.
+    \textit{YOLOv3 算法的一点理解}, \url{https://yunyang1994.gitee.io/2018/12/28/YOLOv3/}.
 
     \bibitem{focalLoss} Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He and  Piotr Dollar, \textit{Focal Loss for Dense Object Detection}, \url{https://arxiv.org/pdf/1708.02002.pdf?fbclid=IwAR38T65chV0UNPhBDbAExH021_afC0L6o9PEztpBPBAzqY3dBR8vOGy2qwg}. 
 
-    \bibitem{yolov3} Joseph Redmon, Ali Farhadi, \textit{YOLOv3: An Incremental Improvement}, \url{https://arxiv.org/abs/1804.02767}.
+    \bibitem{yolov3} Joseph Redmon, Ali Farhadi, YOLOv3: \textit{An Incremental Improvement}, \url{https://arxiv.org/abs/1804.02767}.
+    
+    \bibitem{pyimgsearch} Adrian Rosebrock, \textit{Using TensorFlow and GradientTape to train a Keras model}, \url{https://www.pyimagesearch.com/2020/03/23/using-tensorflow-and-gradienttape-to-train-a-keras-model/}
 \end{thebibliography}
 
 

@@ -174,10 +174,6 @@ class Dataset(object):
         return image, bboxes
 
     def bbox_iou(self, boxes1, boxes2):
-        print("boxes1")
-        print(boxes1)
-        print("boxes2")
-        print(boxes2)
         boxes1 = np.array(boxes1)
         boxes2 = np.array(boxes2)
 
@@ -195,8 +191,6 @@ class Dataset(object):
         inter_section = np.maximum(right_down - left_up, 0.0)
         inter_area = inter_section[..., 0] * inter_section[..., 1]
         union_area = boxes1_area + boxes2_area - inter_area
-        print("union_area")
-        print(union_area)
         return inter_area / union_area
 
     def preprocess_true_boxes(self, bboxes):
@@ -227,12 +221,9 @@ class Dataset(object):
                 anchors_xywh[:, 2:4] = self.anchors[i]
 
                 iou_scale = self.bbox_iou(bbox_xywh_scaled[i][np.newaxis, :], anchors_xywh)
-                print("iou_scale")
-                print(iou_scale)
+
                 iou.append(iou_scale)
                 iou_mask = iou_scale > 0.3
-                print("iou_mask")
-                print(iou_mask)
 
                 if np.any(iou_mask):
                     xind, yind = np.floor(bbox_xywh_scaled[i, 0:2]).astype(np.int32)

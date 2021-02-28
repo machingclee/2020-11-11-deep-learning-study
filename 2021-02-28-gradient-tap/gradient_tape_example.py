@@ -19,68 +19,71 @@ import numpy as np
 import time
 import sys
 
+
 def build_model(width, height, depth, classes):
-	# initialize the input shape and channels dimension to be
-	# "channels last" ordering
-	inputShape = (height, width, depth)
-	chanDim = -1
+    # initialize the input shape and channels dimension to be
+    # "channels last" ordering
+    inputShape = (height, width, depth)
+    chanDim = -1
 
-	# build the model using Keras' Sequential API
-	model = Sequential([
-		# CONV => RELU => BN => POOL layer set
-		Conv2D(16, (3, 3), padding="same", input_shape=inputShape),
-		Activation("relu"),
-		BatchNormalization(axis=chanDim),
-		MaxPooling2D(pool_size=(2, 2)),
+    # build the model using Keras' Sequential API
+    model = Sequential([
+        # CONV => RELU => BN => POOL layer set
+        Conv2D(16, (3, 3), padding="same", input_shape=inputShape),
+        Activation("relu"),
+        BatchNormalization(axis=chanDim),
+        MaxPooling2D(pool_size=(2, 2)),
 
-		# (CONV => RELU => BN) * 2 => POOL layer set
-		Conv2D(32, (3, 3), padding="same"),
-		Activation("relu"),
-		BatchNormalization(axis=chanDim),
-		Conv2D(32, (3, 3), padding="same"),
-		Activation("relu"),
-		BatchNormalization(axis=chanDim),
-		MaxPooling2D(pool_size=(2, 2)),
+        # (CONV => RELU => BN) * 2 => POOL layer set
+        Conv2D(32, (3, 3), padding="same"),
+        Activation("relu"),
+        BatchNormalization(axis=chanDim),
+        Conv2D(32, (3, 3), padding="same"),
+        Activation("relu"),
+        BatchNormalization(axis=chanDim),
+        MaxPooling2D(pool_size=(2, 2)),
 
-		# (CONV => RELU => BN) * 3 => POOL layer set
-		Conv2D(64, (3, 3), padding="same"),
-		Activation("relu"),
-		BatchNormalization(axis=chanDim),
-		Conv2D(64, (3, 3), padding="same"),
-		Activation("relu"),
-		BatchNormalization(axis=chanDim),
-		Conv2D(64, (3, 3), padding="same"),
-		Activation("relu"),
-		BatchNormalization(axis=chanDim),
-		MaxPooling2D(pool_size=(2, 2)),
+        # (CONV => RELU => BN) * 3 => POOL layer set
+        Conv2D(64, (3, 3), padding="same"),
+        Activation("relu"),
+        BatchNormalization(axis=chanDim),
+        Conv2D(64, (3, 3), padding="same"),
+        Activation("relu"),
+        BatchNormalization(axis=chanDim),
+        Conv2D(64, (3, 3), padding="same"),
+        Activation("relu"),
+        BatchNormalization(axis=chanDim),
+        MaxPooling2D(pool_size=(2, 2)),
 
-		# first (and only) set of FC => RELU layers
-		Flatten(),
-		Dense(256),
-		Activation("relu"),
-		BatchNormalization(),
-		Dropout(0.5),
+        # first (and only) set of FC => RELU layers
+        Flatten(),
+        Dense(256),
+        Activation("relu"),
+        BatchNormalization(),
+        Dropout(0.5),
 
-		# softmax classifier
-		Dense(classes),
-		Activation("softmax")
-	])
+        # softmax classifier
+        Dense(classes),
+        Activation("softmax")
+    ])
 
-	# return the built model to the calling function
-	return model
+    # return the built model to the calling function
+    return model
+
 
 def step(X, y):
-	# keep track of our gradients
-	with tf.GradientTape() as tape:
-		# make a prediction using the model and then calculate the
-		# loss
-		pred = model(X)
-		loss = categorical_crossentropy(y, pred)
+    # keep track of our gradients
+    with tf.GradientTape() as tape:
+        # make a prediction using the model and then calculate the
+        # loss
+        pred = model(X)
+        loss = categorical_crossentropy(y, pred)
 
-	# calculate the gradients using our tape and then update the
-	# model weights
-	grads = tape.gradient(loss, model.trainable_variables)
-	opt.apply_gradients(zip(grads, model.trainable_variables))
+    # calculate the gradients using our tape and then update the
+    # model weights
+    grads = tape.gradient(loss, model.trainable_variables)
+    opt.apply_gradients(zip(grads, model.trainable_variables))
+
 
 # initialize the number of epochs to train for, batch size, and
 # initial learning rate
@@ -113,31 +116,32 @@ numUpdates = int(trainX.shape[0] / BS)
 
 # loop over the number of epochs
 for epoch in range(0, EPOCHS):
-	# show the current epoch number
-	print("[INFO] starting epoch {}/{}...".format(
-		epoch + 1, EPOCHS), end="")
-	sys.stdout.flush()
-	epochStart = time.time()
+    # show the current epoch number
+    print("[INFO] starting epoch {}/{}...".format(
+        epoch + 1, EPOCHS), end="")
+    sys.stdout.flush()
+    epochStart = time.time()
 
-	# loop over the data in batch size increments
-	for i in range(0, numUpdates):
-		# determine starting and ending slice indexes for the current
-		# batch
-		start = i * BS
-		end = start + BS
+    # loop over the data in batch size increments
+    for i in range(0, numUpdates):
+        # determine starting and ending slice indexes for the current
+        # batch
+        start = i * BS
+        end = start + BS
 
-		# take a step
-		step(trainX[start:end], trainY[start:end])
+        # take a step
+        step(trainX[start:end], trainY[start:end])
 
-	# show timing information for the epoch
-	epochEnd = time.time()
-	elapsed = (epochEnd - epochStart) / 60.0
-	print("took {:.4} minutes".format(elapsed))
+    # show timing information for the epoch
+    epochEnd = time.time()
+    elapsed = (epochEnd - epochStart) / 60.0
+    print("took {:.4} minutes".format(elapsed))
 
 # in order to calculate accuracy using Keras' functions we first need
 # to compile the model
+# Compile defines the loss function, the optimizer and the metrics. That's all.
 model.compile(optimizer=opt, loss=categorical_crossentropy,
-	metrics=["acc"])
+              metrics=["acc"])
 
 # now that the model is compiled we can compute the accuracy
 (loss, acc) = model.evaluate(testX, testY)
