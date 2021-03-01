@@ -27,9 +27,19 @@ Ching-Cheong Lee
 {\thesection}{1em}{}
 
 
-% \usepackage[math-style=ISO]{unicode-math}
-% \xeCJKsetup{CJKmath=true}
-% \setmainfont{Calibri}
+\usepackage[math-style=ISO]{unicode-math}
+\xeCJKsetup{CJKmath=true}
+\setmainfont{XITS}
+[    Extension = .otf,
+   UprightFont = *-Regular,
+      BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+BoldItalicFont = *-BoldItalic,
+]
+\setmathfont{XITSMath-Regular}
+[    Extension = .otf,
+      BoldFont = XITSMath-Bold,
+]
 % \setmathfont[slash-delimiter=frac]{Cambria Math}
 % \setmathfont[range=up]{Cambria}
 % \setmathfont[range=it]{Cambria Italic}
@@ -133,7 +143,6 @@ def parse_annotation(self, annotation):
 \end{py}
 This part is straightfoward. \END
 
-To understand \code{preprocess_true_boxes}, we must first understand:
 
 \begin{py}
 def bbox_iou(self, boxes1, boxes2):
