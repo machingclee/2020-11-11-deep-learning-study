@@ -2,7 +2,7 @@
 \usepackage[margin=1in,left=0.8in,right=0.8in]{geometry}
 \usepackage{graphicx}
 
-\title{YOLOv3 Study Notes}
+\title{Deep Learning Study Notes}
 \author{
 Ching-Cheong Lee
 }
@@ -16,30 +16,34 @@ Ching-Cheong Lee
 \usepackage{fancyvrb}
 
 
-\usepackage[AutoFakeBold,AutoFakeSlant]{xeCJK}
-\setCJKmainfont{Microsoft JhengHei}
+
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
 {\normalfont\sffamily\huge\bfseries}
 {\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titleformat{\section}
-{\normalfont\sffamily\Large\bfseries}
-{\thesection}{1em}{}
+\titleformat{\section}{\normalfont\sffamily\Large\bfseries}{\thesection}{1em}{}
+
+\titleformat{\subsection}{\normalfont\sffamily\large\bfseries}{\thesubsection}{1em}{}
+
+% \usepackage[AutoFakeBold,AutoFakeSlant]{xeCJK}
+% \setCJKmainfont{Microsoft JhengHei}
+
+% \usepackage[math-style=ISO]{unicode-math}
+% \xeCJKsetup{CJKmath=true}
+% \setmainfont{XITS}
+% [    Extension = .otf,
+%    UprightFont = *-Regular,
+%       BoldFont = *-Bold,
+%     ItalicFont = *-Italic,
+% BoldItalicFont = *-BoldItalic,
+% ]
+% \setmathfont[StylisticSet=8]{XITSMath-Regular}
+% [    Extension = .otf,
+%       BoldFont = XITSMath-Bold,
+% ]
 
 
-\usepackage[math-style=ISO]{unicode-math}
-\xeCJKsetup{CJKmath=true}
-\setmainfont{XITS}
-[    Extension = .otf,
-   UprightFont = *-Regular,
-      BoldFont = *-Bold,
-    ItalicFont = *-Italic,
-BoldItalicFont = *-BoldItalic,
-]
-\setmathfont{XITSMath-Regular}
-[    Extension = .otf,
-      BoldFont = XITSMath-Bold,
-]
+
 % \setmathfont[slash-delimiter=frac]{Cambria Math}
 % \setmathfont[range=up]{Cambria}
 % \setmathfont[range=it]{Cambria Italic}
@@ -104,8 +108,12 @@ BoldItalicFont = *-BoldItalic,
 
 \begin{document}
 \maketitle
-\section{dataset.py}
+\tableofcontents
 
+
+\section{YOLOv3}
+\subsection{dataset.py}
+ 
 \begin{py}
 def parse_annotation(self, annotation):
     line = annotation.split()
@@ -142,7 +150,6 @@ def parse_annotation(self, annotation):
     return image, bboxes
 \end{py}
 This part is straightfoward. \END
-
 
 \begin{py}
 def bbox_iou(self, boxes1, boxes2):
@@ -236,7 +243,7 @@ Note that \code{bbox_xywh[np.newaxis, :]} is of shape \code{(1, 4)} and \code{1/
             anchors_xywh[:, 0:2] = np.floor(bbox_xywh_scaled[i, 0:2]).astype(np.int32) + 0.5
             anchors_xywh[:, 2:4] = self.anchors[i]
 \end{py}
-\code{anchors_xywh} essing boxes with objectiveneentially move centers of \code{bbox_xywh_scaled} to the middle of the grid that center lies in, then the anchor boxes' width and height are assigned, replacing the original width, height of \code{bbox_xywh_scaled}.
+\code{anchors_xywh} essentially moves centers of \code{bbox_xywh_scaled} to the middle of the grid where the original center lies in, then the anchor boxes' width and height are assigned, replacing the original width, height of \code{bbox_xywh_scaled}.
 \begin{py}
             iou_scale = self.bbox_iou(bbox_xywh_scaled[i][np.newaxis, :], anchors_xywh)
 \end{py}
@@ -294,7 +301,7 @@ In short, \[\code{sbboxes, mbboxes, lbboxe}\]
 are just ground truth bounding boxes (center, width and height), while \[\code{label_sbbox, label_mbbox, label_lbbox}\] are ground truth bounding boxes with objectiveness and probabilities of \textbf{\textit{each grid}}.
 \END
 
-\section{yolov3.py}
+\subsection{yolov3.py}
 
 In \code{darknet53} after a bunch of residue modules we get 3 branches \code{route_1}, \code{route_2} and \code{cov}, where
 \begin{center}
@@ -413,7 +420,7 @@ At this point, \code{xy_grid} is $(13,13,2)$ dimensional.
 \end{py}
 Now \code{xy_grid} is $(\code{batch_size}, 13, 13, 3, 2)$ dimensional. Recall that 
 \begin{center}
-\includegraphics[width=0.3\textwidth]{./decode_anchor.png}
+\includegraphics[width=0.4\textwidth]{./decode_anchor.png}
 \end{center}
 \begin{py}
     pred_xy = (tf.sigmoid(conv_raw_dxdy) + xy_grid) * STRIDES[i]
@@ -429,7 +436,7 @@ Bear in mind that decoded \code{x}, \code{y} in \code{pred_xywh} denote the cent
 
 
 
-\section{yolov3.compute\_loss}
+\subsection{yolov3.compute\_loss}
 
 \begin{py}
 def bbox_giou(boxes1, boxes2):
@@ -502,7 +509,6 @@ Finally
 \[\code{pred_xywh.shape}=(16, 13,13,3,150,4)=\code{bboxes.shape}\]
 and \[\code{iou.shape} = (16,13,13,3,150)\]
 where computation gets rid of the last dimension. \code{bboxes} is copied to every grid for computation because from original paper:
-\bigskip
 \begin{center}\itshape
    ``the confidence prediction represents the IOU between the predicted box and any ground truth box"
 \end{center}
@@ -541,16 +547,16 @@ therefore \code{x} has to be a raw prediction data.
 \end{py}
 \END
 
-\section{train.py}
+\subsection{train.py}
 \textbf{Recap of Customized Training Loop with GradientTape.} Apart from predefined loss functions (such as \code{categorical_crossentropy} for classfication, \code{mse} for regression, etc), it is ocassional to come across non-standard loss functions from other repository with the use of \code{tf.GradientTape}. 
 
 Such implementation usually create 4 components:
 
 \begin{description}
-    \item[Component 1.] The model \textbf{architecture}
-    \item[Component 2.] The \textbf{loss function} used when computing the model loss
-    \item[Component 3.]  The \textbf{optimizer} used to update the model weights
-    \item[Component 4.] The \textbf{step function} that encapsulates the forward and backward pass of the network
+    \item[\sffamily Component 1.] The model \textbf{architecture}
+    \item[\sffamily Component 2.] The \textbf{loss function} used when computing the model loss
+    \item[\sffamily Component 3.]  The \textbf{optimizer} used to update the model weights
+    \item[\sffamily Component 4.] The \textbf{step function} that encapsulates the forward and backward pass of the network
 \end{description}
 
 Now the code below is self-explanatory:
@@ -606,6 +612,9 @@ for epoch in range(cfg.TRAIN.EPOCHS):
 
 
 
+
+\section{RNN, LSTM and GRU}
+\subsection{RNN}
 
 
 

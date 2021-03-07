@@ -146,3 +146,10 @@ model.compile(optimizer=opt, loss=categorical_crossentropy,
 # now that the model is compiled we can compute the accuracy
 (loss, acc) = model.evaluate(testX, testY)
 print("[INFO] test accuracy: {:.4f}".format(acc))
+
+
+a = np.ones((10, 1))
+b = np.zeros((5, 1))
+
+c = np.concatenate([a, b], axis=0)
+c.shape

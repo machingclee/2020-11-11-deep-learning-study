@@ -26,13 +26,13 @@ video_path = "./docs/laogao.mp4"
 num_classes = 1
 input_size = 416
 
-input_layer = tf.keras.layers.Input([input_size, input_size, 3])
-feature_maps = YOLOv3(input_layer)
+# input_layer = tf.keras.layers.Input([input_size, input_size, 3])
+# feature_maps = YOLOv3(input_layer)
 
-bbox_tensors = []
-for i, fm in enumerate(feature_maps):
-    bbox_tensor = decode(fm, i)
-    bbox_tensors.append(bbox_tensor)
+# bbox_tensors = []
+# for i, fm in enumerate(feature_maps):
+#     bbox_tensor = decode(fm, i)
+#     bbox_tensors.append(bbox_tensor)
 
 model = load_model("./head_detection.h5")
 model.summary()
@@ -60,13 +60,18 @@ while stop == False:
 
     prev_time = time.time()
     pred_bbox = model.predict(image_data)
+    pred_sbbox, pred_mbbox, pred_lbbox = pred_bbox
+    pred_bbox = []
+    pred_bbox.append(pred_sbbox)
+    pred_bbox.append(pred_mbbox)
+    pred_bbox.append(pred_lbbox)
     curr_time = time.time()
     exec_time = curr_time - prev_time
 
     pred_bbox = [tf.reshape(x, (-1, tf.shape(x)[-1])) for x in pred_bbox]
     pred_bbox = tf.concat(pred_bbox, axis=0)
-    bboxes = utils.postprocess_boxes(pred_bbox, frame_size, input_size, 0)
-    bboxes = utils.nms(bboxes, 0, method='nms')
+    bboxes = utils.postprocess_boxes(pred_bbox, frame_size, input_size, 0.4)
+    bboxes = utils.nms(bboxes, 0.4, method='nms')
     image = utils.draw_bbox(frame, bboxes)
     # image = Image.fromarray(image)
     # image.show()
