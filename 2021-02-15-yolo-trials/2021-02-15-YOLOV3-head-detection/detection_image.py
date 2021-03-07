@@ -34,7 +34,7 @@ image_path = "./test_images/laogao_2.png"
 # model = tf.keras.Model(input_layer, bbox_tensors)
 # model.load_weights(cfg.MODEL_WEIGHT_PATH)
 
-model = load_model("./head_detection.h5")
+model = load_model("./yolov3-head-detection-26.h5")
 model.summary()
 
 original_image = cv2.imread(image_path)
@@ -46,7 +46,7 @@ image_data = image_data[np.newaxis, ...].astype(np.float32)
 
 
 pred_bbox = model.predict(image_data)
-pred_sbbox, pred_mbbox, pred_lbbox = pred_bbox
+_, pred_sbbox, _, pred_mbbox, _, pred_lbbox = pred_bbox
 pred_bbox = []
 pred_bbox.append(pred_sbbox)
 pred_bbox.append(pred_mbbox)
