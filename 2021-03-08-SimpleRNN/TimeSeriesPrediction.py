@@ -29,6 +29,7 @@ class TimeSeriesPredictionModel:
     def build(T):
         input = Input(shape=(T, 1))
         x = SimpleRNN(5)(input)
+        print(tf.shape(x))
         x = Dense(1)(x)
         model = Model(input, x)
         return model
