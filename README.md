@@ -663,3 +663,9 @@ It has been a while I didn't update the "small task list" in this repo. This tim
 As it is horribly frustrating to understand code merely by watching, I have devided the code into several blocks, added  numerical examples and explain the shape of the variables to make yolov3 code base more easy to digest.
 
 [Link to PDF](2021-02-28-yolov3-algorithm-drilling/YOLOv3StudyNotes.pdf)
+
+---
+
+### 2021-03-21-poetry-generator
+
+This time we create a simple poetry generator. We create an encoder (a model) that is then trained by a set of sentences of list of poems and by using the pretrained weight of glove embedding word vectors (50-dimensional). Upon model.fit, we reuse the same lstm layer to create another model (called sample_model) that can repeatedly geneate next word based on the current word.
