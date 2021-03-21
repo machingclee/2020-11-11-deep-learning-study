@@ -105,8 +105,9 @@ input_ = Input(shape=(max_sequence_length,))
 initial_h = Input(shape=(LATENT_DIM,))
 initial_c = Input(shape=(LATENT_DIM,))
 
+# -------------- define the first model --------------:
 x = embedding_layer(input_)
-lstm = LSTM(LATENT_DIM, return_sequences=True, return_state=True)
+lstm = LSTM(LATENT_DIM, return_sequences=True, return_state=True, name="lstm")
 x, _, _ = lstm(x, initial_state=[initial_h, initial_c])
 
 # output should be of size (None, max_sequence_length, num_words)
@@ -133,6 +134,10 @@ record = model.fit(
     validation_split=VALIDATION_SPLIT
 )
 
+print("model weight:")
+print(model.get_layer(name="lstm").get_weights()[0])
+
+
 plt.plot(record.history["loss"], label="loss")
 plt.plot(record.history["val_loss"], label="val_loss")
 plt.legend()
@@ -143,6 +148,8 @@ plt.plot(record.history["val_acc"], label="val_acc")
 plt.legend()
 plt.show()
 
+
+# -------------- define the second model --------------:
 # i.e., of shape (None, 1), if there is one sample to predict,
 # we need to use (1, 1) dimensional np array.
 input2 = Input(shape=(1,))  # (None, 1)
@@ -154,6 +161,8 @@ sampling_model = Model(
     [input2, initial_h, initial_c],
     [output2, h, c]
 )
+print("sampling_model weight:")
+print(sampling_model.get_layer(name="lstm").get_weights()[0])
 
 idx2word = {index: word for word, index in word2idx.items()}
 
