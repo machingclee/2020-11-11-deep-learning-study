@@ -668,4 +668,8 @@ As it is horribly frustrating to understand code merely by watching, I have devi
 
 ### 2021-03-21-poetry-generator
 
-This time we create a simple poetry generator. We create an encoder (a model) that is then trained by a set of sentences of list of poems and by using the pretrained weight of glove embedding word vectors (50-dimensional). Upon model.fit, we reuse the same lstm layer to create another model (called sample_model) that can repeatedly geneate next word based on the current word.
+This time we create a simple poetry generator. We create an encoder (a model) that is then trained by a set of sentences of list of poems and by using the pretrained weight of glove embedding word vectors (50-dimensional). 
+
+Upon ```model.fit```, we reuse the same ```lstm``` layer to create another model (called ```sample_model```) that can repeatedly geneate next word based on the current word, which takes the form: 
+
+```[[text], [hidden state], [cell state]] |-> [[text], [hidden state], [cell state]]```.
