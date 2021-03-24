@@ -162,4 +162,4 @@ checkpoints/
 data_images/
 *.mp4
 
-glove.6B.50d.txt
+glove.6B.*d.txt
