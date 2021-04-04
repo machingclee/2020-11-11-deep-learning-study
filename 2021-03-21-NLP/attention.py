@@ -20,7 +20,7 @@ def softmax_over_time(x):
 
 class Attention:
     BATCH_SIZE = 64
-    EPOCHS = 100
+    EPOCHS = 120
     LATENT_DIM = 256
     LATENT_DIM_DECODER = 256
     NUM_SAMPLES = 10000
@@ -320,14 +320,14 @@ class Attention:
 
         Attention.encoder_model = Model(encoder_inputs_placeholder, encoder_outputs)
 
-        encoder_outouts_as_input = Input(
+        encoder_outputs_as_input = Input(
             shape=(Attention.encoder_max_input_seq_length, Attention.LATENT_DIM*2,)
         )
 
         decoder_inputs_single = Input(shape=(1,))
         decoder_inputs_single_x = decoder_embedding(decoder_inputs_single)
 
-        context = Attention.one_step_attenion(encoder_outouts_as_input, initial_s)
+        context = Attention.one_step_attenion(encoder_outputs_as_input, initial_s)
 
         decoder_lstm_input = context_last_word_concat_layer(
             [context, decoder_inputs_single_x]
@@ -339,7 +339,7 @@ class Attention:
         Attention.decoder_model = Model(
             inputs=[
                 decoder_inputs_single,
-                encoder_outouts_as_input,
+                encoder_outputs_as_input,
                 initial_s,
                 initial_c
             ],
@@ -390,7 +390,23 @@ class Attention:
             if ans and ans.lower().startswith("n"):
                 break
 
+    @staticmethod
+    def custom_translation():
+        while True:
+            ans = input("Please input a sentence to translate:")
+            input_seq = pad_sequences(
+                Attention.encoder_input_tokenizer.texts_to_sequences([ans]),
+                maxlen=Attention.encoder_max_input_seq_length
+            )
+            translation = Attention.decode_sequence(input_seq)
+            print("-")
+            print("translation:", translation)
+
+            ans = input("Continue? [Y/n]")
+            if ans and ans.lower().startswith("n"):
+                break
+
 
 Attention.initialize()
 Attention.build_encoder_decoder_model()
-Attention.random_translation()
+Attention.custom_translation()
