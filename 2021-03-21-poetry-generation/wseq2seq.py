@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import tensorflow as tf
 
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Embedding, Input, LSTM
@@ -117,7 +118,7 @@ class WSeq2Seq:
     @staticmethod
     def generate_input_vocab_sizes():
         # +1 because we also include padding index 0 which correspond to nth in our vocab list
-        # this becomes essential in creating embedding matrix
+        # this becomes ncessary in creating embedding matrix
         # note that keras use word_count + 1 as the index of UNKNOWN, the key is "None" by default (already generated in word_index)
         WSeq2Seq.encoder_input_vocab_size = len(WSeq2Seq.encoder_input_tokenizer.word_index) + 1
         WSeq2Seq.decoder_input_vocab_size = len(WSeq2Seq.decoder_input_tokenizer.word_index) + 1
@@ -157,11 +158,11 @@ class WSeq2Seq:
                 word_to_vec[word] = vec
 
         print("filling pre-trained embeddings")
-        num_words = min(
+        vocab_size = min(
             WSeq2Seq.MAX_VOCAB_SIZE,
             len(WSeq2Seq.encoder_input_word_to_index) + 1
         )
-        embedding_matrix = np.zeros((num_words, WSeq2Seq.EMBEDDING_DIM))
+        embedding_matrix = np.zeros((vocab_size, WSeq2Seq.EMBEDDING_DIM))
 
         # for embedding matrix, we are just interested in words in our training set:
         for word, index in WSeq2Seq.encoder_input_word_to_index.items():
@@ -170,7 +171,7 @@ class WSeq2Seq:
                 embedding_matrix[index] = word_vec
 
         WSeq2Seq.encoder_word_embedding_layer = Embedding(
-            num_words,
+            vocab_size,
             WSeq2Seq.EMBEDDING_DIM,
             weights=[embedding_matrix],
             input_length=WSeq2Seq.max_encoder_input_seq_length
@@ -201,7 +202,7 @@ class WSeq2Seq:
     @staticmethod
     def build_encoder_decoder_model():
         # build the model
-        # input is expected to be an array of integers
+        # input is expected to be a batch of arrays of integers
         encoder_inputs_placeholder = Input(shape=(WSeq2Seq.max_encoder_input_seq_length,))
         x = WSeq2Seq.encoder_word_embedding_layer(encoder_inputs_placeholder)
         encoder = LSTM(WSeq2Seq.LATENT_DIM, return_state=True, dropout=0.5)
@@ -211,7 +212,7 @@ class WSeq2Seq:
         decoder_inputs_placeholder = Input(shape=(WSeq2Seq.max_decoder_input_seq_length,))
         # it is a different langauge, we use different embedding
         # as we don't have pretrained embedding layer for japanese words, we just apply built-in one:
-        decoder_embedding = Embedding(WSeq2Seq.decoder_input_vocab_size, WSeq2Seq.LATENT_DIM)
+        decoder_embedding = Embedding(WSeq2Seq.decoder_input_vocab_size, WSeq2Seq.EMBEDDING_DIM)
         decoder_inputs_x = decoder_embedding(decoder_inputs_placeholder)
         decoder_lstm = LSTM(WSeq2Seq.LATENT_DIM, return_sequences=True, return_state=True, dropout=0.5)
         decoder_outputs, _, _ = decoder_lstm(
@@ -222,6 +223,8 @@ class WSeq2Seq:
         decoder_dense = Dense(WSeq2Seq.decoder_input_vocab_size, activation="softmax")
         decoder_outputs = decoder_dense(decoder_outputs)
 
+        # this model is just for the purpose of training the middle lstm layers (of encoder and decoder)
+        # it will not be exported
         model = Model([encoder_inputs_placeholder, decoder_inputs_placeholder], decoder_outputs)
 
         model.compile(
@@ -316,6 +319,9 @@ class WSeq2Seq:
                 break
 
 
+WSeq2Seq.initialize()
+WSeq2Seq.build_encoder_decoder_model()
+WSeq2Seq.random_translation()
 WSeq2Seq.initialize()
 WSeq2Seq.build_encoder_decoder_model()
 WSeq2Seq.random_translation()
