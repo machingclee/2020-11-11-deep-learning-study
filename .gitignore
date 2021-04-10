@@ -163,3 +163,6 @@ data_images/
 *.mp4
 
 glove.6B.*d.txt
+
+
+AudioTrainingData/

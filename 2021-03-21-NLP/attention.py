@@ -1,6 +1,7 @@
 import os
 import sys
 import tensorflow as tf
+from scipy.io import wavfile
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, LSTM, GRU, Dense, Embedding, Bidirectional, RepeatVector, Concatenate, Activation, Dot, Lambda
 from tensorflow.keras.preprocessing.text import Tokenizer

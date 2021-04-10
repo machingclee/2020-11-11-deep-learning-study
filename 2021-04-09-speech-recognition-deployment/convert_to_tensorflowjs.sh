@@ -1,0 +1,1 @@
+ tensorflowjs_converter --input_format keras ./model.hdf5 tensorflowjs_model_files/
