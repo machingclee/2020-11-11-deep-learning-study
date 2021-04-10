@@ -6,6 +6,11 @@ import random
 app = Flask(__name__)
 
 
+@app.route("/", methods=["GET"])
+def get_version():
+    return jsonify({"version": 0.01})
+
+
 @app.route("/predict", methods=["POST"])
 def predict():
     # get audio file and save it
@@ -29,5 +34,5 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, port=3800)
+    app.run(debug=False, host='0.0.0.0', port=3800)
     print("service is listening at port 3800")
