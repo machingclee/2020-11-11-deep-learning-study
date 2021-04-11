@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  flask:
+
+    build: ./flask
+    container_name: flask
+    restart: always
+    image: machingclee/keyword-spotting-flask
+    expose:
+      - 900
+  
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    image: machingclee/keyword-spotting-nginx
+    restart: always
+    ports:
+      - "80:1234"

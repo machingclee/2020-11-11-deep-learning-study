@@ -1,7 +1,7 @@
 import requests
-URL = "http://localhost:3800/predict"
+URL = "http://localhost:80/predict"
 
-TEST_AUDIO_FILE = "test/go.wav"
+TEST_AUDIO_FILE = "./test/go.wav"
 
 
 if __name__ == "__main__":
