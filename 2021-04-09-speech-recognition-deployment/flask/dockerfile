@@ -5,10 +5,7 @@ RUN apt-get install -y libsndfile1-dev
 RUN pip install tensorflow
 RUN pip install librosa
 
-COPY ./server.py /app
-COPY ./keyword_spotting_service.py /app
-COPY ./model.hdf5 /app
-COPY ./app.ini /app
+COPY . /app
 
 EXPOSE 3800
 
